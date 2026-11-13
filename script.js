@@ -769,7 +769,7 @@ class UniverseManager {
       const placeholderTex = this.createPlaceholderTexture(i);
       const photoMat = new THREE.MeshBasicMaterial({
         map: placeholderTex,
-        side: THREE.DoubleSide
+        side: THREE.FrontSide
       });
 
       const photoMesh = new THREE.Mesh(cardGeom, photoMat);
@@ -860,31 +860,55 @@ class UniverseManager {
       this.renderer.setSize(window.innerWidth, window.innerHeight);
     });
 
-    // Pointer Move for Raycasting Hover
+    // Pointer Move for Raycasting Hover (ignores UI elements)
     window.addEventListener("pointermove", (e) => {
       if (this.isModalOpen) return;
+      if (e.target !== this.canvas) {
+        this.mouse.x = -9999;
+        this.mouse.y = -9999;
+        if (this.hoveredCard) {
+          gsap.to(this.hoveredCard.userData.group.scale, { x: 1, y: 1, z: 1, duration: 0.25 });
+          this.hoveredCard.userData.frameMat.emissiveIntensity = 0.15;
+          this.hoveredCard = null;
+          document.body.style.cursor = "default";
+        }
+        return;
+      }
       this.mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
       this.mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
     });
 
-    // Pointer Click
-    window.addEventListener("pointerdown", (e) => {
+    // Pointer Click exclusively on the 3D Canvas
+    this.canvas.addEventListener("pointerdown", (e) => {
       this.pointerDownPos = { x: e.clientX, y: e.clientY };
     });
 
-    window.addEventListener("pointerup", (e) => {
-      if (this.isModalOpen) return;
+    this.canvas.addEventListener("pointerup", (e) => {
+      if (this.isModalOpen || !this.controls.enabled) return;
+      
       // Prevent click trigger if user was dragging orbit controls
       if (this.pointerDownPos) {
         const dist = Math.hypot(e.clientX - this.pointerDownPos.x, e.clientY - this.pointerDownPos.y);
-        if (dist > 8) return;
+        if (dist > 5) return;
       }
 
-      this.raycaster.setFromCamera(this.mouse, this.camera);
+      // If already hovering over a valid card in foreground, open it directly
+      if (this.hoveredCard) {
+        this.openMemory(this.hoveredCard.userData.index);
+        return;
+      }
+
+      // Fallback click check with exact event coordinates & distance threshold
+      const clickCoords = new THREE.Vector2(
+        (e.clientX / window.innerWidth) * 2 - 1,
+        -(e.clientY / window.innerHeight) * 2 + 1
+      );
+      this.raycaster.setFromCamera(clickCoords, this.camera);
       const meshes = this.cards.map(c => c.photoMesh);
       const intersects = this.raycaster.intersectObjects(meshes);
 
-      if (intersects.length > 0) {
+      // Only open if clicking directly on a foreground card (< 95 units away)
+      if (intersects.length > 0 && intersects[0].distance < 95) {
         const hit = intersects[0].object;
         this.openMemory(hit.userData.index);
       }
@@ -1089,13 +1113,14 @@ class UniverseManager {
       item.group.position.y = item.basePos.y + Math.sin(time * 1.4 + i * 0.5) * 0.22;
     }
 
-    // Raycast hover check when not modal open
-    if (!this.isModalOpen) {
+    // Raycast hover check when modal is not open
+    if (!this.isModalOpen && this.controls.enabled) {
       this.raycaster.setFromCamera(this.mouse, this.camera);
       const meshes = this.cards.map(c => c.photoMesh);
       const intersects = this.raycaster.intersectObjects(meshes);
 
-      if (intersects.length > 0) {
+      // Only hover foreground cards within reaching distance (< 95 units)
+      if (intersects.length > 0 && intersects[0].distance < 95) {
         const hit = intersects[0].object;
         if (this.hoveredCard !== hit) {
           if (this.hoveredCard) {
