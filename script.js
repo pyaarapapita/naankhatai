@@ -1,7 +1,9 @@
 /**
  * ============================================================================
- * OUR STORY • 3D ROMANTIC INTERACTIVE UNIVERSE
+ * OUR STORY • CELESTIAL ODYSSEY (3D ROMANTIC INTERACTIVE UNIVERSE)
  * JavaScript Engine (Three.js + GSAP + Canvas-Confetti + Web Audio API)
+ * Palette: Deepest Cosmic Obsidian, Polished Champagne Gold, Royal Velvet Bordeaux,
+ * Amber Starlight, Diamond White
  * ============================================================================
  */
 
@@ -128,58 +130,58 @@ const CONFIG = {
   ]
 };
 
-// Curated romantic captions for memories
+// Curated romantic captions for all memories
 const ROMANTIC_CAPTIONS = [
-  "Where our spark first caught fire on August 18 at 1:48 PM ✨",
-  "The sweetest smile that effortlessly lights up my entire world.",
-  "Every time I look at you, I fall in love all over again.",
-  "In your eyes, I found my safest and warmest home.",
-  "You make ordinary days feel like a cinematic dream.",
-  "Late night conversations that I never wanted to end.",
+  "Where our spark first caught fire on August 18, 2026 at 1:48 PM ✨",
+  "The sweetest smile that effortlessly illuminates my entire universe.",
+  "Every single time I look at you, I fall in love all over again.",
+  "In your eyes, I found my safest harbor and warmest home.",
+  "You make the simplest days feel like a cinematic masterpiece.",
+  "Late night conversations where time ceased to exist.",
   "The quiet moments with you mean more than anything in this world.",
-  "Thank you for being my anchor whenever the storms rolled in.",
-  "You're not just my love, you are my best friend.",
-  "That contagious laugh of yours is my absolute favorite sound.",
-  "Every road traveled with you is pure magic.",
-  "You have the gentlest soul and the biggest heart I know.",
-  "Holding your hand is the most peaceful feeling in the universe.",
-  "A million little things you do that make me love you deeper.",
-  "Even on difficult days, having you makes everything okay.",
-  "My favorite adventure will always be doing life with you.",
-  "You are my answered prayer, my sweetest gift.",
-  "I cherish every laugh, every gaze, every memory we share.",
-  "You taught me what unconditional love truly looks and feels like.",
-  "Forever wouldn't be long enough to spend with you.",
-  "Your warmth makes the whole world a softer place.",
-  "No matter where life takes us, my heart will always point to you.",
-  "The world fades away whenever you are next to me.",
-  "Every photograph here is a reminder of how lucky I am.",
-  "You made me believe in true soulmates.",
-  "The kindness you carry in your heart inspires me every day.",
-  "With you, every little coffee date feels like a fairy tale.",
-  "Your happiness will always be my highest priority.",
-  "A beauty that runs so much deeper than words could ever tell.",
-  "I promise to always protect your sweet smile.",
-  "Through every season and chapter, I will always choose you.",
-  "You make loving you the easiest thing I've ever done.",
-  "The memory of our first moment still gives me butterflies.",
-  "I love who I am when I am with you.",
-  "Every star in the night sky whispers how much I adore you.",
-  "You are my dream that came true when I wasn't even looking.",
+  "Thank you for being my steadfast anchor whenever the storms rolled in.",
+  "You are not just my love — you are my greatest companion.",
+  "That contagious laugh of yours is my absolute favorite symphony.",
+  "Every road traveled with you is paved in starlight.",
+  "You have the gentlest soul and the most compassionate heart.",
+  "Holding your hand is the most tranquil feeling in this universe.",
+  "A million unspoken little things that make me adore you deeper.",
+  "Even on the heaviest days, your presence makes everything gentle.",
+  "My favorite adventure will always be building life beside you.",
+  "You are my answered prayer, my sweetest and rarest blessing.",
+  "I cherish every laugh, every gaze, and every chapter we write.",
+  "You taught me what patient, unconditional love truly looks like.",
+  "A hundred lifetimes wouldn't be enough to cherish you properly.",
+  "Your kindness makes the entire world a softer place to be.",
+  "No matter where the compass points, my heart will always point to you.",
+  "The noise of the world fades the second you stand beside me.",
+  "Every photograph here is a sacred tribute to how fortunate I am.",
+  "You made me believe in genuine, timeless soulmates.",
+  "The quiet grace you carry in your spirit inspires me every single day.",
+  "With you, even a simple evening walk feels like poetry.",
+  "Your joy and peace of mind will always be my highest calling.",
+  "A radiance that runs so much deeper than words could ever describe.",
+  "I promise to always protect and celebrate your beautiful smile.",
+  "Through every changing season, I will choose you again and again.",
+  "Loving you is the most natural, effortless thing I have ever done.",
+  "The memory of our first conversation still brings butterflies.",
+  "I cherish who I become when I am in your warmth.",
+  "Every star in the night sky whispers of your gentleness.",
+  "You are the dream that came true when I wasn't even looking.",
   "Thank you for never letting go of my hand.",
-  "My heart beats in time with yours, always and forever.",
-  "You turn every gray sky into a golden sunrise.",
-  "Your hugs are where all my worries instantly disappear.",
-  "I am so proud of the woman you are becoming.",
-  "The purest love I have ever known.",
-  "A thousand lifetimes wouldn't be enough to love you.",
-  "Our story is my favorite masterpiece.",
-  "Thank you for your endless patience and understanding.",
+  "My heart will always beat in harmony with yours, forever.",
+  "You turn every monochrome day into a vibrant golden sunrise.",
+  "Your embrace is where all of my worries instantly dissolve.",
+  "I am endlessly proud of the woman you are.",
+  "The purest, most sincere devotion I have ever known.",
+  "An eternity together is just the beginning.",
+  "Our story is my favorite masterpiece in the stars.",
+  "Thank you for your infinite patience, understanding, and grace.",
   "You are my today, my tomorrow, and all of my future.",
-  "The way you care for people is so breathtaking.",
-  "I love the way your eyes crinkle when you truly laugh.",
-  "Being yours is the greatest honor of my life.",
-  "August 18 • 1:48 PM: The exact moment my forever began ♥"
+  "The gentle way you care for the world leaves me breathless.",
+  "I love the way your eyes light up when you laugh from the soul.",
+  "Being yours is the greatest honor of my entire existence.",
+  "August 18, 2026 • 1:48 PM: The exact moment our forever began ♥"
 ];
 
 function getCaptionForIndex(idx) {
@@ -187,7 +189,7 @@ function getCaptionForIndex(idx) {
 }
 
 // ============================================================================
-// AUDIO SYNTHESIZER (WEB AUDIO API CHIMES)
+// AUDIO SYNTHESIZER (WEB AUDIO API CELESTIAL CHIMES)
 // Zero latency, zero external sound files needed
 // ============================================================================
 let audioCtx = null;
@@ -211,27 +213,25 @@ function playSparkleSound() {
     if (!ctx) return;
     const now = ctx.currentTime;
     
-    // Play sweet celestial harp arpeggio
-    const freqs = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+    // Golden harp arpeggio (C5, E5, G5, B5, C6)
+    const freqs = [523.25, 659.25, 783.99, 987.77, 1046.50];
     freqs.forEach((freq, idx) => {
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.type = 'sine';
-      osc.frequency.setValueAtTime(freq, now + idx * 0.05);
+      osc.frequency.setValueAtTime(freq, now + idx * 0.045);
 
-      gain.gain.setValueAtTime(0, now + idx * 0.05);
-      gain.gain.linearRampToValueAtTime(0.08, now + idx * 0.05 + 0.02);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.05 + 0.4);
+      gain.gain.setValueAtTime(0, now + idx * 0.045);
+      gain.gain.linearRampToValueAtTime(0.08, now + idx * 0.045 + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.045 + 0.42);
 
       osc.connect(gain);
       gain.connect(ctx.destination);
 
-      osc.start(now + idx * 0.05);
-      osc.stop(now + idx * 0.05 + 0.45);
+      osc.start(now + idx * 0.045);
+      osc.stop(now + idx * 0.045 + 0.45);
     });
-  } catch (e) {
-    // Silent fail if audio context blocked
-  }
+  } catch (e) {}
 }
 
 function playSuccessChime() {
@@ -239,22 +239,22 @@ function playSuccessChime() {
     const ctx = getAudioContext();
     if (!ctx) return;
     const now = ctx.currentTime;
-    const freqs = [587.33, 739.99, 880.00, 1174.66]; // D5, F#5, A5, D6
+    const freqs = [587.33, 739.99, 880.00, 1174.66, 1479.98];
     freqs.forEach((freq, idx) => {
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.type = 'triangle';
-      osc.frequency.setValueAtTime(freq, now + idx * 0.08);
+      osc.frequency.setValueAtTime(freq, now + idx * 0.07);
 
-      gain.gain.setValueAtTime(0, now + idx * 0.08);
-      gain.gain.linearRampToValueAtTime(0.12, now + idx * 0.08 + 0.03);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.8);
+      gain.gain.setValueAtTime(0, now + idx * 0.07);
+      gain.gain.linearRampToValueAtTime(0.12, now + idx * 0.07 + 0.03);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.07 + 0.85);
 
       osc.connect(gain);
       gain.connect(ctx.destination);
 
-      osc.start(now + idx * 0.08);
-      osc.stop(now + idx * 0.08 + 0.85);
+      osc.start(now + idx * 0.07);
+      osc.stop(now + idx * 0.07 + 0.9);
     });
   } catch (e) {}
 }
@@ -281,41 +281,31 @@ function initEntryCanvas() {
     height = entryCanvas.height = window.innerHeight;
   });
 
-  // Spawn floating glowing heart embers
+  // Spawn floating gold and amber starlight motes
   entryParticles = [];
-  const count = Math.min(50, Math.floor(width / 25));
+  const count = Math.min(60, Math.floor(width / 20));
   for (let i = 0; i < count; i++) {
     entryParticles.push({
       x: Math.random() * width,
       y: Math.random() * height,
-      size: Math.random() * 12 + 6,
-      speedY: Math.random() * 0.8 + 0.3,
-      speedX: (Math.random() - 0.5) * 0.6,
-      opacity: Math.random() * 0.6 + 0.2,
+      size: Math.random() * 8 + 3,
+      speedY: Math.random() * 0.6 + 0.25,
+      speedX: (Math.random() - 0.5) * 0.4,
+      opacity: Math.random() * 0.7 + 0.2,
       pulse: Math.random() * Math.PI * 2,
-      pulseSpeed: Math.random() * 0.03 + 0.01,
-      color: Math.random() > 0.4 ? "#ff5e8e" : "#f6d365"
+      pulseSpeed: Math.random() * 0.025 + 0.01,
+      color: Math.random() > 0.4 ? "#e5c583" : "#f4b266"
     });
   }
 
-  function drawHeart(ctx, x, y, size, color, alpha) {
+  function drawStarMote(ctx, x, y, size, color, alpha) {
     ctx.save();
     ctx.globalAlpha = alpha;
     ctx.fillStyle = color;
-    ctx.shadowBlur = 15;
+    ctx.shadowBlur = 12;
     ctx.shadowColor = color;
     ctx.beginPath();
-    const topCurveHeight = size * 0.3;
-    ctx.moveTo(x, y + topCurveHeight);
-    // top left curve
-    ctx.bezierCurveTo(x, y, x - size / 2, y, x - size / 2, y + topCurveHeight);
-    // bottom left curve
-    ctx.bezierCurveTo(x - size / 2, y + (size + topCurveHeight) / 2, x, y + size, x, y + size * 1.2);
-    // bottom right curve
-    ctx.bezierCurveTo(x, y + size, x + size / 2, y + (size + topCurveHeight) / 2, x + size / 2, y + topCurveHeight);
-    // top right curve
-    ctx.bezierCurveTo(x + size / 2, y, x, y, x, y + topCurveHeight);
-    ctx.closePath();
+    ctx.arc(x, y, size * 0.5, 0, Math.PI * 2);
     ctx.fill();
     ctx.restore();
   }
@@ -324,14 +314,14 @@ function initEntryCanvas() {
     ctx.clearRect(0, 0, width, height);
     for (let p of entryParticles) {
       p.y -= p.speedY;
-      p.x += Math.sin(p.pulse) * 0.5 + p.speedX;
+      p.x += Math.sin(p.pulse) * 0.4 + p.speedX;
       p.pulse += p.pulseSpeed;
-      if (p.y < -30) {
-        p.y = height + 20;
+      if (p.y < -20) {
+        p.y = height + 15;
         p.x = Math.random() * width;
       }
-      const curAlpha = p.opacity * (0.7 + 0.3 * Math.sin(p.pulse));
-      drawHeart(ctx, p.x, p.y, p.size, p.color, curAlpha);
+      const curAlpha = p.opacity * (0.6 + 0.4 * Math.sin(p.pulse));
+      drawStarMote(ctx, p.x, p.y, p.size, p.color, curAlpha);
     }
     entryAnimId = requestAnimationFrame(loop);
   }
@@ -339,20 +329,18 @@ function initEntryCanvas() {
 }
 
 enterBtn.addEventListener("click", () => {
-  // Trigger Web Audio context unlock
   getAudioContext();
   playSuccessChime();
 
-  // 1.2s smooth curtain fade-out
   entryGate.classList.add("curtain-hidden");
   setTimeout(() => {
     if (entryAnimId) cancelAnimationFrame(entryAnimId);
-  }, 1300);
+  }, 1400);
 
-  // Smooth background music fade in 0 -> 0.8
-  musicController.fadeIn(0.8, 2000);
+  // Smooth audio fade in
+  musicController.fadeIn(0.8, 2200);
 
-  // Initialize and trigger camera fly-in into Three.js galaxy
+  // Cinematic 3D camera fly-in
   if (universeManager) {
     universeManager.startIntroFlyIn();
   }
@@ -381,7 +369,6 @@ function updateJourneyTimer() {
     hudMinutes.textContent = String(mins).padStart(2, "0");
     hudSeconds.textContent = String(secs).padStart(2, "0");
   } else {
-    // If date is set in future
     hudDays.textContent = "000";
     hudHours.textContent = "00";
     hudMinutes.textContent = "00";
@@ -393,7 +380,7 @@ setInterval(updateJourneyTimer, 1000);
 updateJourneyTimer();
 
 // ============================================================================
-// 2. CLASSY FLOATING MUSIC PLAYER WITH VINYL THUMBNAIL UI
+// 2. CLASSY FLOATING MUSIC PLAYER (GOLD & OBSIDIAN VINYL)
 // ============================================================================
 class MusicController {
   constructor() {
@@ -415,24 +402,20 @@ class MusicController {
   }
 
   init() {
-    this.audio.volume = 0; // Starts silent until entered
+    this.audio.volume = 0;
 
-    // Toggle Play / Pause
     this.playBtn.addEventListener("click", () => this.togglePlay());
 
-    // Update time & progress ring
     this.audio.addEventListener("timeupdate", () => {
       if (!this.isSeeking) {
         this.updateProgress();
       }
     });
 
-    // Duration loaded
     this.audio.addEventListener("loadedmetadata", () => {
       this.totalTimeElem.textContent = this.formatTime(this.audio.duration);
     });
 
-    // Seek slider input
     this.seekSlider.addEventListener("input", () => {
       this.isSeeking = true;
       const pct = this.seekSlider.value / 100;
@@ -445,13 +428,11 @@ class MusicController {
       this.isSeeking = false;
     });
 
-    // Volume Slider
     this.volSlider.addEventListener("input", () => {
       this.audio.volume = parseFloat(this.volSlider.value);
       if (this.audio.volume > 0) this.lastVolume = this.audio.volume;
     });
 
-    // Mute / Unmute Toggle
     this.volBtn.addEventListener("click", () => {
       if (this.audio.volume > 0) {
         this.lastVolume = this.audio.volume;
@@ -463,7 +444,6 @@ class MusicController {
       }
     });
 
-    // Ensure vinyl spins only while audio is playing
     this.audio.addEventListener("play", () => {
       this.vinylDisc.classList.add("is-playing");
       this.playIcon.style.display = "none";
@@ -486,7 +466,7 @@ class MusicController {
     }
   }
 
-  fadeIn(targetVol = 0.8, durationMs = 2000) {
+  fadeIn(targetVol = 0.8, durationMs = 2200) {
     this.audio.volume = 0;
     this.audio.play().then(() => {
       this.vinylDisc.classList.add("is-playing");
@@ -505,7 +485,7 @@ class MusicController {
       };
       requestAnimationFrame(step);
     }).catch(err => {
-      console.warn("Autoplay audio blocked or pending user interaction: ", err);
+      console.warn("Autoplay audio waiting for interaction: ", err);
     });
   }
 
@@ -520,7 +500,6 @@ class MusicController {
     }
     this.seekSlider.value = progressPct * 100;
 
-    // SVG Circular Progress Ring (circumference = 2 * PI * 25 ≈ 157)
     const circumference = 157;
     const offset = circumference - progressPct * circumference;
     if (this.vinylProgressRing) {
@@ -539,7 +518,7 @@ class MusicController {
 const musicController = new MusicController();
 
 // ============================================================================
-// 3. 3D INTERACTIVE PHOTO UNIVERSE (THREE.JS + GSAP)
+// 3. TRUE 3D INTERACTIVE MEMORY UNIVERSE (THREE.JS + GSAP)
 // ============================================================================
 class UniverseManager {
   constructor() {
@@ -547,33 +526,36 @@ class UniverseManager {
     this.photoList = CONFIG.PHOTOS;
     this.cards = [];
     this.activeCardIndex = 0;
+    this.currentMode = "spiral"; // spiral | heart | sphere
     this.isTouring = false;
     this.tourTimeout = null;
     this.raycaster = new THREE.Raycaster();
     this.mouse = new THREE.Vector2(-9999, -9999);
+    this.parallaxMouse = new THREE.Vector2(0, 0);
+    this.cameraParallaxOffset = new THREE.Vector2(0, 0);
     this.hoveredCard = null;
     this.isModalOpen = false;
 
     this.initScene();
     this.initLights();
-    this.initStars();
+    this.initCosmicAtmosphere();
     this.initCards();
+    this.initRibbonSpline();
     this.initEvents();
     this.animate();
   }
 
   initScene() {
     this.scene = new THREE.Scene();
-    this.scene.fog = new THREE.FogExp2(0x120914, 0.0035);
+    this.scene.fog = new THREE.FogExp2(0x06050a, 0.0028);
 
     this.camera = new THREE.PerspectiveCamera(
-      55,
+      52,
       window.innerWidth / window.innerHeight,
       0.1,
-      1500
+      2000
     );
-    // Initial position far in deep space for the entry fly-in
-    this.camera.position.set(0, 120, 260);
+    this.camera.position.set(0, 140, 280);
 
     this.renderer = new THREE.WebGLRenderer({
       canvas: this.canvas,
@@ -584,54 +566,59 @@ class UniverseManager {
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 1.15;
+    this.renderer.toneMappingExposure = 1.25;
 
-    // OrbitControls
     this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enableDamping = true;
-    this.controls.dampingFactor = 0.05;
-    this.controls.maxDistance = 320;
-    this.controls.minDistance = 6;
+    this.controls.dampingFactor = 0.045;
+    this.controls.maxDistance = 340;
+    this.controls.minDistance = 8;
     this.controls.target.set(0, 0, 0);
   }
 
   initLights() {
-    // Soft romantic ambient purple
-    const ambientLight = new THREE.AmbientLight(0x401f46, 1.3);
+    // Ambient cosmic indigo
+    const ambientLight = new THREE.AmbientLight(0x201a35, 1.4);
     this.scene.add(ambientLight);
 
-    // Warm rose point light
-    this.roseLight = new THREE.PointLight(0xff5e8e, 2.4, 300);
-    this.roseLight.position.set(0, 30, 20);
-    this.scene.add(this.roseLight);
+    // Warm champagne gold primary point light
+    this.goldPoint = new THREE.PointLight(0xe5c583, 3.2, 350);
+    this.goldPoint.position.set(0, 45, 30);
+    this.scene.add(this.goldPoint);
 
-    // Champagne gold secondary light
-    this.goldLight = new THREE.PointLight(0xf6d365, 2.0, 300);
-    this.goldLight.position.set(40, -25, -20);
-    this.scene.add(this.goldLight);
+    // Deep velvet bordeaux secondary warmth
+    this.winePoint = new THREE.PointLight(0x78213b, 2.5, 300);
+    this.winePoint.position.set(50, -35, -25);
+    this.scene.add(this.winePoint);
 
-    // Subtle directional highlight
-    const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
-    dirLight.position.set(30, 80, 50);
+    // Starlight blue accent
+    this.bluePoint = new THREE.PointLight(0x6a89b8, 1.8, 300);
+    this.bluePoint.position.set(-50, 30, -30);
+    this.scene.add(this.bluePoint);
+
+    // Crisp directional key light for specular highlights
+    const dirLight = new THREE.DirectionalLight(0xfff6e6, 1.2);
+    dirLight.position.set(40, 100, 60);
     this.scene.add(dirLight);
   }
 
-  initStars() {
-    // 1600 shimmering cosmic star particles
-    const starCount = 1600;
+  initCosmicAtmosphere() {
+    // 1. 2200 Shimmering Cosmic Star Particles
+    const starCount = 2200;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(starCount * 3);
     const colors = new Float32Array(starCount * 3);
 
     const palette = [
-      new THREE.Color(0xff8da1), // soft blush
-      new THREE.Color(0xf6d365), // warm gold
-      new THREE.Color(0xffffff), // starlight white
-      new THREE.Color(0xe0a96d)  // rose gold
+      new THREE.Color(0xe5c583), // Champagne Gold
+      new THREE.Color(0xf7e7be), // Light Gold
+      new THREE.Color(0xf4b266), // Amber
+      new THREE.Color(0x8aaad6), // Starlight Blue
+      new THREE.Color(0xffffff)  // Pure White
     ];
 
     for (let i = 0; i < starCount; i++) {
-      const radius = 60 + Math.random() * 380;
+      const radius = 70 + Math.random() * 420;
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
 
@@ -648,79 +635,168 @@ class UniverseManager {
     geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
     geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
 
-    // Procedural soft circle sprite for stars
     const starCanvas = document.createElement("canvas");
     starCanvas.width = 32;
     starCanvas.height = 32;
     const sCtx = starCanvas.getContext("2d");
     const grad = sCtx.createRadialGradient(16, 16, 0, 16, 16, 16);
     grad.addColorStop(0, "rgba(255,255,255,1)");
-    grad.addColorStop(0.3, "rgba(255,255,255,0.7)");
-    grad.addColorStop(1, "rgba(255,255,255,0)");
+    grad.addColorStop(0.35, "rgba(247,231,190,0.85)");
+    grad.addColorStop(1, "rgba(247,231,190,0)");
     sCtx.fillStyle = grad;
     sCtx.beginPath();
     sCtx.arc(16, 16, 16, 0, Math.PI * 2);
     sCtx.fill();
 
     const starTexture = new THREE.CanvasTexture(starCanvas);
-    const material = new THREE.PointsMaterial({
-      size: 2.5,
+    const starMat = new THREE.PointsMaterial({
+      size: 2.8,
       vertexColors: true,
       map: starTexture,
       transparent: true,
-      opacity: 0.85,
+      opacity: 0.9,
       blending: THREE.AdditiveBlending,
       depthWrite: false
     });
 
-    this.starPoints = new THREE.Points(geometry, material);
+    this.starPoints = new THREE.Points(geometry, starMat);
     this.scene.add(this.starPoints);
+
+    // 2. Orbital Saturnian Stardust Rings
+    const ringGeom = new THREE.RingGeometry(80, 125, 64);
+    const ringMat = new THREE.MeshBasicMaterial({
+      color: 0xe5c583,
+      side: THREE.DoubleSide,
+      transparent: true,
+      opacity: 0.12,
+      wireframe: true
+    });
+    this.orbitalRing = new THREE.Mesh(ringGeom, ringMat);
+    this.orbitalRing.rotation.x = Math.PI * 0.38;
+    this.orbitalRing.rotation.y = Math.PI * 0.15;
+    this.scene.add(this.orbitalRing);
+
+    // 3. Floating Diamond Crystals
+    this.diamondCrystals = [];
+    const crystalGeom = new THREE.OctahedronGeometry(1.2, 0);
+    const crystalMat = new THREE.MeshStandardMaterial({
+      color: 0xe5c583,
+      metalness: 0.9,
+      roughness: 0.15,
+      emissive: 0xb88d3e,
+      emissiveIntensity: 0.3
+    });
+
+    for (let c = 0; c < 24; c++) {
+      const crystal = new THREE.Mesh(crystalGeom, crystalMat);
+      crystal.position.set(
+        (Math.random() - 0.5) * 160,
+        (Math.random() - 0.5) * 100,
+        (Math.random() - 0.5) * 160
+      );
+      crystal.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
+      crystal.scale.setScalar(Math.random() * 0.8 + 0.6);
+      this.diamondCrystals.push(crystal);
+      this.scene.add(crystal);
+    }
   }
 
-  // Generate an elegant procedural placeholder card texture with glowing border & memory number
-  createPlaceholderTexture(index) {
+  createLuxuryPlaceholderTexture(index) {
     const c = document.createElement("canvas");
-    c.width = 400;
-    c.height = 560;
+    c.width = 440;
+    c.height = 600;
     const ctx = c.getContext("2d");
 
-    // Deep luxury vignette gradient
-    const bgGrad = ctx.createLinearGradient(0, 0, 400, 560);
-    bgGrad.addColorStop(0, "#2c1230");
-    bgGrad.addColorStop(0.5, "#180a1c");
-    bgGrad.addColorStop(1, "#280f2d");
+    // Luxury midnight velvet gradient
+    const bgGrad = ctx.createLinearGradient(0, 0, 440, 600);
+    bgGrad.addColorStop(0, "#1a1526");
+    bgGrad.addColorStop(0.5, "#0d0a14");
+    bgGrad.addColorStop(1, "#1c1424");
     ctx.fillStyle = bgGrad;
-    ctx.fillRect(0, 0, 400, 560);
+    ctx.fillRect(0, 0, 440, 600);
 
-    // Inner glowing rose-gold border
-    ctx.strokeStyle = "rgba(246, 211, 101, 0.45)";
-    ctx.lineWidth = 6;
-    ctx.strokeRect(18, 18, 364, 524);
+    // Outer double gold hairline border
+    ctx.strokeStyle = "rgba(229, 197, 131, 0.5)";
+    ctx.lineWidth = 4;
+    ctx.strokeRect(16, 16, 408, 568);
 
-    // Subtle corner accents
-    ctx.strokeStyle = "#ff5e8e";
-    ctx.lineWidth = 3;
-    ctx.strokeRect(28, 28, 344, 504);
+    ctx.strokeStyle = "rgba(229, 197, 131, 0.25)";
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(26, 26, 388, 548);
 
-    // Heart icon in center
-    ctx.font = "60px serif";
+    // Subtle corner ornaments
+    const drawCorner = (x, y, dx, dy) => {
+      ctx.beginPath();
+      ctx.moveTo(x, y + dy * 18);
+      ctx.lineTo(x, y);
+      ctx.lineTo(x + dx * 18, y);
+      ctx.strokeStyle = "#e5c583";
+      ctx.lineWidth = 3;
+      ctx.stroke();
+    };
+    drawCorner(22, 22, 1, 1);
+    drawCorner(418, 22, -1, 1);
+    drawCorner(22, 578, 1, -1);
+    drawCorner(418, 578, -1, -1);
+
+    // Center Gold Star / Heart Emblem
+    ctx.font = "46px serif";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillStyle = "#ff5e8e";
-    ctx.fillText("♥", 200, 240);
+    ctx.fillStyle = "#e5c583";
+    ctx.fillText("✦", 220, 240);
 
-    // Memory Number text
-    ctx.font = "bold 26px 'Plus Jakarta Sans', sans-serif";
-    ctx.fillStyle = "#f6d365";
-    ctx.fillText(`Memory #${index + 1}`, 200, 310);
+    // Typography
+    ctx.font = "600 24px 'Cormorant Garamond', serif";
+    ctx.fillStyle = "#f7e7be";
+    ctx.fillText(`MEMORY • #${index + 1}`, 220, 310);
 
-    ctx.font = "18px 'Plus Jakarta Sans', sans-serif";
-    ctx.fillStyle = "rgba(255, 240, 243, 0.7)";
-    ctx.fillText("August 18 • 1:48 PM", 200, 345);
+    ctx.font = "16px 'Plus Jakarta Sans', sans-serif";
+    ctx.fillStyle = "rgba(242, 237, 228, 0.65)";
+    ctx.fillText("August 18, 2026", 220, 345);
 
     const texture = new THREE.CanvasTexture(c);
     texture.colorSpace = THREE.SRGBColorSpace;
     return texture;
+  }
+
+  // Calculate 3D target coordinates for layout modes
+  getCoordinatesForMode(mode, i, total) {
+    if (mode === "heart") {
+      // Parametric 3D Heart Nebula
+      const t = (i / total) * Math.PI * 2;
+      const x = 16 * Math.pow(Math.sin(t), 3) * 2.8;
+      const y = (13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t)) * 2.8;
+      const z = (Math.sin(i * 3) * 14) + (Math.cos(t) * 10);
+      return {
+        pos: new THREE.Vector3(x, y, z),
+        rot: new THREE.Vector3(0, Math.sin(t) * 0.4, 0)
+      };
+    } else if (mode === "sphere") {
+      // Fibonacci Celestial Globe Sphere
+      const phi = Math.acos(-1 + (2 * i) / total);
+      const theta = Math.sqrt(total * Math.PI) * phi;
+      const radius = 58;
+      const x = radius * Math.cos(theta) * Math.sin(phi);
+      const y = radius * Math.sin(theta) * Math.sin(phi);
+      const z = radius * Math.cos(phi);
+      const pos = new THREE.Vector3(x, y, z);
+      return {
+        pos: pos,
+        rot: new THREE.Vector3(0, 0, 0) // Will lookAt origin
+      };
+    } else {
+      // Default: Ascending Spiral Helix
+      const angle = i * 0.44;
+      const radius = 26 + Math.sin(i * 0.22) * 5 + i * 0.35;
+      const y = (i - total / 2) * 1.45;
+      const x = Math.cos(angle) * radius;
+      const z = Math.sin(angle) * radius;
+      return {
+        pos: new THREE.Vector3(x, y, z),
+        rot: new THREE.Vector3(0, 0, 0)
+      };
+    }
   }
 
   initCards() {
@@ -730,75 +806,76 @@ class UniverseManager {
       this.textureLoader.setCrossOrigin("");
     }
 
-    // Standard card geometry: width 6.8, height 9.2
-    const cardGeom = new THREE.PlaneGeometry(6.8, 9.2);
-    // Outer border frame: width 7.3, height 9.7
-    const frameGeom = new THREE.PlaneGeometry(7.3, 9.7);
+    // 1. Real 3D Physical Monolith Frame (Box with thickness)
+    const boxGeom = new THREE.BoxGeometry(6.6, 9.2, 0.35);
+    const edgeGeom = new THREE.EdgesGeometry(boxGeom);
 
-    // Spiral Constellation Parameters
+    // Front photo plane
+    const photoGeom = new THREE.PlaneGeometry(6.0, 8.4);
+
     for (let i = 0; i < total; i++) {
-      // Golden spiral winding path
-      const angle = i * 0.44;
-      const radius = 24 + Math.sin(i * 0.22) * 5 + i * 0.32;
-      const y = (i - total / 2) * 1.35;
-      const x = Math.cos(angle) * radius;
-      const z = Math.sin(angle) * radius;
+      const coords = this.getCoordinatesForMode("spiral", i, total);
 
-      // Group to hold front photo + outer glowing rose-gold border frame
       const cardGroup = new THREE.Group();
-      cardGroup.position.set(x, y, z);
+      cardGroup.position.copy(coords.pos);
 
-      // Card faces outwards from the spiral center with a gentle aesthetic tilt
-      cardGroup.lookAt(x * 1.5, y + 1.5, z * 1.5);
-      cardGroup.rotateZ((Math.sin(i * 0.7) * 0.08));
+      // Look outwards from spiral center
+      cardGroup.lookAt(coords.pos.x * 1.5, coords.pos.y + 1.2, coords.pos.z * 1.5);
 
-      // 1. Outer Rose-Gold Bevel / Border Mesh
+      // Solid luxury obsidian/metallic frame
       const frameMat = new THREE.MeshStandardMaterial({
-        color: 0x240f28,
-        metalness: 0.85,
-        roughness: 0.25,
-        emissive: 0xff5e8e,
-        emissiveIntensity: 0.15,
-        side: THREE.DoubleSide
+        color: 0x110e18,
+        metalness: 0.88,
+        roughness: 0.22,
+        emissive: 0x221808,
+        emissiveIntensity: 0.2
       });
-      const frameMesh = new THREE.Mesh(frameGeom, frameMat);
-      frameMesh.position.z = -0.02;
+      const frameMesh = new THREE.Mesh(boxGeom, frameMat);
       cardGroup.add(frameMesh);
 
-      // 2. Photo Card Mesh (Starts with elegant procedural placeholder)
-      const placeholderTex = this.createPlaceholderTexture(i);
+      // Polished Gold Chamfer Edge Wireframe
+      const edgeMat = new THREE.LineBasicMaterial({
+        color: 0xe5c583,
+        transparent: true,
+        opacity: 0.55
+      });
+      const edgeLines = new THREE.LineSegments(edgeGeom, edgeMat);
+      cardGroup.add(edgeLines);
+
+      // Front Photo Inset (Offset slightly forward on Z)
+      const placeholderTex = this.createLuxuryPlaceholderTexture(i);
       const photoMat = new THREE.MeshBasicMaterial({
         map: placeholderTex,
         side: THREE.FrontSide
       });
+      const photoMesh = new THREE.Mesh(photoGeom, photoMat);
+      photoMesh.position.z = 0.185;
 
-      const photoMesh = new THREE.Mesh(cardGeom, photoMat);
       photoMesh.userData = {
         index: i,
         photoSrc: this.photoList[i],
         caption: getCaptionForIndex(i),
         group: cardGroup,
         frameMat: frameMat,
-        baseScale: 1
+        edgeMat: edgeMat
       };
       cardGroup.add(photoMesh);
 
-      // Save references
       this.cards.push({
         group: cardGroup,
         photoMesh: photoMesh,
         frameMat: frameMat,
+        edgeMat: edgeMat,
         photoMat: photoMat,
         photoSrc: this.photoList[i],
         index: i,
-        basePos: new THREE.Vector3(x, y, z),
+        basePos: coords.pos.clone(),
         textureLoaded: false
       });
 
       this.scene.add(cardGroup);
     }
 
-    // Progressively load textures in batches to preserve mobile memory and smooth 60fps
     this.loadTexturesInBatches(4);
   }
 
@@ -824,26 +901,127 @@ class UniverseManager {
           },
           undefined,
           (err) => {
-            console.warn(`Fallback for image ${item.photoSrc}: `, err);
+            console.warn(`Fallback image: ${item.photoSrc}`, err);
           }
         );
       }
 
       currentIdx = end;
-      // Stagger next batch by 120ms
       setTimeout(loadNextBatch, 120);
     };
 
     loadNextBatch();
   }
 
+  // 3. Starlight Ribbon Spline (Flowing celestial river connecting memories)
+  initRibbonSpline() {
+    this.updateRibbonSpline();
+
+    // Flowing starlight particles along the ribbon
+    const particleCount = 380;
+    const geom = new THREE.BufferGeometry();
+    const positions = new Float32Array(particleCount * 3);
+    geom.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+
+    const pMat = new THREE.PointsMaterial({
+      color: 0xf7e7be,
+      size: 3.2,
+      transparent: true,
+      opacity: 0.9,
+      blending: THREE.AdditiveBlending
+    });
+
+    this.ribbonParticles = new THREE.Points(geom, pMat);
+    this.ribbonParticleT = new Float32Array(particleCount);
+    for (let p = 0; p < particleCount; p++) {
+      this.ribbonParticleT[p] = p / particleCount;
+    }
+    this.scene.add(this.ribbonParticles);
+  }
+
+  updateRibbonSpline() {
+    const points = this.cards.map(c => c.group.position.clone());
+    this.splineCurve = new THREE.CatmullRomCurve3D(points);
+
+    if (this.splineTubeMesh) {
+      this.scene.remove(this.splineTubeMesh);
+      this.splineTubeMesh.geometry.dispose();
+    }
+
+    const tubeGeom = new THREE.TubeGeometry(this.splineCurve, 200, 0.22, 6, false);
+    const tubeMat = new THREE.MeshBasicMaterial({
+      color: 0xe5c583,
+      transparent: true,
+      opacity: 0.28,
+      wireframe: false
+    });
+    this.splineTubeMesh = new THREE.Mesh(tubeGeom, tubeMat);
+    this.scene.add(this.splineTubeMesh);
+  }
+
+  // Morph all 100 cards into the chosen 3D layout (Helix, Heart, Sphere)
+  setLayoutMode(mode) {
+    if (this.currentMode === mode) return;
+    this.currentMode = mode;
+    playSparkleSound();
+
+    const total = this.cards.length;
+
+    this.cards.forEach((card, i) => {
+      const target = this.getCoordinatesForMode(mode, i, total);
+      card.basePos.copy(target.pos);
+
+      // Animate position
+      gsap.to(card.group.position, {
+        x: target.pos.x,
+        y: target.pos.y,
+        z: target.pos.z,
+        duration: 1.8,
+        ease: "power2.inOut",
+        delay: (i % 10) * 0.03
+      });
+
+      // Animate orientation
+      if (mode === "sphere") {
+        gsap.to(card.group.rotation, {
+          x: 0,
+          y: Math.atan2(target.pos.x, target.pos.z),
+          z: 0,
+          duration: 1.8,
+          ease: "power2.inOut"
+        });
+      } else if (mode === "heart") {
+        gsap.to(card.group.rotation, {
+          x: 0,
+          y: 0,
+          z: 0,
+          duration: 1.8,
+          ease: "power2.inOut"
+        });
+      } else {
+        // Spiral
+        gsap.to(card.group.rotation, {
+          x: 0,
+          y: Math.atan2(target.pos.x, target.pos.z),
+          z: Math.sin(i * 0.7) * 0.08,
+          duration: 1.8,
+          ease: "power2.inOut"
+        });
+      }
+    });
+
+    // Rebuild ribbon spline after morph completes
+    setTimeout(() => {
+      this.updateRibbonSpline();
+    }, 1900);
+  }
+
   startIntroFlyIn() {
-    // Smooth cinematic camera sweep into the spiral galaxy
     gsap.to(this.camera.position, {
       x: 0,
-      y: 16,
-      z: 68,
-      duration: 2.8,
+      y: 18,
+      z: 75,
+      duration: 3.0,
       ease: "power2.out",
       onUpdate: () => {
         this.controls.target.set(0, 0, 0);
@@ -853,52 +1031,59 @@ class UniverseManager {
   }
 
   initEvents() {
-    // Window Resize
     window.addEventListener("resize", () => {
       this.camera.aspect = window.innerWidth / window.innerHeight;
       this.camera.updateProjectionMatrix();
       this.renderer.setSize(window.innerWidth, window.innerHeight);
     });
 
-    // Pointer Move for Raycasting Hover (ignores UI elements)
+    // Mouse Parallax & Hover Detection
     window.addEventListener("pointermove", (e) => {
       if (this.isModalOpen) return;
+
+      // Subtle 3D Camera Parallax
+      this.parallaxMouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+      this.parallaxMouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+
+      // Ignore hover if pointer is on UI HUD
       if (e.target !== this.canvas) {
         this.mouse.x = -9999;
         this.mouse.y = -9999;
         if (this.hoveredCard) {
-          gsap.to(this.hoveredCard.userData.group.scale, { x: 1, y: 1, z: 1, duration: 0.25 });
-          this.hoveredCard.userData.frameMat.emissiveIntensity = 0.15;
+          gsap.to(this.hoveredCard.userData.group.scale, { x: 1, y: 1, z: 1, duration: 0.3 });
+          this.hoveredCard.userData.edgeMat.color.setHex(0xe5c583);
+          this.hoveredCard.userData.edgeMat.opacity = 0.55;
           this.hoveredCard = null;
           document.body.style.cursor = "default";
         }
         return;
       }
+
       this.mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
       this.mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
     });
 
-    // Pointer Click exclusively on the 3D Canvas
+    // Pointer Click exclusively on 3D canvas
     this.canvas.addEventListener("pointerdown", (e) => {
       this.pointerDownPos = { x: e.clientX, y: e.clientY };
     });
 
     this.canvas.addEventListener("pointerup", (e) => {
       if (this.isModalOpen || !this.controls.enabled) return;
-      
-      // Prevent click trigger if user was dragging orbit controls
+
+      // Ignore if user was dragging/orbiting the scene
       if (this.pointerDownPos) {
         const dist = Math.hypot(e.clientX - this.pointerDownPos.x, e.clientY - this.pointerDownPos.y);
         if (dist > 5) return;
       }
 
-      // If already hovering over a valid card in foreground, open it directly
+      // If already hovering on a card, open it immediately
       if (this.hoveredCard) {
         this.openMemory(this.hoveredCard.userData.index);
         return;
       }
 
-      // Fallback click check with exact event coordinates & distance threshold
+      // Fallback raycast
       const clickCoords = new THREE.Vector2(
         (e.clientX / window.innerWidth) * 2 - 1,
         -(e.clientY / window.innerHeight) * 2 + 1
@@ -907,11 +1092,20 @@ class UniverseManager {
       const meshes = this.cards.map(c => c.photoMesh);
       const intersects = this.raycaster.intersectObjects(meshes);
 
-      // Only open if clicking directly on a foreground card (< 95 units away)
-      if (intersects.length > 0 && intersects[0].distance < 95) {
-        const hit = intersects[0].object;
-        this.openMemory(hit.userData.index);
+      if (intersects.length > 0 && intersects[0].distance < 100) {
+        this.openMemory(intersects[0].object.userData.index);
       }
+    });
+
+    // Layout Morph Buttons (Helix / Heart / Sphere)
+    const modeBtns = document.querySelectorAll("#layout-modes-bar .mode-btn");
+    modeBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        modeBtns.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        const mode = btn.getAttribute("data-mode");
+        this.setLayoutMode(mode);
+      });
     });
 
     // Guided Tour Button
@@ -932,7 +1126,6 @@ class UniverseManager {
       }
     });
 
-    // Keyboard navigation
     window.addEventListener("keydown", (e) => {
       if (!this.isModalOpen) return;
       if (e.key === "Escape") this.closeMemory();
@@ -948,10 +1141,10 @@ class UniverseManager {
     this.isModalOpen = true;
     const card = this.cards[index];
 
-    // Smoothly fly camera to face the card in 3D
+    // Smoothly fly camera to face card with depth
     const groupPos = card.group.position;
     const offsetDir = new THREE.Vector3().subVectors(this.camera.position, groupPos).normalize();
-    const targetCamPos = groupPos.clone().add(offsetDir.multiplyScalar(15));
+    const targetCamPos = groupPos.clone().add(offsetDir.multiplyScalar(16));
 
     gsap.to(this.controls.target, {
       x: groupPos.x,
@@ -970,7 +1163,7 @@ class UniverseManager {
       onUpdate: () => this.controls.update()
     });
 
-    // Populate and display Lightbox Modal
+    // Populate Lightbox
     const lightbox = document.getElementById("memory-lightbox");
     const imgElem = document.getElementById("lightbox-img");
     const badgeElem = document.getElementById("lightbox-badge");
@@ -995,8 +1188,7 @@ class UniverseManager {
 
   closeMemory() {
     this.isModalOpen = false;
-    const lightbox = document.getElementById("memory-lightbox");
-    lightbox.classList.remove("is-open");
+    document.getElementById("memory-lightbox").classList.remove("is-open");
   }
 
   toggleGuidedTour() {
@@ -1028,13 +1220,11 @@ class UniverseManager {
     this.activeCardIndex = index;
     const card = this.cards[index];
 
-    // Smoothly fly camera to next memory
     const groupPos = card.group.position;
-    const targetCamPos = groupPos.clone().add(new THREE.Vector3(0, 2, 14));
+    const targetCamPos = groupPos.clone().add(new THREE.Vector3(0, 2, 16));
 
-    // Update counter pill
     const counterPill = document.getElementById("memory-counter-pill");
-    counterPill.innerHTML = `<span>Memory #${index + 1}: ${card.photoMesh.userData.caption.slice(0, 32)}...</span>`;
+    counterPill.innerHTML = `<span>#${index + 1}: ${card.photoMesh.userData.caption.slice(0, 30)}...</span>`;
 
     gsap.to(this.controls.target, {
       x: groupPos.x,
@@ -1052,23 +1242,21 @@ class UniverseManager {
       ease: "power2.inOut",
       onUpdate: () => this.controls.update(),
       onComplete: () => {
-        // Pulse card
         gsap.to(card.group.scale, {
           x: 1.15,
           y: 1.15,
           z: 1.15,
-          duration: 0.4,
+          duration: 0.45,
           yoyo: true,
           repeat: 1
         });
 
-        // Wait 3.5 seconds before moving to next memory
         this.tourTimeout = setTimeout(() => {
           if (this.isTouring) {
             const nextIdx = (index + 1) % this.cards.length;
             this.tourStep(nextIdx);
           }
-        }, 3500);
+        }, 3600);
       }
     });
   }
@@ -1081,15 +1269,15 @@ class UniverseManager {
       x: 0,
       y: 0,
       z: 0,
-      duration: 1.5,
+      duration: 1.6,
       ease: "power2.out"
     });
 
     gsap.to(this.camera.position, {
       x: 0,
-      y: 16,
-      z: 68,
-      duration: 1.5,
+      y: 18,
+      z: 75,
+      duration: 1.6,
       ease: "power2.out",
       onUpdate: () => this.controls.update()
     });
@@ -1107,35 +1295,71 @@ class UniverseManager {
       this.starPoints.rotation.y = time * 0.015;
     }
 
-    // Gentle organic floating bobbing of photo cards
-    for (let i = 0; i < this.cards.length; i++) {
-      const item = this.cards[i];
-      item.group.position.y = item.basePos.y + Math.sin(time * 1.4 + i * 0.5) * 0.22;
+    // Rotate orbital dust ring
+    if (this.orbitalRing) {
+      this.orbitalRing.rotation.z = time * 0.02;
     }
 
-    // Raycast hover check when modal is not open
+    // Rotate diamond crystals
+    if (this.diamondCrystals) {
+      for (let i = 0; i < this.diamondCrystals.length; i++) {
+        const dc = this.diamondCrystals[i];
+        dc.rotation.x += 0.01;
+        dc.rotation.y += 0.015;
+      }
+    }
+
+    // Flow particles along the Starlight Ribbon
+    if (this.ribbonParticles && this.splineCurve) {
+      const posAttr = this.ribbonParticles.geometry.attributes.position;
+      const count = this.ribbonParticleT.length;
+      for (let p = 0; p < count; p++) {
+        this.ribbonParticleT[p] = (this.ribbonParticleT[p] + 0.0007) % 1;
+        const pt = this.splineCurve.getPointAt(this.ribbonParticleT[p]);
+        if (pt) {
+          posAttr.setXYZ(p, pt.x, pt.y, pt.z);
+        }
+      }
+      posAttr.needsUpdate = true;
+    }
+
+    // Organic gentle floating of cards
+    for (let i = 0; i < this.cards.length; i++) {
+      const item = this.cards[i];
+      item.group.position.y = item.basePos.y + Math.sin(time * 1.5 + i * 0.5) * 0.25;
+    }
+
+    // Interactive 3D Camera Parallax (Glides smoothly with mouse)
     if (!this.isModalOpen && this.controls.enabled) {
+      this.cameraParallaxOffset.x += (this.parallaxMouse.x * 5 - this.cameraParallaxOffset.x) * 0.04;
+      this.cameraParallaxOffset.y += (this.parallaxMouse.y * 3.5 - this.cameraParallaxOffset.y) * 0.04;
+
+      this.camera.position.x += this.cameraParallaxOffset.x * 0.03;
+      this.camera.position.y += this.cameraParallaxOffset.y * 0.03;
+
+      // Raycast hover check
       this.raycaster.setFromCamera(this.mouse, this.camera);
       const meshes = this.cards.map(c => c.photoMesh);
       const intersects = this.raycaster.intersectObjects(meshes);
 
-      // Only hover foreground cards within reaching distance (< 95 units)
-      if (intersects.length > 0 && intersects[0].distance < 95) {
+      if (intersects.length > 0 && intersects[0].distance < 100) {
         const hit = intersects[0].object;
         if (this.hoveredCard !== hit) {
           if (this.hoveredCard) {
-            // Unhover previous
-            gsap.to(this.hoveredCard.userData.group.scale, { x: 1, y: 1, z: 1, duration: 0.25 });
-            this.hoveredCard.userData.frameMat.emissiveIntensity = 0.15;
+            gsap.to(this.hoveredCard.userData.group.scale, { x: 1, y: 1, z: 1, duration: 0.3 });
+            this.hoveredCard.userData.edgeMat.color.setHex(0xe5c583);
+            this.hoveredCard.userData.edgeMat.opacity = 0.55;
           }
           this.hoveredCard = hit;
-          gsap.to(hit.userData.group.scale, { x: 1.12, y: 1.12, z: 1.12, duration: 0.25 });
-          hit.userData.frameMat.emissiveIntensity = 0.65;
+          gsap.to(hit.userData.group.scale, { x: 1.12, y: 1.12, z: 1.12, duration: 0.3 });
+          hit.userData.edgeMat.color.setHex(0xffffff);
+          hit.userData.edgeMat.opacity = 1.0;
           document.body.style.cursor = "pointer";
         }
       } else if (this.hoveredCard) {
-        gsap.to(this.hoveredCard.userData.group.scale, { x: 1, y: 1, z: 1, duration: 0.25 });
-        this.hoveredCard.userData.frameMat.emissiveIntensity = 0.15;
+        gsap.to(this.hoveredCard.userData.group.scale, { x: 1, y: 1, z: 1, duration: 0.3 });
+        this.hoveredCard.userData.edgeMat.color.setHex(0xe5c583);
+        this.hoveredCard.userData.edgeMat.opacity = 0.55;
         this.hoveredCard = null;
         document.body.style.cursor = "default";
       }
@@ -1153,7 +1377,7 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 // ============================================================================
-// TOP NAVIGATION DOCK (SWITCH BETWEEN UNIVERSE / ARCADE / LETTER)
+// TOP NAVIGATION TABS (UNIVERSE / ARCADE / LETTER)
 // ============================================================================
 const navTabs = document.querySelectorAll(".nav-tab-btn");
 const viewArcade = document.getElementById("view-arcade");
@@ -1175,14 +1399,13 @@ navTabs.forEach((btn) => {
       viewLetter.classList.add("is-active");
       if (universeManager) universeManager.controls.enabled = false;
     } else {
-      // 3D Universe active
       if (universeManager) universeManager.controls.enabled = true;
     }
   });
 });
 
 // ============================================================================
-// 5. MINI-GAME ("CATCH MY HEART")
+// 5. MINI-GAME ("CATCH MY HEART" - CELESTIAL GEMS & STARS)
 // ============================================================================
 class HeartCatchGame {
   constructor() {
@@ -1215,7 +1438,6 @@ class HeartCatchGame {
 
     this.startBtn.addEventListener("click", () => this.startGame());
 
-    // Click / Touch detection
     const handleTap = (clientX, clientY) => {
       if (!this.isPlaying) return;
       const rect = this.canvas.getBoundingClientRect();
@@ -1225,8 +1447,7 @@ class HeartCatchGame {
       for (let i = this.hearts.length - 1; i >= 0; i--) {
         const h = this.hearts[i];
         const dist = Math.hypot(h.x - x, h.y - y);
-        if (dist <= h.size * 1.5) {
-          // Catch heart!
+        if (dist <= h.size * 1.6) {
           this.score++;
           this.scoreElem.textContent = `${this.score} / ${this.targetScore}`;
           this.spawnSparkles(h.x, h.y, h.color);
@@ -1278,24 +1499,24 @@ class HeartCatchGame {
 
   spawnHeart() {
     if (this.hearts.length >= 12) return;
-    const colors = ["#ff5e8e", "#ff8da1", "#f6d365", "#e63946"];
+    // Luxury gold, amber, and celestial starlight palette
+    const colors = ["#e5c583", "#f7e7be", "#f4b266", "#8aaad6"];
     this.hearts.push({
-      x: Math.random() * (this.width - 40) + 20,
+      x: Math.random() * (this.width - 50) + 25,
       y: this.height + 30,
-      size: Math.random() * 14 + 14,
+      size: Math.random() * 16 + 14,
       speedY: Math.random() * 2.2 + 1.2,
       sineOffset: Math.random() * Math.PI * 2,
       sineSpeed: Math.random() * 0.05 + 0.02,
-      sineAmp: Math.random() * 1.5 + 0.5,
-      color: colors[Math.floor(Math.random() * colors.length)],
-      pulse: Math.random() * Math.PI
+      sineAmp: Math.random() * 1.6 + 0.5,
+      color: colors[Math.floor(Math.random() * colors.length)]
     });
   }
 
   spawnSparkles(x, y, color) {
-    for (let i = 0; i < 16; i++) {
+    for (let i = 0; i < 18; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const speed = Math.random() * 4 + 1.5;
+      const speed = Math.random() * 4.5 + 1.5;
       this.sparkles.push({
         x: x,
         y: y,
@@ -1312,7 +1533,7 @@ class HeartCatchGame {
     const ctx = this.ctx;
     ctx.save();
     ctx.fillStyle = color;
-    ctx.shadowBlur = 12;
+    ctx.shadowBlur = 15;
     ctx.shadowColor = color;
     ctx.beginPath();
     const topCurve = size * 0.3;
@@ -1330,12 +1551,10 @@ class HeartCatchGame {
     if (!this.isPlaying) return;
     this.ctx.clearRect(0, 0, this.width, this.height);
 
-    // Spawn new hearts
     if (Math.random() < 0.08) {
       this.spawnHeart();
     }
 
-    // Update & Draw Hearts
     for (let i = this.hearts.length - 1; i >= 0; i--) {
       const h = this.hearts[i];
       h.y -= h.speedY;
@@ -1349,7 +1568,6 @@ class HeartCatchGame {
       }
     }
 
-    // Update & Draw Sparkles
     for (let i = this.sparkles.length - 1; i >= 0; i--) {
       const sp = this.sparkles[i];
       sp.x += sp.vx;
@@ -1360,7 +1578,7 @@ class HeartCatchGame {
       this.ctx.globalAlpha = Math.max(0, sp.alpha);
       this.ctx.fillStyle = sp.color;
       this.ctx.beginPath();
-      this.ctx.arc(sp.x, sp.y, sp.size, 0, Math.PI * 2);
+      ctx.arc(sp.x, sp.y, sp.size, 0, Math.PI * 2);
       this.ctx.fill();
       this.ctx.restore();
 
@@ -1374,13 +1592,12 @@ class HeartCatchGame {
 
   winGame() {
     this.endGame(true);
-    // Launch festive heart confetti
     if (window.confetti) {
       confetti({
-        particleCount: 100,
-        spread: 80,
+        particleCount: 120,
+        spread: 85,
         origin: { y: 0.6 },
-        colors: ["#ff5e8e", "#f6d365", "#ff8da1", "#ffffff"]
+        colors: ["#e5c583", "#f7e7be", "#ffffff", "#f4b266", "#78213b"]
       });
     }
   }
@@ -1393,17 +1610,17 @@ class HeartCatchGame {
     this.overlay.classList.remove("hidden");
     if (won) {
       playSuccessChime();
-      this.titleElem.textContent = "You Caught All My Hearts! 💖";
+      this.titleElem.textContent = "You Caught All The Starlight Hearts! ✦";
       this.descElem.textContent = "You unlocked my secret love message:";
       this.noteElem.innerHTML = `
-        "Truth is, my heart was already yours from August 18 at 1:48 PM. You never have to chase it — it beats only for you, always and unconditionally. ♥"
+        "Truth is, my heart was already entirely yours from August 18, 2026 at 1:48 PM. You never have to chase it — it beats only for you, unconditionally and forever. ♥"
       `;
       this.noteElem.style.display = "block";
-      this.startBtn.textContent = "Play Again ✨";
+      this.startBtn.textContent = "Play Again ✦";
     } else {
-      this.titleElem.textContent = "Time's Up! 🌸";
+      this.titleElem.textContent = "Time's Up! ✨";
       this.descElem.textContent = `You caught ${this.score} / ${this.targetScore} hearts. Try once more to unlock the secret note!`;
-      this.startBtn.textContent = "Try Again 💖";
+      this.startBtn.textContent = "Try Again ✦";
     }
   }
 }
@@ -1415,24 +1632,22 @@ new HeartCatchGame();
 // ============================================================================
 const QUIZ_RESPONSES = [
   "Aww, my heart just melted! You know me so well ♥",
-  "Every single second since Aug 18, 1:48 PM has been pure magic!",
+  "Every single second since August 18, 2026 at 1:48 PM has been pure magic!",
   "I promise with my entire heart to love you better every single day."
 ];
 
 function handleQuizAnswer(qNum, optIdx) {
   playSparkleSound();
 
-  // Burst confetti
   if (window.confetti) {
     confetti({
-      particleCount: 50,
-      spread: 60,
+      particleCount: 60,
+      spread: 65,
       origin: { y: 0.7 },
-      colors: ["#ff5e8e", "#f6d365", "#ffd1dc"]
+      colors: ["#e5c583", "#f7e7be", "#ffffff", "#78213b"]
     });
   }
 
-  // Highlight button
   const card = document.querySelector(`.quiz-card[data-quiz="${qNum}"]`);
   if (card) {
     const btns = card.querySelectorAll(".quiz-opt-btn");
@@ -1442,7 +1657,6 @@ function handleQuizAnswer(qNum, optIdx) {
     });
   }
 
-  // Show Sweet Toast
   showQuizToast(QUIZ_RESPONSES[qNum - 1]);
 }
 
@@ -1460,7 +1674,7 @@ function showQuizToast(msg) {
 }
 
 // ============================================================================
-// THE APOLOGY & GRATITUDE LETTER (3D ANIMATED ENVELOPE)
+// THE APOLOGY & GRATITUDE LETTER (3D ROYAL WAX-SEALED ENVELOPE)
 // ============================================================================
 function openRomanticLetter() {
   const envelope = document.getElementById("envelope-elem");
@@ -1473,16 +1687,15 @@ function openRomanticLetter() {
 
     if (window.confetti) {
       confetti({
-        particleCount: 80,
-        spread: 90,
+        particleCount: 90,
+        spread: 95,
         origin: { y: 0.65 },
-        colors: ["#ff5e8e", "#f6d365", "#e63946", "#ffd1dc"]
+        colors: ["#e5c583", "#f7e7be", "#ffffff", "#78213b", "#4a1525"]
       });
     }
 
     if (hint) hint.style.display = "none";
 
-    // Unfold letter with smooth delay
     setTimeout(() => {
       letter.style.display = "block";
       letter.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -1494,11 +1707,11 @@ function sendVirtualHug() {
   playSuccessChime();
   if (window.confetti) {
     confetti({
-      particleCount: 120,
-      spread: 100,
+      particleCount: 130,
+      spread: 105,
       origin: { y: 0.6 },
-      colors: ["#ff4d6d", "#ff758c", "#ff8da1", "#ffd1dc", "#f6d365"]
+      colors: ["#e5c583", "#f7e7be", "#f4b266", "#78213b", "#ffffff"]
     });
   }
-  showQuizToast("A tight, warm hug and a gentle kiss sent straight to you ♥");
+  showQuizToast("A tight, warm hug and a gentle forehead kiss sent straight to you ♥");
 }

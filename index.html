@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Since August 18, 1:48 PM • Our Love Story</title>
-  <meta name="description" content="A romantic 3D interactive universe celebrating our memories together since August 18 at 1:48 PM." />
+  <title>August 18, 2026 • 1:48 PM | Our Celestial Universe</title>
+  <meta name="description" content="An opulent, romantic 3D interactive universe celebrating our memories together since August 18, 2026 at 1:48 PM." />
   
-  <!-- Romantic Web Fonts -->
+  <!-- Premium Fonts: Cormorant Garamond, Playfair Display, Plus Jakarta Sans, Caveat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="style.css" />
@@ -29,30 +29,32 @@
   <!-- SVG Linear Gradients Definition -->
   <svg width="0" height="0" style="position: absolute;">
     <defs>
-      <linearGradient id="roseGoldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#ff5e8e" />
-        <stop offset="50%" stop-color="#ff8da1" />
-        <stop offset="100%" stop-color="#f6d365" />
+      <linearGradient id="goldLuxuryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#f7e7be" />
+        <stop offset="50%" stop-color="#e5c583" />
+        <stop offset="100%" stop-color="#b88d3e" />
       </linearGradient>
     </defs>
   </svg>
 
   <!-- ==========================================================================
-       1. ENTRY GATE & SMOOTH TRANSITION
+       1. ENTRY GATE & SMOOTH TRANSITION (LUXURY GOLD & OBSIDIAN)
        ========================================================================== -->
   <div id="entry-gate">
     <canvas id="entry-canvas"></canvas>
     <div class="entry-card">
       <div class="entry-badge">
-        <span>✨ August 18 • 1:48 PM ✨</span>
+        <span>✦ August 18, 2026 • 1:48 PM ✦</span>
       </div>
       <h1 class="entry-title">Where Our Forever Began</h1>
       <p class="entry-subtitle">
-        Every love story is special, but ours is my greatest blessing.<br>
-        Put on your earphones, turn up the music, and step into our cosmos.
+        Every love story is sacred, but ours is my greatest masterpiece.<br>
+        Put on your headphones, immerse your senses, and step into our celestial cosmos.
       </p>
       <button class="enter-btn" id="enter-btn">
-        <span class="btn-heart-icon">💖</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#0b0914">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
         <span>Enter Our Universe</span>
       </button>
       <div class="entry-hint">
@@ -61,23 +63,24 @@
           <circle cx="6" cy="18" r="3"></circle>
           <circle cx="18" cy="16" r="3"></circle>
         </svg>
-        <span>Music will softly start as you enter</span>
+        <span>Music will gently begin as you step into the stars</span>
       </div>
     </div>
   </div>
 
   <!-- ==========================================================================
-       4. LIVE JOURNEY TIMER HUD HEADER
+       TOP UNIFIED CLASSY FLOATING CONSOLE (HUD & NAV DOCK)
        ========================================================================== -->
-  <header id="journey-hud">
-    <div class="hud-capsule">
-      <div class="hud-tag">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="#ff5e8e">
+  <header id="top-console">
+    <!-- Left: Anniversary Live Ticking Capsule -->
+    <div class="console-capsule">
+      <div class="console-brand-tag">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#e5c583">
           <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
         </svg>
-        <span>Aug 18 • 1:48 PM</span>
+        <span>Aug 18, 2026</span>
       </div>
-      <div class="hud-timer">
+      <div class="console-live-timer">
         <div class="time-segment">
           <span class="time-num" id="hud-days">000</span>
           <span class="time-lbl">d</span>
@@ -99,39 +102,48 @@
         </div>
       </div>
     </div>
-    <div class="hud-subtext">Every single second with you is my happiest miracle ✨</div>
+
+    <!-- Center: 3D Layout Morph Toggles (Helix / Heart / Sphere) -->
+    <div class="console-layout-modes" id="layout-modes-bar">
+      <button class="mode-btn active" data-mode="spiral" title="Ascending Helix Galaxy">
+        <span>🌀 Helix</span>
+      </button>
+      <button class="mode-btn" data-mode="heart" title="3D Heart Nebula">
+        <span>💖 Heart</span>
+      </button>
+      <button class="mode-btn" data-mode="sphere" title="Celestial Planetarium Sphere">
+        <span>🌐 Sphere</span>
+      </button>
+    </div>
+
+    <!-- Right: View Navigation Tabs (Galaxy / Arcade / Letter) -->
+    <nav class="console-nav-tabs" id="nav-dock">
+      <button class="nav-tab-btn active" data-tab="universe">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+          <path d="M2 12h20"></path>
+        </svg>
+        <span>3D Cosmos</span>
+      </button>
+      <button class="nav-tab-btn" data-tab="arcade">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+        </svg>
+        <span>Love Arcade</span>
+      </button>
+      <button class="nav-tab-btn" data-tab="letter">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        <span>My Letter</span>
+      </button>
+    </nav>
   </header>
 
   <!-- ==========================================================================
-       TOP NAVIGATION DOCK (GALLERY / ARCADE / LETTER)
-       ========================================================================== -->
-  <nav id="nav-dock">
-    <button class="nav-tab-btn active" data-tab="universe">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="10"></circle>
-        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
-        <path d="M2 12h20"></path>
-      </svg>
-      <span>3D Galaxy</span>
-    </button>
-    <button class="nav-tab-btn" data-tab="arcade">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <rect x="2" y="6" width="20" height="12" rx="2"></rect>
-        <path d="M6 12h4m-2-2v4m9-3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 2a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"></path>
-      </svg>
-      <span>Love Arcade</span>
-    </button>
-    <button class="nav-tab-btn" data-tab="letter">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-        <polyline points="22,6 12,13 2,6"></polyline>
-      </svg>
-      <span>My Letter</span>
-    </button>
-  </nav>
-
-  <!-- ==========================================================================
-       3D UNIVERSE HUD CONTROLS (GUIDED TOUR & RESET)
+       BOTTOM 3D WORLD CONTROLS (GUIDED TOUR & RESET)
        ========================================================================== -->
   <div id="universe-controls">
     <button class="univ-btn" id="tour-toggle-btn">
@@ -153,7 +165,7 @@
   </div>
 
   <!-- ==========================================================================
-       ROMANTIC MEMORY LIGHTBOX / MODAL
+       ROMANTIC MEMORY LIGHTBOX / MODAL (LUXURY EDITORIAL)
        ========================================================================== -->
   <div id="memory-lightbox">
     <div class="lightbox-card">
@@ -173,7 +185,7 @@
           <button class="lightbox-nav-btn" id="lightbox-prev-btn">
             <span>‹ Previous</span>
           </button>
-          <span style="font-size: 0.8rem; opacity: 0.6;" id="lightbox-index-indicator">1 / 100</span>
+          <span style="font-size: 0.82rem; color: var(--gold-light); font-family: var(--font-roman); letter-spacing: 1px;" id="lightbox-index-indicator">1 / 100</span>
           <button class="lightbox-nav-btn" id="lightbox-next-btn">
             <span>Next ›</span>
           </button>
@@ -192,18 +204,18 @@
       <div class="section-heading">
         <div class="section-tag">Playful Moments</div>
         <h2 class="section-title">Love Arcade & Quiz</h2>
-        <p class="section-desc">A fun little corner of games and memories made especially to make you smile.</p>
+        <p class="section-desc">A fun, celestial sanctuary of memories and games designed to make you smile.</p>
       </div>
 
-      <!-- Mini-Game: Catch My Heart -->
+      <!-- Mini-Game: Catch My Heart (Celestial Gems) -->
       <div class="game-card">
         <div class="game-hud">
           <div class="game-score-badge">
-            <span>💖 Hearts Caught:</span>
+            <span>✦ Starlight Hearts:</span>
             <span id="game-score">0 / 10</span>
           </div>
           <div class="game-timer-badge">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="12" cy="12" r="10"></circle>
               <polyline points="12 6 12 12 16 14"></polyline>
             </svg>
@@ -216,11 +228,11 @@
           
           <!-- Start / End Overlay -->
           <div class="game-overlay-msg" id="game-overlay">
-            <h3 style="font-family: var(--font-serif); font-size: 1.8rem; color: #fff;" id="game-title">Catch My Heart!</h3>
-            <p style="color: var(--text-muted); font-size: 0.92rem; margin-top: 8px; max-width: 380px;" id="game-desc">
-              Tap 10 floating hearts before the 15-second timer runs out to unlock my secret love note for you!
+            <h3 style="font-family: var(--font-serif); font-size: 2rem; color: #fff;" id="game-title">Catch My Heart!</h3>
+            <p style="color: var(--text-muted); font-size: 0.96rem; margin-top: 10px; max-width: 420px; line-height: 1.6;" id="game-desc">
+              Tap 10 floating celestial hearts before the 15-second timer runs out to unlock my secret love note for you!
             </p>
-            <button class="game-start-btn" id="game-start-btn">Start Game 💖</button>
+            <button class="game-start-btn" id="game-start-btn">Start Game ✦</button>
             <div class="game-secret-note" id="game-secret-note" style="display: none;"></div>
           </div>
         </div>
@@ -230,18 +242,18 @@
       <div class="quiz-wrapper">
         <div class="quiz-card" data-quiz="1">
           <span class="quiz-num">Question 1 of 3</span>
-          <h3 class="quiz-question">What was the very first thought that raced through my mind on August 18 at 1:48 PM?</h3>
+          <h3 class="quiz-question">What was the very first thought that raced through my mind on August 18, 2026 at 1:48 PM?</h3>
           <div class="quiz-options-grid">
             <button class="quiz-opt-btn" onclick="handleQuizAnswer(1, 0)">
-              <span>🌸</span>
+              <span>✨</span>
               <span>"Her smile is the sweetest thing I've ever seen."</span>
             </button>
             <button class="quiz-opt-btn" onclick="handleQuizAnswer(1, 1)">
-              <span>✨</span>
+              <span>💫</span>
               <span>"My heart just skipped a beat — she is so special."</span>
             </button>
             <button class="quiz-opt-btn" onclick="handleQuizAnswer(1, 2)">
-              <span>💫</span>
+              <span>🌙</span>
               <span>"I never want this moment to end."</span>
             </button>
             <button class="quiz-opt-btn" onclick="handleQuizAnswer(1, 3)">
@@ -256,7 +268,7 @@
           <h3 class="quiz-question">If I could replay one moment from our story on repeat, which one would it be?</h3>
           <div class="quiz-options-grid">
             <button class="quiz-opt-btn" onclick="handleQuizAnswer(2, 0)">
-              <span>🌙</span>
+              <span>🌌</span>
               <span>Those late night talks where hours felt like seconds</span>
             </button>
             <button class="quiz-opt-btn" onclick="handleQuizAnswer(2, 1)">
@@ -269,7 +281,7 @@
             </button>
             <button class="quiz-opt-btn" onclick="handleQuizAnswer(2, 3)">
               <span>♾️</span>
-              <span>Every single second since August 18, 1:48 PM</span>
+              <span>Every single second since August 18, 2026 at 1:48 PM</span>
             </button>
           </div>
         </div>
@@ -303,19 +315,19 @@
 
   <!-- Quiz Toast Notification -->
   <div id="quiz-toast">
-    <span id="quiz-toast-icon">💖</span>
+    <span id="quiz-toast-icon">✨</span>
     <span id="quiz-toast-msg">Sweet message</span>
   </div>
 
   <!-- ==========================================================================
-       VIEW 3: THE APOLOGY & GRATITUDE LETTER (3D ENVELOPE)
+       VIEW 3: THE APOLOGY & GRATITUDE LETTER (3D ROYAL WAX-SEALED ENVELOPE)
        ========================================================================== -->
   <section class="view-panel" id="view-letter">
     <div class="section-container">
       <div class="section-heading">
         <div class="section-tag">Straight From My Heart</div>
         <h2 class="section-title">My Letter For You</h2>
-        <p class="section-desc">There are things I needed to tell you that mere words could never hold.</p>
+        <p class="section-desc">There are things I needed to tell you that mere spoken words could never hold.</p>
       </div>
 
       <div class="letter-section-wrap">
@@ -336,15 +348,15 @@
         <div id="unfolded-letter">
           <div class="letter-watermark">♥</div>
           <div class="letter-header-row">
-            <span class="letter-date-stamp">August 18 • 1:48 PM and Every Day Since</span>
-            <span style="font-family: var(--font-script); font-size: 1.25rem; color: #ff5e8e;">My Forever & Always</span>
+            <span class="letter-date-stamp">August 18, 2026 • 1:48 PM and Every Day Since</span>
+            <span style="font-family: var(--font-script); font-size: 1.35rem; color: #a98038;">My Forever & Always</span>
           </div>
 
           <h3 class="letter-salutation">My Dearest Love,</h3>
 
           <div class="letter-body">
             <p>
-              From the exact moment our paths aligned on <strong>August 18 at 1:48 PM</strong>, my world took on a beauty I never knew existed. You stepped into my life with so much grace, warmth, and purity that every ordinary day turned into an extraordinary memory.
+              From the exact moment our paths aligned on <strong>August 18, 2026 at 1:48 PM</strong>, my world took on a beauty I never knew existed. You stepped into my life with so much grace, warmth, and purity that every ordinary day turned into an extraordinary memory.
             </p>
             <p>
               I want to start by saying <strong class="highlight-text">thank you</strong>. Thank you for staying by my side through thick and thin, for holding my hand when things got overwhelming, and for choosing to believe in me even when I struggled to believe in myself. Your presence in my life is the greatest blessing I have ever received.
@@ -372,7 +384,7 @@
 
           <button class="virtual-hug-btn" onclick="sendVirtualHug()">
             <span>🤗</span>
-            <span>Send You a Virtual Warm Hug & Kiss</span>
+            <span>Send You a Warm Tight Hug & Forehead Kiss</span>
           </button>
         </div>
       </div>
@@ -380,10 +392,10 @@
   </section>
 
   <!-- ==========================================================================
-       2. CLASSY FLOATING MUSIC PLAYER WITH VINYL THUMBNAIL UI
+       2. CLASSY FLOATING MUSIC PLAYER (GOLD & OBSIDIAN VINYL)
        ========================================================================== -->
   <div id="music-player-container">
-    <!-- Vinyl Disc & Progress Ring -->
+    <!-- Vinyl Disc & Progress Halo -->
     <div class="vinyl-disc-wrap">
       <svg class="vinyl-svg-ring" viewBox="0 0 60 60">
         <circle class="ring-bg" cx="30" cy="30" r="25"></circle>
@@ -399,6 +411,11 @@
     <div class="player-details">
       <div class="player-title-row">
         <span class="player-song-title" id="player-title">Barsaat - Banjaare</span>
+        <div class="sound-bars-wrap">
+          <div class="sound-bar"></div>
+          <div class="sound-bar"></div>
+          <div class="sound-bar"></div>
+        </div>
       </div>
       <span class="player-artist">Our Song • Aug 18 ♥</span>
       <div class="player-progress-row">
