@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>August 18, 2026 • 1:48 PM | Our Celestial Universe</title>
-  <meta name="description" content="An opulent, romantic 3D interactive universe celebrating our memories together since August 18, 2026 at 1:48 PM." />
+  <title>Our Universe • Every Little Moment & Memory</title>
+  <meta name="description" content="A romantic, interactive 3D universe celebrating our memories, laughs, inside jokes, and the journey we share together." />
   
   <!-- Premium Fonts: Cormorant Garamond, Playfair Display, Plus Jakarta Sans, Caveat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,12 +44,12 @@
     <canvas id="entry-canvas"></canvas>
     <div class="entry-card">
       <div class="entry-badge">
-        <span>✦ August 18, 2026 • 1:48 PM ✦</span>
+        <span>✦ Where Our Journey Began ✦</span>
       </div>
-      <h1 class="entry-title">Where Our Forever Began</h1>
+      <h1 class="entry-title">Every Moment With You</h1>
       <p class="entry-subtitle">
-        Every love story is sacred, but ours is my greatest masterpiece.<br>
-        Put on your headphones, immerse your senses, and step into our celestial cosmos.
+        A quiet corner filled with our laughs, late nights, silly habits, and 100 memories we've made since day one.<br>
+        Put on your headphones, take a deep breath, and step into our world.
       </p>
       <button class="enter-btn" id="enter-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="#0b0914">
@@ -63,7 +63,7 @@
           <circle cx="6" cy="18" r="3"></circle>
           <circle cx="18" cy="16" r="3"></circle>
         </svg>
-        <span>Music will gently begin as you step into the stars</span>
+        <span>Our song will softly play as you step inside</span>
       </div>
     </div>
   </div>
@@ -78,7 +78,7 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="#e5c583">
           <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
         </svg>
-        <span>Aug 18, 2026</span>
+        <span>Together Since Aug 18</span>
       </div>
       <div class="console-live-timer">
         <div class="time-segment">
@@ -116,7 +116,7 @@
       </button>
     </div>
 
-    <!-- Right: View Navigation Tabs (Galaxy / Arcade / Letter) -->
+    <!-- Right: View Navigation Tabs (Galaxy / Little Things / Arcade / Letter) -->
     <nav class="console-nav-tabs" id="nav-dock">
       <button class="nav-tab-btn active" data-tab="universe">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -126,9 +126,18 @@
         </svg>
         <span>3D Cosmos</span>
       </button>
-      <button class="nav-tab-btn" data-tab="arcade">
+      <button class="nav-tab-btn" data-tab="little-things">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+        </svg>
+        <span>Little Things</span>
+      </button>
+      <button class="nav-tab-btn" data-tab="arcade">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="6" width="20" height="12" rx="3"></rect>
+          <path d="M6 12h4m-2-2v4"></path>
+          <circle cx="15" cy="11" r="1"></circle>
+          <circle cx="18" cy="13" r="1"></circle>
         </svg>
         <span>Love Arcade</span>
       </button>
@@ -143,24 +152,35 @@
   </header>
 
   <!-- ==========================================================================
-       BOTTOM 3D WORLD CONTROLS (GUIDED TOUR & RESET)
+       BOTTOM 3D WORLD CONTROLS (CHAPTER FILTERS, TOUR & RESET)
        ========================================================================== -->
   <div id="universe-controls">
-    <button class="univ-btn" id="tour-toggle-btn">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <polygon points="5 3 19 12 5 21 5 3"></polygon>
-      </svg>
-      <span>Guided Tour</span>
-    </button>
-    <button class="univ-btn" id="reset-cam-btn" title="Reset View">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
-        <path d="M3 3v5h5"></path>
-      </svg>
-      <span>Reset View</span>
-    </button>
-    <div class="memory-count-pill" id="memory-counter-pill">
-      <span>100 Memories in the Stars</span>
+    <!-- Chapter Filter Chips -->
+    <div class="chapter-filter-chips" id="chapter-filter-bar">
+      <button class="chapter-chip active" data-chapter="all">✦ All (100)</button>
+      <button class="chapter-chip" data-chapter="early">🌅 Early Days</button>
+      <button class="chapter-chip" data-chapter="food">🍕 Food & Late Nights</button>
+      <button class="chapter-chip" data-chapter="chaos">🚗 Chaos & Trips</button>
+      <button class="chapter-chip" data-chapter="sweet">🤍 Sweet & Quiet</button>
+    </div>
+
+    <div class="controls-actions-row">
+      <button class="univ-btn" id="tour-toggle-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </svg>
+        <span>Guided Tour</span>
+      </button>
+      <button class="univ-btn" id="reset-cam-btn" title="Reset View">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+          <path d="M3 3v5h5"></path>
+        </svg>
+        <span>Reset View</span>
+      </button>
+      <div class="memory-count-pill" id="memory-counter-pill">
+        <span>100 Memories in the Stars</span>
+      </div>
     </div>
   </div>
 
@@ -176,9 +196,9 @@
       <div class="lightbox-content-pane">
         <div class="lightbox-header">
           <span class="lightbox-badge" id="lightbox-badge">Memory #1</span>
-          <h2 class="lightbox-title" id="lightbox-title">August 18 • Our Forever</h2>
+          <h2 class="lightbox-title" id="lightbox-title">A Special Moment</h2>
           <div class="lightbox-caption-text" id="lightbox-caption">
-            Every second with you feels like a page from the most romantic story ever written.
+            Every second with you is a memory I hold close to my heart.
           </div>
         </div>
         <div class="lightbox-nav-row">
@@ -195,7 +215,130 @@
   </div>
 
   <!-- ==========================================================================
-       VIEW 2: LOVE ARCADE (MINI-GAME + ROMANTIC QUIZ)
+       VIEW: LITTLE THINGS I LOVE ABOUT YOU (INTERACTIVE DECK)
+       ========================================================================== -->
+  <section class="view-panel" id="view-little-things">
+    <div class="section-container">
+      <div class="section-heading">
+        <div class="section-tag">All The Small Wonders</div>
+        <h2 class="section-title">Little Things I Love About You</h2>
+        <p class="section-desc">It was never just one big moment. It's all the tiny, everyday things about you that make my world brighter.</p>
+      </div>
+
+      <div class="things-grid">
+        <div class="thing-card">
+          <div class="thing-header">
+            <span class="thing-icon">🍕</span>
+            <span class="thing-num">#01</span>
+          </div>
+          <h3 class="thing-title">Your Face When Food Arrives</h3>
+          <p class="thing-desc">The pure, unfiltered excitement in your eyes right before that first bite. It instantly brightens up my whole mood no matter how tired I am.</p>
+        </div>
+
+        <div class="thing-card">
+          <div class="thing-header">
+            <span class="thing-icon">🌙</span>
+            <span class="thing-num">#02</span>
+          </div>
+          <h3 class="thing-title">Your Late-Night Sleepy Voice</h3>
+          <p class="thing-desc">That soft, slow, half-asleep murmur right before you doze off while we're talking on call. It's the most comforting sound in the world.</p>
+        </div>
+
+        <div class="thing-card">
+          <div class="thing-header">
+            <span class="thing-icon">🧠</span>
+            <span class="thing-num">#03</span>
+          </div>
+          <h3 class="thing-title">Remembering The Smallest Things</h3>
+          <p class="thing-desc">How you bring up tiny details I casually mentioned weeks ago that even I forgot about. You pay attention in a way nobody else ever has.</p>
+        </div>
+
+        <div class="thing-card">
+          <div class="thing-header">
+            <span class="thing-icon">😂</span>
+            <span class="thing-num">#04</span>
+          </div>
+          <h3 class="thing-title">Your Unfiltered Belly Laugh</h3>
+          <p class="thing-desc">When something is actually hilarious and you lose total control, laughing with your whole soul. That laugh is completely contagious.</p>
+        </div>
+
+        <div class="thing-card">
+          <div class="thing-header">
+            <span class="thing-icon">☕</span>
+            <span class="thing-num">#05</span>
+          </div>
+          <h3 class="thing-title">Our Comfortable Silence</h3>
+          <p class="thing-desc">How we can sit in the same space for hours without saying a word — just reading, scrolling, or working — and feel totally at peace.</p>
+        </div>
+
+        <div class="thing-card">
+          <div class="thing-header">
+            <span class="thing-icon">🤝</span>
+            <span class="thing-num">#06</span>
+          </div>
+          <h3 class="thing-title">The Subtle Arm-Lock</h3>
+          <p class="thing-desc">The way you casually hook your arm into mine or hold onto my sleeve whenever we're crossing the street or walking through a crowd.</p>
+        </div>
+
+        <div class="thing-card">
+          <div class="thing-header">
+            <span class="thing-icon">💌</span>
+            <span class="thing-num">#07</span>
+          </div>
+          <h3 class="thing-title">Checking In On Busy Days</h3>
+          <p class="thing-desc">Even when your day is hectic and exhausting, you still take ten seconds to send a sweet check-in message. It means more than you know.</p>
+        </div>
+
+        <div class="thing-card">
+          <div class="thing-header">
+            <span class="thing-icon">🧥</span>
+            <span class="thing-num">#08</span>
+          </div>
+          <h3 class="thing-title">Stealing All The Warmth</h3>
+          <p class="thing-desc">How you're always perpetually cold and somehow end up with the entire blanket or my oversized jacket — and I let you every single time.</p>
+        </div>
+
+        <div class="thing-card">
+          <div class="thing-header">
+            <span class="thing-icon">🐾</span>
+            <span class="thing-num">#09</span>
+          </div>
+          <h3 class="thing-title">Your Big, Gentle Heart</h3>
+          <p class="thing-desc">The genuine empathy you have for stray animals, people around you, and anyone having a rough time. Your kindness is so rare.</p>
+        </div>
+
+        <div class="thing-card">
+          <div class="thing-header">
+            <span class="thing-icon">🎶</span>
+            <span class="thing-num">#10</span>
+          </div>
+          <h3 class="thing-title">The Music You Share</h3>
+          <p class="thing-desc">Those random songs you tell me to listen to that immediately end up stuck in my head and become our shared soundtrack.</p>
+        </div>
+
+        <div class="thing-card">
+          <div class="thing-header">
+            <span class="thing-icon">🛡️</span>
+            <span class="thing-num">#11</span>
+          </div>
+          <h3 class="thing-title">Putting Up With My Weirdness</h3>
+          <p class="thing-desc">You see all my strange habits, my stubborn moods, and my goofy side, and instead of judging, you just roll your eyes and smile.</p>
+        </div>
+
+        <div class="thing-card">
+          <div class="thing-header">
+            <span class="thing-icon">🏡</span>
+            <span class="thing-num">#12</span>
+          </div>
+          <h3 class="thing-title">Feeling Like Home</h3>
+          <p class="thing-desc">No matter how chaotic or noisy the outside world gets, being around you feels like taking a deep breath of fresh air. You are my safe place.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       VIEW: LOVE ARCADE (MINI-GAME + REAL COUPLE QUIZ)
        ========================================================================== -->
   <section class="view-panel" id="view-arcade">
     <div class="section-container">
@@ -204,10 +347,10 @@
       <div class="section-heading">
         <div class="section-tag">Playful Moments</div>
         <h2 class="section-title">Love Arcade & Quiz</h2>
-        <p class="section-desc">A fun, celestial sanctuary of memories and games designed to make you smile.</p>
+        <p class="section-desc">A fun sanctuary of games, honest promises, and inside jokes designed to make you smile.</p>
       </div>
 
-      <!-- Mini-Game: Catch My Heart (Celestial Gems) -->
+      <!-- Mini-Game: Catch My Heart -->
       <div class="game-card">
         <div class="game-hud">
           <div class="game-score-badge">
@@ -230,7 +373,7 @@
           <div class="game-overlay-msg" id="game-overlay">
             <h3 style="font-family: var(--font-serif); font-size: 2rem; color: #fff;" id="game-title">Catch My Heart!</h3>
             <p style="color: var(--text-muted); font-size: 0.96rem; margin-top: 10px; max-width: 420px; line-height: 1.6;" id="game-desc">
-              Tap 10 floating celestial hearts before the 15-second timer runs out to unlock my secret love note for you!
+              Tap 10 floating celestial hearts before the 15-second timer runs out to unlock my secret note!
             </p>
             <button class="game-start-btn" id="game-start-btn">Start Game ✦</button>
             <div class="game-secret-note" id="game-secret-note" style="display: none;"></div>
@@ -238,73 +381,73 @@
         </div>
       </div>
 
-      <!-- Romantic Quiz -->
+      <!-- Real Couple Quiz (Grounded, fun & sweet) -->
       <div class="quiz-wrapper">
         <div class="quiz-card" data-quiz="1">
           <span class="quiz-num">Question 1 of 3</span>
-          <h3 class="quiz-question">What was the very first thought that raced through my mind on August 18, 2026 at 1:48 PM?</h3>
+          <h3 class="quiz-question">What is our undisputed signature move whenever we have to decide where to eat?</h3>
           <div class="quiz-options-grid">
             <button class="quiz-opt-btn" onclick="handleQuizAnswer(1, 0)">
-              <span>✨</span>
-              <span>"Her smile is the sweetest thing I've ever seen."</span>
+              <span>🤷</span>
+              <span>"I'm fine with anything, you pick" (it's a trap!)</span>
             </button>
             <button class="quiz-opt-btn" onclick="handleQuizAnswer(1, 1)">
-              <span>💫</span>
-              <span>"My heart just skipped a beat — she is so special."</span>
+              <span>📜</span>
+              <span>Browse 20 menus for 45 minutes and pick our usual spot</span>
             </button>
             <button class="quiz-opt-btn" onclick="handleQuizAnswer(1, 2)">
-              <span>🌙</span>
-              <span>"I never want this moment to end."</span>
+              <span>🍦</span>
+              <span>Promise to eat light, but end up ordering dessert anyway</span>
             </button>
             <button class="quiz-opt-btn" onclick="handleQuizAnswer(1, 3)">
-              <span>💖</span>
-              <span>"All of the above — my heart knew you were the one."</span>
+              <span>✨</span>
+              <span>All of the above — it's our official couple tradition</span>
             </button>
           </div>
         </div>
 
         <div class="quiz-card" data-quiz="2">
           <span class="quiz-num">Question 2 of 3</span>
-          <h3 class="quiz-question">If I could replay one moment from our story on repeat, which one would it be?</h3>
+          <h3 class="quiz-question">Which of these is secretly my absolute favorite way to spend time with you?</h3>
           <div class="quiz-options-grid">
             <button class="quiz-opt-btn" onclick="handleQuizAnswer(2, 0)">
               <span>🌌</span>
-              <span>Those late night talks where hours felt like seconds</span>
+              <span>Those 2 AM talks where minutes fly by like seconds</span>
             </button>
             <button class="quiz-opt-btn" onclick="handleQuizAnswer(2, 1)">
-              <span>🤝</span>
-              <span>The first time our hands locked together</span>
+              <span>🚗</span>
+              <span>Quiet late evening drives listening to our favorite tracks</span>
             </button>
             <button class="quiz-opt-btn" onclick="handleQuizAnswer(2, 2)">
-              <span>🥰</span>
-              <span>Every single time you laughed at my silly jokes</span>
+              <span>🛋️</span>
+              <span>Just lounging next to each other doing our own thing</span>
             </button>
             <button class="quiz-opt-btn" onclick="handleQuizAnswer(2, 3)">
-              <span>♾️</span>
-              <span>Every single second since August 18, 2026 at 1:48 PM</span>
+              <span>💖</span>
+              <span>Literally any moment where I get to see you genuinely happy</span>
             </button>
           </div>
         </div>
 
         <div class="quiz-card" data-quiz="3">
           <span class="quiz-num">Question 3 of 3</span>
-          <h3 class="quiz-question">What is my biggest and most honest promise to you?</h3>
+          <h3 class="quiz-question">What is my most honest, grounded promise to you as we keep moving forward?</h3>
           <div class="quiz-options-grid">
             <button class="quiz-opt-btn" onclick="handleQuizAnswer(3, 0)">
-              <span>🛡️</span>
-              <span>To always protect your smile and peace of mind</span>
+              <span>👂</span>
+              <span>To always listen with an open mind, especially when things get tough</span>
             </button>
             <button class="quiz-opt-btn" onclick="handleQuizAnswer(3, 1)">
-              <span>👂</span>
-              <span>To listen with all my heart and never stop learning</span>
+              <span>🤍</span>
+              <span>To apologize genuinely and quickly whenever I make a mistake</span>
             </button>
             <button class="quiz-opt-btn" onclick="handleQuizAnswer(3, 2)">
-              <span>🌹</span>
-              <span>To apologize with genuine sincerity when I fall short</span>
+              <span>🌱</span>
+              <span>To never stop working on myself to be the partner you deserve</span>
             </button>
             <button class="quiz-opt-btn" onclick="handleQuizAnswer(3, 3)">
-              <span>💍</span>
-              <span>To love you deeper, better, and truer every single day</span>
+              <span>🤝</span>
+              <span>To always be in your corner, through the good, bad, and messy</span>
             </button>
           </div>
         </div>
@@ -320,14 +463,14 @@
   </div>
 
   <!-- ==========================================================================
-       VIEW 3: THE APOLOGY & GRATITUDE LETTER (3D ROYAL WAX-SEALED ENVELOPE)
+       VIEW: THE APOLOGY & GRATITUDE LETTER (3D ROYAL WAX-SEALED ENVELOPE)
        ========================================================================== -->
   <section class="view-panel" id="view-letter">
     <div class="section-container">
       <div class="section-heading">
         <div class="section-tag">Straight From My Heart</div>
         <h2 class="section-title">My Letter For You</h2>
-        <p class="section-desc">There are things I needed to tell you that mere spoken words could never hold.</p>
+        <p class="section-desc">No dramatic dialogues or fancy poetry — just honest words I needed to tell you.</p>
       </div>
 
       <div class="letter-section-wrap">
@@ -336,11 +479,11 @@
           <div class="envelope-flap-top"></div>
           <div class="wax-seal">
             <span class="wax-seal-heart">♥</span>
-            <span class="wax-seal-date">AUG 18</span>
+            <span class="wax-seal-date">FOR YOU</span>
           </div>
           <div class="envelope-pocket"></div>
           <div class="envelope-hint-pill" id="envelope-hint">
-            Tap to break the seal & open my letter 💌
+            Tap to break the wax seal & open 💌
           </div>
         </div>
 
@@ -348,38 +491,41 @@
         <div id="unfolded-letter">
           <div class="letter-watermark">♥</div>
           <div class="letter-header-row">
-            <span class="letter-date-stamp">August 18, 2026 • 1:48 PM and Every Day Since</span>
-            <span style="font-family: var(--font-script); font-size: 1.35rem; color: #a98038;">My Forever & Always</span>
+            <span class="letter-date-stamp">Together & Growing Every Day</span>
+            <span style="font-family: var(--font-script); font-size: 1.35rem; color: #a98038;">From My Heart</span>
           </div>
 
-          <h3 class="letter-salutation">My Dearest Love,</h3>
+          <h3 class="letter-salutation">Hey you,</h3>
 
           <div class="letter-body">
             <p>
-              From the exact moment our paths aligned on <strong>August 18, 2026 at 1:48 PM</strong>, my world took on a beauty I never knew existed. You stepped into my life with so much grace, warmth, and purity that every ordinary day turned into an extraordinary memory.
+              I wanted to write this without any grand speeches or movie dialogues, just honest words from me to you.
             </p>
             <p>
-              I want to start by saying <strong class="highlight-text">thank you</strong>. Thank you for staying by my side through thick and thin, for holding my hand when things got overwhelming, and for choosing to believe in me even when I struggled to believe in myself. Your presence in my life is the greatest blessing I have ever received.
+              Looking back at when our story started on August 18, I couldn't have imagined how deeply you would become woven into my daily life. In the time since, through all our normal routines, food runs, late calls, and silly inside jokes, you have quietly become my favorite person.
             </p>
             <p>
-              And with that same gratitude, I want to say from the deepest, most honest place in my heart: <strong class="highlight-text">I am so truly sorry</strong>. I know there were days when I fell short. Days when my words lacked the tenderness you deserve, when my patience wore thin, or when I didn't listen closely enough to understand what you were carrying inside. I am sorry for every tear I may have caused, every moment of hesitation, and every time I failed to make you feel like the most cherished person in the universe.
+              First, I want to say <strong class="highlight-text">thank you</strong>. Thank you for being in my corner, for laughing with me when things are good, and for simply being there when days feel heavy. Your patience, your warmth, and the genuine kindness you bring into my world mean far more to me than I usually manage to say out loud.
+            </p>
+            <p>
+              And right alongside that, I want to say from a completely sincere place: <strong class="highlight-text">I am truly sorry</strong>. I know I haven't always been easy to deal with. There have been times when I was stubborn, when I was in a bad mood and didn't handle it well, or when I didn't listen as carefully and patiently as I should have. Whenever my words or my actions hurt you or made you feel unheard, it genuinely breaks my heart. You deserve gentleness, understanding, and care — not frustration or impatience.
             </p>
             
             <div class="promise-text">
-              "You deserve all the gentleness this world has to offer, and I promise to be the one who gives it to you — today, tomorrow, and for all our tomorrows."
+              "I don't expect to be perfect, but I promise you that I will never stop putting in the effort to be better, kinder, and more attentive for you every single day."
             </div>
 
             <p>
-              I promise you today that I will never stop growing for us. I promise to listen with an open heart, to love you with unwavering patience, to cherish every laugh, and to love you better and deeper with every breath I take.
+              I promise to listen more, to react with patience instead of impulse, and to make sure you always know how valued and loved you are.
             </p>
             <p>
-              Thank you for being my person, my best friend, and my home.
+              Thank you for sticking with me, for giving me grace when I needed it, and for choosing to walk this journey together.
             </p>
           </div>
 
           <div class="letter-signature">
-            Forever yours,<br>
-            With all my love & whole heart ♥
+            Always yours,<br>
+            With all my love ♥
           </div>
 
           <button class="virtual-hug-btn" onclick="sendVirtualHug()">
@@ -417,7 +563,7 @@
           <div class="sound-bar"></div>
         </div>
       </div>
-      <span class="player-artist">Our Song • Aug 18 ♥</span>
+      <span class="player-artist">Our Soundtrack ♥</span>
       <div class="player-progress-row">
         <span class="player-time-display" id="player-current-time">0:00</span>
         <input type="range" class="player-seek-slider" id="player-seek" min="0" max="100" value="0" />

@@ -130,67 +130,521 @@ const CONFIG = {
   ]
 };
 
-// Curated romantic captions for all memories
-const ROMANTIC_CAPTIONS = [
-  "Where our spark first caught fire on August 18, 2026 at 1:48 PM ✨",
-  "The sweetest smile that effortlessly illuminates my entire universe.",
-  "Every single time I look at you, I fall in love all over again.",
-  "In your eyes, I found my safest harbor and warmest home.",
-  "You make the simplest days feel like a cinematic masterpiece.",
-  "Late night conversations where time ceased to exist.",
-  "The quiet moments with you mean more than anything in this world.",
-  "Thank you for being my steadfast anchor whenever the storms rolled in.",
-  "You are not just my love — you are my greatest companion.",
-  "That contagious laugh of yours is my absolute favorite symphony.",
-  "Every road traveled with you is paved in starlight.",
-  "You have the gentlest soul and the most compassionate heart.",
-  "Holding your hand is the most tranquil feeling in this universe.",
-  "A million unspoken little things that make me adore you deeper.",
-  "Even on the heaviest days, your presence makes everything gentle.",
-  "My favorite adventure will always be building life beside you.",
-  "You are my answered prayer, my sweetest and rarest blessing.",
-  "I cherish every laugh, every gaze, and every chapter we write.",
-  "You taught me what patient, unconditional love truly looks like.",
-  "A hundred lifetimes wouldn't be enough to cherish you properly.",
-  "Your kindness makes the entire world a softer place to be.",
-  "No matter where the compass points, my heart will always point to you.",
-  "The noise of the world fades the second you stand beside me.",
-  "Every photograph here is a sacred tribute to how fortunate I am.",
-  "You made me believe in genuine, timeless soulmates.",
-  "The quiet grace you carry in your spirit inspires me every single day.",
-  "With you, even a simple evening walk feels like poetry.",
-  "Your joy and peace of mind will always be my highest calling.",
-  "A radiance that runs so much deeper than words could ever describe.",
-  "I promise to always protect and celebrate your beautiful smile.",
-  "Through every changing season, I will choose you again and again.",
-  "Loving you is the most natural, effortless thing I have ever done.",
-  "The memory of our first conversation still brings butterflies.",
-  "I cherish who I become when I am in your warmth.",
-  "Every star in the night sky whispers of your gentleness.",
-  "You are the dream that came true when I wasn't even looking.",
-  "Thank you for never letting go of my hand.",
-  "My heart will always beat in harmony with yours, forever.",
-  "You turn every monochrome day into a vibrant golden sunrise.",
-  "Your embrace is where all of my worries instantly dissolve.",
-  "I am endlessly proud of the woman you are.",
-  "The purest, most sincere devotion I have ever known.",
-  "An eternity together is just the beginning.",
-  "Our story is my favorite masterpiece in the stars.",
-  "Thank you for your infinite patience, understanding, and grace.",
-  "You are my today, my tomorrow, and all of my future.",
-  "The gentle way you care for the world leaves me breathless.",
-  "I love the way your eyes light up when you laugh from the soul.",
-  "Being yours is the greatest honor of my entire existence.",
-  "August 18, 2026 • 1:48 PM: The exact moment our forever began ♥"
+// 100 Curated, grounded romantic memories with chapter mapping
+const MEMORY_DATA = [
+  {
+    "title": "Where our story first began",
+    "caption": "The day everything quietly shifted and my world found its favorite person.",
+    "chapter": "early"
+  },
+  {
+    "title": "The very first conversation",
+    "caption": "We started talking and suddenly hours melted into what felt like five minutes.",
+    "chapter": "early"
+  },
+  {
+    "title": "That instant, effortless spark",
+    "caption": "I remember noticing how natural it felt to just be myself around you.",
+    "chapter": "early"
+  },
+  {
+    "title": "The first time your smile caught me off guard",
+    "caption": "You gave that gentle smile and I knew right then you were someone really special.",
+    "chapter": "early"
+  },
+  {
+    "title": "A nervous glance that meant everything",
+    "caption": "That quiet, unhurried moment where neither of us wanted the conversation to end.",
+    "chapter": "early"
+  },
+  {
+    "title": "Talking about everything under the sun",
+    "caption": "We talked about the most random things, yet every word felt important.",
+    "chapter": "early"
+  },
+  {
+    "title": "The moment I realized you were different",
+    "caption": "I caught myself smiling at my phone like an idiot after saying goodbye.",
+    "chapter": "early"
+  },
+  {
+    "title": "When hours started passing like minutes",
+    "caption": "Looking back, that was the exact moment life got infinitely sweeter.",
+    "chapter": "early"
+  },
+  {
+    "title": "First day butterflies that never quite left",
+    "caption": "You walked in with so much warmth that the whole room felt different.",
+    "chapter": "early"
+  },
+  {
+    "title": "Our awkward first inside jokes",
+    "caption": "Those first shared glances where words weren't even necessary.",
+    "chapter": "early"
+  },
+  {
+    "title": "The first shared laugh that felt like home",
+    "caption": "I knew right here that you were going to mean the world to me.",
+    "chapter": "early"
+  },
+  {
+    "title": "Realizing I wanted to know everything about you",
+    "caption": "A simple hello that changed the entire direction of my life.",
+    "chapter": "early"
+  },
+  {
+    "title": "The playlist swap that started it all",
+    "caption": "Exchanging our favorite songs and realizing our tastes aligned so well.",
+    "chapter": "early"
+  },
+  {
+    "title": "Checking my phone hoping it was your text",
+    "caption": "That nervous flutter in my chest every time your name popped up on my screen.",
+    "chapter": "early"
+  },
+  {
+    "title": "The sweet beginning of us",
+    "caption": "The quiet start to our journey together.",
+    "chapter": "early"
+  },
+  {
+    "title": "When you smiled and my heart did a backflip",
+    "caption": "Your laughter was so pure and genuine — I knew I wanted to hear it every day.",
+    "chapter": "early"
+  },
+  {
+    "title": "The very first walk where time stood still",
+    "caption": "A quiet evening walk where neither of us wanted to say goodbye.",
+    "chapter": "early"
+  },
+  {
+    "title": "Finding out how much we had in common",
+    "caption": "Finding out all the little quirks we share that make us click.",
+    "chapter": "early"
+  },
+  {
+    "title": "That unspoken connection from day one",
+    "caption": "A spark that felt calm, steady, and so right from the beginning.",
+    "chapter": "early"
+  },
+  {
+    "title": "The moment a friendship turned into something sacred",
+    "caption": "The very first chapter of a story I wouldn't trade for anything in this world.",
+    "chapter": "early"
+  },
+  {
+    "title": "Late night street food craving",
+    "caption": "Standing by a food stall at midnight laughing about nothing in particular.",
+    "chapter": "food"
+  },
+  {
+    "title": "Your face when the food finally arrives",
+    "caption": "That pure, unadulterated joy in your eyes right before your first bite.",
+    "chapter": "food"
+  },
+  {
+    "title": "Stealing the last bite of dessert",
+    "caption": "You claimed you were full, but somehow that last piece magically disappeared.",
+    "chapter": "food"
+  },
+  {
+    "title": "The 45-minute menu debate",
+    "caption": "Going back and forth for an eternity just to order what we always order.",
+    "chapter": "food"
+  },
+  {
+    "title": "Our favorite cozy cafe corner",
+    "caption": "Tucked away in the corner of our favorite cafe, completely lost in our own bubble.",
+    "chapter": "food"
+  },
+  {
+    "title": "Coffee dates that turn into dinner",
+    "caption": "What was supposed to be a quick coffee turned into five hours of storytelling.",
+    "chapter": "food"
+  },
+  {
+    "title": "Post-midnight ice cream run",
+    "caption": "Late night craving runs in pajamas because life is too short to skip dessert.",
+    "chapter": "food"
+  },
+  {
+    "title": "When we ordered way too much food",
+    "caption": "We convinced ourselves we could finish it all. We definitely couldn't.",
+    "chapter": "food"
+  },
+  {
+    "title": "Sharing one plate and fighting over fries",
+    "caption": "Splitting a meal and pretending I'm mad that you ate all the good pieces.",
+    "chapter": "food"
+  },
+  {
+    "title": "The best tea after a long exhausting day",
+    "caption": "A hot cup of tea, cool breeze, and your voice washing away all the stress.",
+    "chapter": "food"
+  },
+  {
+    "title": "Cooking together and almost burning it",
+    "caption": "The kitchen was a chaotic disaster, but the laughs were totally worth it.",
+    "chapter": "food"
+  },
+  {
+    "title": "Spicy food regrets and endless water glasses",
+    "caption": "You swore it wasn't too spicy, and then we both drank three bottles of water.",
+    "chapter": "food"
+  },
+  {
+    "title": "That hidden food spot we discovered together",
+    "caption": "Finding that tiny hole-in-the-wall spot that instantly became 'our place'.",
+    "chapter": "food"
+  },
+  {
+    "title": "Comfort food on a rainy afternoon",
+    "caption": "Warm comfort food while watching the rain outside — pure bliss.",
+    "chapter": "food"
+  },
+  {
+    "title": "Sweet tooth emergencies at 1 AM",
+    "caption": "Cruising through quiet streets hunting for anything sweet that was still open.",
+    "chapter": "food"
+  },
+  {
+    "title": "Biting into something delicious and doing a little dance",
+    "caption": "Watching you do your happy foodie shimmy is the cutest thing on this planet.",
+    "chapter": "food"
+  },
+  {
+    "title": "Breakfast dates when we are barely awake",
+    "caption": "Sleepy eyes, messy hair, and warm coffee across the breakfast table.",
+    "chapter": "food"
+  },
+  {
+    "title": "The battle over who pays the bill",
+    "caption": "The silent wrestling match under the table trying to grab the bill first.",
+    "chapter": "food"
+  },
+  {
+    "title": "Mid-drive snack pitstop",
+    "caption": "Stopping by the roadside just to grab snacks we definitely didn't need.",
+    "chapter": "food"
+  },
+  {
+    "title": "When you made me try something new and I actually loved it",
+    "caption": "I only tried it because you insisted, and now I'm completely hooked.",
+    "chapter": "food"
+  },
+  {
+    "title": "Late night noodles and random life talks",
+    "caption": "Slurping noodles at 1:30 AM while solving all the world's problems.",
+    "chapter": "food"
+  },
+  {
+    "title": "Your signature foodie happy face",
+    "caption": "The cutest expression you make when the food exceeds all expectations.",
+    "chapter": "food"
+  },
+  {
+    "title": "Dessert before dinner because why not",
+    "caption": "Breaking every rule of balanced nutrition because you wanted waffles.",
+    "chapter": "food"
+  },
+  {
+    "title": "Sharing drinks and stealing sips",
+    "caption": "You taking a 'tiny sip' and half the glass being gone — classic you.",
+    "chapter": "food"
+  },
+  {
+    "title": "Food always tastes ten times better when I'm with you",
+    "caption": "Honestly, even plain bread would taste gourmet if I get to eat it beside you.",
+    "chapter": "food"
+  },
+  {
+    "title": "Taking the longest detour possible",
+    "caption": "Missing our turn three times because we were too busy talking about life.",
+    "chapter": "chaos"
+  },
+  {
+    "title": "Singing completely off-key in the car",
+    "caption": "Blasting our favorite track with the windows rolled down, screaming every lyric.",
+    "chapter": "chaos"
+  },
+  {
+    "title": "When everything went wrong and we couldn't stop laughing",
+    "caption": "The plan completely fell apart, but it turned into the best day we ever had.",
+    "chapter": "chaos"
+  },
+  {
+    "title": "Getting drenched in sudden rain",
+    "caption": "Running for shelter under a tiny awning, soaked to the bone and laughing.",
+    "chapter": "chaos"
+  },
+  {
+    "title": "Silly candid faces when no one's looking",
+    "caption": "Catching you making that ridiculous face right before I took the photo.",
+    "chapter": "chaos"
+  },
+  {
+    "title": "An unplanned drive with zero destination",
+    "caption": "No GPS, no timeline, just good music and the open road with you.",
+    "chapter": "chaos"
+  },
+  {
+    "title": "When you lost your keys for the tenth time",
+    "caption": "Searching every bag and pocket for ten minutes only to find them in your hand.",
+    "chapter": "chaos"
+  },
+  {
+    "title": "Our inside jokes that make zero sense to anyone else",
+    "caption": "Someone saying one word and both of us instantly bursting into giggles.",
+    "chapter": "chaos"
+  },
+  {
+    "title": "Attempting a serious photo and failing miserably",
+    "caption": "We tried to look dignified and aesthetic for once, and we lasted about two seconds.",
+    "chapter": "chaos"
+  },
+  {
+    "title": "Walking through crowded streets hand in hand",
+    "caption": "Weaving through the bustling crowd, making sure your hand never slipped from mine.",
+    "chapter": "chaos"
+  },
+  {
+    "title": "The chaotic rush to catch our timing",
+    "caption": "Running late as usual, but somehow making the chaos feel like a fun movie.",
+    "chapter": "chaos"
+  },
+  {
+    "title": "When you got scared of something tiny",
+    "caption": "You jumping a mile high over a tiny moth — I will never let you live that down.",
+    "chapter": "chaos"
+  },
+  {
+    "title": "Teasing each other till tears rolled down",
+    "caption": "Roasting each other with so much love that our cheeks hurt from smiling.",
+    "chapter": "chaos"
+  },
+  {
+    "title": "Messy hair, strong winds, and wide smiles",
+    "caption": "Windswept, exhausted, and happier than anyone has any right to be.",
+    "chapter": "chaos"
+  },
+  {
+    "title": "Spontaneous plans that turned into core memories",
+    "caption": "The best days are always the ones we never put on a calendar.",
+    "chapter": "chaos"
+  },
+  {
+    "title": "Getting lost and calling it an adventure",
+    "caption": "Realizing we were completely lost and deciding that was even better.",
+    "chapter": "chaos"
+  },
+  {
+    "title": "When you won the argument with that smug grin",
+    "caption": "You gave that little triumphant eyebrow raise and I had to surrender.",
+    "chapter": "chaos"
+  },
+  {
+    "title": "Random goofy selfies in the camera roll",
+    "caption": "Finding these candid gems later and remembering how much fun we had.",
+    "chapter": "chaos"
+  },
+  {
+    "title": "Late night conversations in the car outside your place",
+    "caption": "Sitting in the parked car for an extra hour because neither of us wanted to say goodnight.",
+    "chapter": "chaos"
+  },
+  {
+    "title": "When we laughed at the exact same moment across the room",
+    "caption": "One glance between us and we both knew exactly what the other was thinking.",
+    "chapter": "chaos"
+  },
+  {
+    "title": "Tripping over nothing and acting like it was planned",
+    "caption": "The clumsy moments that prove we are perfectly imperfect together.",
+    "chapter": "chaos"
+  },
+  {
+    "title": "Our dramatic reenactments of everyday drama",
+    "caption": "Listening to you passionately explain random drama is top-tier entertainment.",
+    "chapter": "chaos"
+  },
+  {
+    "title": "Weathering the little storms together",
+    "caption": "No matter how hectic things got, we always found our way back to laughter.",
+    "chapter": "chaos"
+  },
+  {
+    "title": "The hilarious stories we will tell for years",
+    "caption": "These ridiculous moments are the ones I know I will cherish for decades.",
+    "chapter": "chaos"
+  },
+  {
+    "title": "Never a dull moment when you're around",
+    "caption": "Life with you is never boring — it's colorful, loud, and full of heart.",
+    "chapter": "chaos"
+  },
+  {
+    "title": "Comfortable silence after a long day",
+    "caption": "We didn't need to speak a single word — just sitting together was enough.",
+    "chapter": "sweet"
+  },
+  {
+    "title": "Your hand gently holding my sleeve",
+    "caption": "That subtle, unconscious way you reach out for my hand when we walk.",
+    "chapter": "sweet"
+  },
+  {
+    "title": "Watching the city lights at midnight",
+    "caption": "Looking out at the quiet city, grateful beyond words for the person beside me.",
+    "chapter": "sweet"
+  },
+  {
+    "title": "When you fell asleep mid-sentence",
+    "caption": "You insisted you weren't tired, and thirty seconds later you were completely asleep.",
+    "chapter": "sweet"
+  },
+  {
+    "title": "Warm tea and quiet afternoon sun",
+    "caption": "Golden sunlight streaming through the window and quiet tea between us.",
+    "chapter": "sweet"
+  },
+  {
+    "title": "That look of pure warmth across the table",
+    "caption": "I looked up and caught you looking at me with that gentle, unmistakable warmth.",
+    "chapter": "sweet"
+  },
+  {
+    "title": "The softest forehead kiss",
+    "caption": "A quiet forehead kiss to remind you that you are always safe with me.",
+    "chapter": "sweet"
+  },
+  {
+    "title": "Checking in on me during a chaotic workday",
+    "caption": "A three-word text during my hardest afternoon that made everything feel manageable.",
+    "chapter": "sweet"
+  },
+  {
+    "title": "Sitting side by side watching the sky change colors",
+    "caption": "Watching the sky turn shades of pink and gold, resting in pure tranquility.",
+    "chapter": "sweet"
+  },
+  {
+    "title": "The way you care for stray animals",
+    "caption": "Watching your heart melt for every stray dog or kitten we pass on the road.",
+    "chapter": "sweet"
+  },
+  {
+    "title": "Holding your cold hands in my warm pockets",
+    "caption": "Your hands were like ice, but holding them warmed up my entire world.",
+    "chapter": "sweet"
+  },
+  {
+    "title": "Hearing your voice when I needed it most",
+    "caption": "Rough days instantly lose their weight the second I hear your voice.",
+    "chapter": "sweet"
+  },
+  {
+    "title": "The peace I feel when you are near",
+    "caption": "There is a calmness in your presence that I have never found anywhere else.",
+    "chapter": "sweet"
+  },
+  {
+    "title": "Your gentle, thoughtful little surprises",
+    "caption": "The tiny, selfless things you do quietly without asking for any recognition.",
+    "chapter": "sweet"
+  },
+  {
+    "title": "Finding our rhythm in everyday life",
+    "caption": "The simple joy of grocery shopping, cooking, or doing chores side by side.",
+    "chapter": "sweet"
+  },
+  {
+    "title": "The quiet safety of being together",
+    "caption": "Knowing that whatever happens outside, I have a home to return to in you.",
+    "chapter": "sweet"
+  },
+  {
+    "title": "When you rested your head on my shoulder",
+    "caption": "You rested your head on my shoulder on the way back, and I wished the ride was infinite.",
+    "chapter": "sweet"
+  },
+  {
+    "title": "Sharing secrets we never told anyone else",
+    "caption": "Opening up about our fears and dreams, knowing we are safe with each other.",
+    "chapter": "sweet"
+  },
+  {
+    "title": "A calm evening with zero distractions",
+    "caption": "No phones, no rushing, just quiet breathing and gentle conversation.",
+    "chapter": "sweet"
+  },
+  {
+    "title": "The way you believe in me when I doubt myself",
+    "caption": "You see strength in me on the days I struggle to see it in myself.",
+    "chapter": "sweet"
+  },
+  {
+    "title": "Our little routine that feels like home",
+    "caption": "The comforting predictability of our good mornings and sleepy goodnights.",
+    "chapter": "sweet"
+  },
+  {
+    "title": "Watching you smile when you think nobody is looking",
+    "caption": "Caught off guard, smiling at your own thoughts — my absolute favorite sight.",
+    "chapter": "sweet"
+  },
+  {
+    "title": "The softness in your eyes",
+    "caption": "A gentleness that runs so much deeper than words could ever convey.",
+    "chapter": "sweet"
+  },
+  {
+    "title": "Every ordinary Tuesday that feels special with you",
+    "caption": "You have this superpower of turning an ordinary weekday into something memorable.",
+    "chapter": "sweet"
+  },
+  {
+    "title": "Thank you for being my anchor",
+    "caption": "Whenever life felt overwhelming, you were the calm that pulled me through.",
+    "chapter": "sweet"
+  },
+  {
+    "title": "Growing together through every season",
+    "caption": "Learning, adapting, apologizing, and loving each other better with each passing week.",
+    "chapter": "sweet"
+  },
+  {
+    "title": "The comfort of knowing you're in my corner",
+    "caption": "Having someone who knows the real you and loves you even more for it.",
+    "chapter": "sweet"
+  },
+  {
+    "title": "A love that feels calm, steady, and true",
+    "caption": "Not a fleeting spark, but a warm, steady hearth that never goes cold.",
+    "chapter": "sweet"
+  },
+  {
+    "title": "My favorite view will always be you",
+    "caption": "The world has so many beautiful places, but nothing compares to your smile.",
+    "chapter": "sweet"
+  },
+  {
+    "title": "A hundred memories down, a lifetime more to go",
+    "caption": "This website holds our first 100 memories, but our journey is just getting started.",
+    "chapter": "sweet"
+  }
 ];
 
-function getCaptionForIndex(idx) {
-  return ROMANTIC_CAPTIONS[idx % ROMANTIC_CAPTIONS.length];
-}
+// Chapter labels mapping
+const CHAPTER_INFO = {
+  all: { label: "All Memories", count: 100 },
+  early: { label: "Early Days", count: 20 },
+  food: { label: "Food & Late Nights", count: 25 },
+  chaos: { label: "Chaos & Trips", count: 25 },
+  sweet: { label: "Sweet & Quiet", count: 30 }
+};
 
 // ============================================================================
 // AUDIO SYNTHESIZER (WEB AUDIO API CELESTIAL CHIMES)
-// Zero latency, zero external sound files needed
 // ============================================================================
 let audioCtx = null;
 
@@ -328,23 +782,25 @@ function initEntryCanvas() {
   loop();
 }
 
-enterBtn.addEventListener("click", () => {
-  getAudioContext();
-  playSuccessChime();
+if (enterBtn) {
+  enterBtn.addEventListener("click", () => {
+    getAudioContext();
+    playSuccessChime();
 
-  entryGate.classList.add("curtain-hidden");
-  setTimeout(() => {
-    if (entryAnimId) cancelAnimationFrame(entryAnimId);
-  }, 1400);
+    entryGate.classList.add("curtain-hidden");
+    setTimeout(() => {
+      if (entryAnimId) cancelAnimationFrame(entryAnimId);
+    }, 1400);
 
-  // Smooth audio fade in
-  musicController.fadeIn(0.8, 2200);
+    // Smooth audio fade in
+    musicController.fadeIn(0.8, 2200);
 
-  // Cinematic 3D camera fly-in
-  if (universeManager) {
-    universeManager.startIntroFlyIn();
-  }
-});
+    // Cinematic 3D camera fly-in
+    if (universeManager) {
+      universeManager.startIntroFlyIn();
+    }
+  });
+}
 
 // ============================================================================
 // 4. LIVE JOURNEY TIMER HUD
@@ -364,15 +820,15 @@ function updateJourneyTimer() {
     const mins = Math.floor((diff / (1000 * 60)) % 60);
     const secs = Math.floor((diff / 1000) % 60);
 
-    hudDays.textContent = String(days).padStart(3, "0");
-    hudHours.textContent = String(hours).padStart(2, "0");
-    hudMinutes.textContent = String(mins).padStart(2, "0");
-    hudSeconds.textContent = String(secs).padStart(2, "0");
+    if (hudDays) hudDays.textContent = String(days).padStart(3, "0");
+    if (hudHours) hudHours.textContent = String(hours).padStart(2, "0");
+    if (hudMinutes) hudMinutes.textContent = String(mins).padStart(2, "0");
+    if (hudSeconds) hudSeconds.textContent = String(secs).padStart(2, "0");
   } else {
-    hudDays.textContent = "000";
-    hudHours.textContent = "00";
-    hudMinutes.textContent = "00";
-    hudSeconds.textContent = "00";
+    if (hudDays) hudDays.textContent = "000";
+    if (hudHours) hudHours.textContent = "00";
+    if (hudMinutes) hudMinutes.textContent = "00";
+    if (hudSeconds) hudSeconds.textContent = "00";
   }
 }
 
@@ -402,9 +858,12 @@ class MusicController {
   }
 
   init() {
+    if (!this.audio) return;
     this.audio.volume = 0;
 
-    this.playBtn.addEventListener("click", () => this.togglePlay());
+    if (this.playBtn) {
+      this.playBtn.addEventListener("click", () => this.togglePlay());
+    }
 
     this.audio.addEventListener("timeupdate", () => {
       if (!this.isSeeking) {
@@ -413,52 +872,63 @@ class MusicController {
     });
 
     this.audio.addEventListener("loadedmetadata", () => {
-      this.totalTimeElem.textContent = this.formatTime(this.audio.duration);
-    });
-
-    this.seekSlider.addEventListener("input", () => {
-      this.isSeeking = true;
-      const pct = this.seekSlider.value / 100;
-      this.currentTimeElem.textContent = this.formatTime(pct * (this.audio.duration || 0));
-    });
-
-    this.seekSlider.addEventListener("change", () => {
-      const pct = this.seekSlider.value / 100;
-      this.audio.currentTime = pct * (this.audio.duration || 0);
-      this.isSeeking = false;
-    });
-
-    this.volSlider.addEventListener("input", () => {
-      this.audio.volume = parseFloat(this.volSlider.value);
-      if (this.audio.volume > 0) this.lastVolume = this.audio.volume;
-    });
-
-    this.volBtn.addEventListener("click", () => {
-      if (this.audio.volume > 0) {
-        this.lastVolume = this.audio.volume;
-        this.audio.volume = 0;
-        this.volSlider.value = 0;
-      } else {
-        this.audio.volume = this.lastVolume || 0.8;
-        this.volSlider.value = this.audio.volume;
+      if (this.totalTimeElem) {
+        this.totalTimeElem.textContent = this.formatTime(this.audio.duration);
       }
     });
 
+    if (this.seekSlider) {
+      this.seekSlider.addEventListener("input", () => {
+        this.isSeeking = true;
+        const pct = this.seekSlider.value / 100;
+        if (this.currentTimeElem) {
+          this.currentTimeElem.textContent = this.formatTime(pct * (this.audio.duration || 0));
+        }
+      });
+
+      this.seekSlider.addEventListener("change", () => {
+        const pct = this.seekSlider.value / 100;
+        this.audio.currentTime = pct * (this.audio.duration || 0);
+        this.isSeeking = false;
+      });
+    }
+
+    if (this.volSlider) {
+      this.volSlider.addEventListener("input", () => {
+        this.audio.volume = parseFloat(this.volSlider.value);
+        if (this.audio.volume > 0) this.lastVolume = this.audio.volume;
+      });
+    }
+
+    if (this.volBtn) {
+      this.volBtn.addEventListener("click", () => {
+        if (this.audio.volume > 0) {
+          this.lastVolume = this.audio.volume;
+          this.audio.volume = 0;
+          if (this.volSlider) this.volSlider.value = 0;
+        } else {
+          this.audio.volume = this.lastVolume || 0.8;
+          if (this.volSlider) this.volSlider.value = this.audio.volume;
+        }
+      });
+    }
+
     this.audio.addEventListener("play", () => {
-      this.vinylDisc.classList.add("is-playing");
-      this.playIcon.style.display = "none";
-      this.pauseIcon.style.display = "block";
+      if (this.vinylDisc) this.vinylDisc.classList.add("is-playing");
+      if (this.playIcon) this.playIcon.style.display = "none";
+      if (this.pauseIcon) this.pauseIcon.style.display = "block";
     });
 
     this.audio.addEventListener("pause", () => {
-      this.vinylDisc.classList.remove("is-playing");
-      this.playIcon.style.display = "block";
-      this.pauseIcon.style.display = "none";
+      if (this.vinylDisc) this.vinylDisc.classList.remove("is-playing");
+      if (this.playIcon) this.playIcon.style.display = "block";
+      if (this.pauseIcon) this.pauseIcon.style.display = "none";
     });
   }
 
   togglePlay() {
     getAudioContext();
+    if (!this.audio) return;
     if (this.audio.paused) {
       this.audio.play().catch(e => console.log("Play interrupted: ", e));
     } else {
@@ -467,18 +937,19 @@ class MusicController {
   }
 
   fadeIn(targetVol = 0.8, durationMs = 2200) {
+    if (!this.audio) return;
     this.audio.volume = 0;
     this.audio.play().then(() => {
-      this.vinylDisc.classList.add("is-playing");
-      this.playIcon.style.display = "none";
-      this.pauseIcon.style.display = "block";
+      if (this.vinylDisc) this.vinylDisc.classList.add("is-playing");
+      if (this.playIcon) this.playIcon.style.display = "none";
+      if (this.pauseIcon) this.pauseIcon.style.display = "block";
 
       const startTime = performance.now();
       const step = (now) => {
         const elapsed = now - startTime;
         const progress = Math.min(elapsed / durationMs, 1);
         this.audio.volume = progress * targetVol;
-        this.volSlider.value = this.audio.volume;
+        if (this.volSlider) this.volSlider.value = this.audio.volume;
         if (progress < 1 && !this.audio.paused) {
           requestAnimationFrame(step);
         }
@@ -490,15 +961,16 @@ class MusicController {
   }
 
   updateProgress() {
+    if (!this.audio) return;
     const cur = this.audio.currentTime || 0;
     const dur = this.audio.duration || 1;
     const progressPct = cur / dur;
 
-    this.currentTimeElem.textContent = this.formatTime(cur);
-    if (!isNaN(dur) && dur > 1) {
+    if (this.currentTimeElem) this.currentTimeElem.textContent = this.formatTime(cur);
+    if (this.totalTimeElem && !isNaN(dur) && dur > 1) {
       this.totalTimeElem.textContent = this.formatTime(dur);
     }
-    this.seekSlider.value = progressPct * 100;
+    if (this.seekSlider) this.seekSlider.value = progressPct * 100;
 
     const circumference = 157;
     const offset = circumference - progressPct * circumference;
@@ -527,6 +999,7 @@ class UniverseManager {
     this.cards = [];
     this.activeCardIndex = 0;
     this.currentMode = "spiral"; // spiral | heart | sphere
+    this.currentChapter = "all"; // all | early | food | chaos | sweet
     this.isTouring = false;
     this.tourTimeout = null;
     this.raycaster = new THREE.Raycaster();
@@ -535,6 +1008,7 @@ class UniverseManager {
     this.cameraParallaxOffset = new THREE.Vector2(0, 0);
     this.hoveredCard = null;
     this.isModalOpen = false;
+    this.sparks3D = [];
 
     this.initScene();
     this.initLights();
@@ -547,15 +1021,15 @@ class UniverseManager {
 
   initScene() {
     this.scene = new THREE.Scene();
-    this.scene.fog = new THREE.FogExp2(0x06050a, 0.0028);
+    this.scene.fog = new THREE.FogExp2(0x06050a, 0.0024);
 
     this.camera = new THREE.PerspectiveCamera(
-      52,
+      54,
       window.innerWidth / window.innerHeight,
       0.1,
-      2000
+      2500
     );
-    this.camera.position.set(0, 140, 280);
+    this.camera.position.set(0, 130, 260);
 
     this.renderer = new THREE.WebGLRenderer({
       canvas: this.canvas,
@@ -566,29 +1040,29 @@ class UniverseManager {
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 1.25;
+    this.renderer.toneMappingExposure = 1.3;
 
     this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.045;
     this.controls.maxDistance = 340;
-    this.controls.minDistance = 8;
+    this.controls.minDistance = 10;
     this.controls.target.set(0, 0, 0);
   }
 
   initLights() {
     // Ambient cosmic indigo
-    const ambientLight = new THREE.AmbientLight(0x201a35, 1.4);
+    const ambientLight = new THREE.AmbientLight(0x201a35, 1.5);
     this.scene.add(ambientLight);
 
     // Warm champagne gold primary point light
-    this.goldPoint = new THREE.PointLight(0xe5c583, 3.2, 350);
-    this.goldPoint.position.set(0, 45, 30);
+    this.goldPoint = new THREE.PointLight(0xe5c583, 3.4, 380);
+    this.goldPoint.position.set(0, 50, 35);
     this.scene.add(this.goldPoint);
 
     // Deep velvet bordeaux secondary warmth
-    this.winePoint = new THREE.PointLight(0x78213b, 2.5, 300);
-    this.winePoint.position.set(50, -35, -25);
+    this.winePoint = new THREE.PointLight(0x78213b, 2.6, 320);
+    this.winePoint.position.set(55, -40, -30);
     this.scene.add(this.winePoint);
 
     // Starlight blue accent
@@ -596,18 +1070,19 @@ class UniverseManager {
     this.bluePoint.position.set(-50, 30, -30);
     this.scene.add(this.bluePoint);
 
-    // Crisp directional key light for specular highlights
-    const dirLight = new THREE.DirectionalLight(0xfff6e6, 1.2);
-    dirLight.position.set(40, 100, 60);
+    // Crisp directional key light for metallic highlights
+    const dirLight = new THREE.DirectionalLight(0xfff8ee, 1.3);
+    dirLight.position.set(40, 110, 70);
     this.scene.add(dirLight);
   }
 
   initCosmicAtmosphere() {
-    // 1. 2200 Shimmering Cosmic Star Particles
-    const starCount = 2200;
-    const geometry = new THREE.BufferGeometry();
-    const positions = new Float32Array(starCount * 3);
-    const colors = new Float32Array(starCount * 3);
+    // 1. Dual-Depth Particle System:
+    // (A) Distant Galaxy Starfield (2,400 Stars)
+    const starCount = 2400;
+    const starGeom = new THREE.BufferGeometry();
+    const starPositions = new Float32Array(starCount * 3);
+    const starColors = new Float32Array(starCount * 3);
 
     const palette = [
       new THREE.Color(0xe5c583), // Champagne Gold
@@ -618,22 +1093,22 @@ class UniverseManager {
     ];
 
     for (let i = 0; i < starCount; i++) {
-      const radius = 70 + Math.random() * 420;
+      const radius = 80 + Math.random() * 450;
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
 
-      positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
-      positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
-      positions[i * 3 + 2] = radius * Math.cos(phi);
+      starPositions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
+      starPositions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
+      starPositions[i * 3 + 2] = radius * Math.cos(phi);
 
       const color = palette[Math.floor(Math.random() * palette.length)];
-      colors[i * 3] = color.r;
-      colors[i * 3 + 1] = color.g;
-      colors[i * 3 + 2] = color.b;
+      starColors[i * 3] = color.r;
+      starColors[i * 3 + 1] = color.g;
+      starColors[i * 3 + 2] = color.b;
     }
 
-    geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-    geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+    starGeom.setAttribute("position", new THREE.BufferAttribute(starPositions, 3));
+    starGeom.setAttribute("color", new THREE.BufferAttribute(starColors, 3));
 
     const starCanvas = document.createElement("canvas");
     starCanvas.width = 32;
@@ -650,7 +1125,7 @@ class UniverseManager {
 
     const starTexture = new THREE.CanvasTexture(starCanvas);
     const starMat = new THREE.PointsMaterial({
-      size: 2.8,
+      size: 3.0,
       vertexColors: true,
       map: starTexture,
       transparent: true,
@@ -659,11 +1134,33 @@ class UniverseManager {
       depthWrite: false
     });
 
-    this.starPoints = new THREE.Points(geometry, starMat);
+    this.starPoints = new THREE.Points(starGeom, starMat);
     this.scene.add(this.starPoints);
 
+    // (B) Foreground Cosmic Dust Motes (100 Motes - floating close for real 3D depth parallax)
+    const dustCount = 100;
+    const dustGeom = new THREE.BufferGeometry();
+    const dustPositions = new Float32Array(dustCount * 3);
+    for (let d = 0; d < dustCount; d++) {
+      dustPositions[d * 3] = (Math.random() - 0.5) * 140;
+      dustPositions[d * 3 + 1] = (Math.random() - 0.5) * 120;
+      dustPositions[d * 3 + 2] = (Math.random() - 0.5) * 140;
+    }
+    dustGeom.setAttribute("position", new THREE.BufferAttribute(dustPositions, 3));
+    const dustMat = new THREE.PointsMaterial({
+      color: 0xf7e7be,
+      size: 4.5,
+      map: starTexture,
+      transparent: true,
+      opacity: 0.75,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false
+    });
+    this.dustPoints = new THREE.Points(dustGeom, dustMat);
+    this.scene.add(this.dustPoints);
+
     // 2. Orbital Saturnian Stardust Rings
-    const ringGeom = new THREE.RingGeometry(80, 125, 64);
+    const ringGeom = new THREE.RingGeometry(85, 130, 64);
     const ringMat = new THREE.MeshBasicMaterial({
       color: 0xe5c583,
       side: THREE.DoubleSide,
@@ -676,23 +1173,23 @@ class UniverseManager {
     this.orbitalRing.rotation.y = Math.PI * 0.15;
     this.scene.add(this.orbitalRing);
 
-    // 3. Floating Diamond Crystals
+    // 3. Floating Diamond Octahedron Crystals
     this.diamondCrystals = [];
-    const crystalGeom = new THREE.OctahedronGeometry(1.2, 0);
+    const crystalGeom = new THREE.OctahedronGeometry(1.4, 0);
     const crystalMat = new THREE.MeshStandardMaterial({
       color: 0xe5c583,
       metalness: 0.9,
       roughness: 0.15,
       emissive: 0xb88d3e,
-      emissiveIntensity: 0.3
+      emissiveIntensity: 0.35
     });
 
     for (let c = 0; c < 24; c++) {
       const crystal = new THREE.Mesh(crystalGeom, crystalMat);
       crystal.position.set(
-        (Math.random() - 0.5) * 160,
-        (Math.random() - 0.5) * 100,
-        (Math.random() - 0.5) * 160
+        (Math.random() - 0.5) * 170,
+        (Math.random() - 0.5) * 110,
+        (Math.random() - 0.5) * 170
       );
       crystal.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
       crystal.scale.setScalar(Math.random() * 0.8 + 0.6);
@@ -701,7 +1198,7 @@ class UniverseManager {
     }
   }
 
-  createLuxuryPlaceholderTexture(index) {
+  createCardBackTexture(index) {
     const c = document.createElement("canvas");
     c.width = 440;
     c.height = 600;
@@ -709,51 +1206,68 @@ class UniverseManager {
 
     // Luxury midnight velvet gradient
     const bgGrad = ctx.createLinearGradient(0, 0, 440, 600);
-    bgGrad.addColorStop(0, "#1a1526");
-    bgGrad.addColorStop(0.5, "#0d0a14");
-    bgGrad.addColorStop(1, "#1c1424");
+    bgGrad.addColorStop(0, "#161220");
+    bgGrad.addColorStop(0.5, "#0b0912");
+    bgGrad.addColorStop(1, "#181122");
     ctx.fillStyle = bgGrad;
     ctx.fillRect(0, 0, 440, 600);
 
     // Outer double gold hairline border
-    ctx.strokeStyle = "rgba(229, 197, 131, 0.5)";
-    ctx.lineWidth = 4;
-    ctx.strokeRect(16, 16, 408, 568);
+    ctx.strokeStyle = "rgba(229, 197, 131, 0.55)";
+    ctx.lineWidth = 3.5;
+    ctx.strokeRect(18, 18, 404, 564);
 
     ctx.strokeStyle = "rgba(229, 197, 131, 0.25)";
     ctx.lineWidth = 1.5;
-    ctx.strokeRect(26, 26, 388, 548);
+    ctx.strokeRect(28, 28, 384, 544);
 
-    // Subtle corner ornaments
-    const drawCorner = (x, y, dx, dy) => {
-      ctx.beginPath();
-      ctx.moveTo(x, y + dy * 18);
-      ctx.lineTo(x, y);
-      ctx.lineTo(x + dx * 18, y);
-      ctx.strokeStyle = "#e5c583";
-      ctx.lineWidth = 3;
-      ctx.stroke();
-    };
-    drawCorner(22, 22, 1, 1);
-    drawCorner(418, 22, -1, 1);
-    drawCorner(22, 578, 1, -1);
-    drawCorner(418, 578, -1, -1);
-
-    // Center Gold Star / Heart Emblem
-    ctx.font = "46px serif";
+    // Geometric Diamond & Star Emblem
+    ctx.font = "52px serif";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.fillStyle = "#e5c583";
-    ctx.fillText("✦", 220, 240);
+    ctx.fillText("✦", 220, 260);
 
     // Typography
-    ctx.font = "600 24px 'Cormorant Garamond', serif";
+    ctx.font = "600 22px 'Cormorant Garamond', serif";
     ctx.fillStyle = "#f7e7be";
-    ctx.fillText(`MEMORY • #${index + 1}`, 220, 310);
+    ctx.fillText(`MEMORY • #${index + 1}`, 220, 330);
 
-    ctx.font = "16px 'Plus Jakarta Sans', sans-serif";
-    ctx.fillStyle = "rgba(242, 237, 228, 0.65)";
-    ctx.fillText("August 18, 2026", 220, 345);
+    ctx.font = "14px 'Plus Jakarta Sans', sans-serif";
+    ctx.fillStyle = "rgba(242, 237, 228, 0.55)";
+    ctx.fillText("Our Story", 220, 365);
+
+    const texture = new THREE.CanvasTexture(c);
+    texture.colorSpace = THREE.SRGBColorSpace;
+    return texture;
+  }
+
+  createPlaceholderTexture(index) {
+    const c = document.createElement("canvas");
+    c.width = 440;
+    c.height = 600;
+    const ctx = c.getContext("2d");
+
+    const bgGrad = ctx.createLinearGradient(0, 0, 440, 600);
+    bgGrad.addColorStop(0, "#1c1628");
+    bgGrad.addColorStop(0.5, "#0e0b16");
+    bgGrad.addColorStop(1, "#1e1426");
+    ctx.fillStyle = bgGrad;
+    ctx.fillRect(0, 0, 440, 600);
+
+    ctx.strokeStyle = "rgba(229, 197, 131, 0.4)";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(20, 20, 400, 560);
+
+    ctx.font = "38px serif";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillStyle = "#e5c583";
+    ctx.fillText("✦", 220, 270);
+
+    ctx.font = "600 20px 'Cormorant Garamond', serif";
+    ctx.fillStyle = "#f7e7be";
+    ctx.fillText(`#${index + 1}`, 220, 330);
 
     const texture = new THREE.CanvasTexture(c);
     texture.colorSpace = THREE.SRGBColorSpace;
@@ -765,8 +1279,8 @@ class UniverseManager {
     if (mode === "heart") {
       // Parametric 3D Heart Nebula
       const t = (i / total) * Math.PI * 2;
-      const x = 16 * Math.pow(Math.sin(t), 3) * 2.8;
-      const y = (13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t)) * 2.8;
+      const x = 16 * Math.pow(Math.sin(t), 3) * 2.85;
+      const y = (13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t)) * 2.85;
       const z = (Math.sin(i * 3) * 14) + (Math.cos(t) * 10);
       return {
         pos: new THREE.Vector3(x, y, z),
@@ -776,20 +1290,19 @@ class UniverseManager {
       // Fibonacci Celestial Globe Sphere
       const phi = Math.acos(-1 + (2 * i) / total);
       const theta = Math.sqrt(total * Math.PI) * phi;
-      const radius = 58;
+      const radius = 62;
       const x = radius * Math.cos(theta) * Math.sin(phi);
       const y = radius * Math.sin(theta) * Math.sin(phi);
       const z = radius * Math.cos(phi);
-      const pos = new THREE.Vector3(x, y, z);
       return {
-        pos: pos,
-        rot: new THREE.Vector3(0, 0, 0) // Will lookAt origin
+        pos: new THREE.Vector3(x, y, z),
+        rot: new THREE.Vector3(0, 0, 0)
       };
     } else {
       // Default: Ascending Spiral Helix
       const angle = i * 0.44;
-      const radius = 26 + Math.sin(i * 0.22) * 5 + i * 0.35;
-      const y = (i - total / 2) * 1.45;
+      const radius = 28 + Math.sin(i * 0.22) * 5 + i * 0.36;
+      const y = (i - total / 2) * 1.5;
       const x = Math.cos(angle) * radius;
       const z = Math.sin(angle) * radius;
       return {
@@ -806,28 +1319,36 @@ class UniverseManager {
       this.textureLoader.setCrossOrigin("");
     }
 
-    // 1. Real 3D Physical Monolith Frame (Box with thickness)
-    const boxGeom = new THREE.BoxGeometry(6.6, 9.2, 0.35);
+    // Real 3D Physical Monolith Frame (Box with thickness)
+    const boxGeom = new THREE.BoxGeometry(6.6, 9.2, 0.4);
     const edgeGeom = new THREE.EdgesGeometry(boxGeom);
 
-    // Front photo plane
+    // Front photo plane inset
     const photoGeom = new THREE.PlaneGeometry(6.0, 8.4);
+    // Back card plane
+    const backGeom = new THREE.PlaneGeometry(6.0, 8.4);
 
     for (let i = 0; i < total; i++) {
+      const memory = MEMORY_DATA[i] || {
+        title: `Memory #${i + 1}`,
+        caption: "A special moment in our journey together.",
+        chapter: "all"
+      };
+
       const coords = this.getCoordinatesForMode("spiral", i, total);
 
       const cardGroup = new THREE.Group();
       cardGroup.position.copy(coords.pos);
 
-      // Look outwards from spiral center
+      // Face outwards from spiral center
       cardGroup.lookAt(coords.pos.x * 1.5, coords.pos.y + 1.2, coords.pos.z * 1.5);
 
-      // Solid luxury obsidian/metallic frame
+      // Solid luxury titanium/obsidian frame
       const frameMat = new THREE.MeshStandardMaterial({
         color: 0x110e18,
         metalness: 0.88,
-        roughness: 0.22,
-        emissive: 0x221808,
+        roughness: 0.25,
+        emissive: 0x1e1508,
         emissiveIntensity: 0.2
       });
       const frameMesh = new THREE.Mesh(boxGeom, frameMat);
@@ -843,23 +1364,36 @@ class UniverseManager {
       cardGroup.add(edgeLines);
 
       // Front Photo Inset (Offset slightly forward on Z)
-      const placeholderTex = this.createLuxuryPlaceholderTexture(i);
+      const placeholderTex = this.createPlaceholderTexture(i);
       const photoMat = new THREE.MeshBasicMaterial({
         map: placeholderTex,
         side: THREE.FrontSide
       });
       const photoMesh = new THREE.Mesh(photoGeom, photoMat);
-      photoMesh.position.z = 0.185;
+      photoMesh.position.z = 0.21;
 
       photoMesh.userData = {
         index: i,
         photoSrc: this.photoList[i],
-        caption: getCaptionForIndex(i),
+        title: memory.title,
+        caption: memory.caption,
+        chapter: memory.chapter,
         group: cardGroup,
         frameMat: frameMat,
         edgeMat: edgeMat
       };
       cardGroup.add(photoMesh);
+
+      // Back Face Emblem (Visible when orbiting behind card)
+      const backTex = this.createCardBackTexture(i);
+      const backMat = new THREE.MeshBasicMaterial({
+        map: backTex,
+        side: THREE.FrontSide
+      });
+      const backMesh = new THREE.Mesh(backGeom, backMat);
+      backMesh.position.z = -0.21;
+      backMesh.rotation.y = Math.PI;
+      cardGroup.add(backMesh);
 
       this.cards.push({
         group: cardGroup,
@@ -868,9 +1402,11 @@ class UniverseManager {
         edgeMat: edgeMat,
         photoMat: photoMat,
         photoSrc: this.photoList[i],
+        memory: memory,
         index: i,
         basePos: coords.pos.clone(),
-        textureLoaded: false
+        textureLoaded: false,
+        visibleByChapter: true
       });
 
       this.scene.add(cardGroup);
@@ -913,11 +1449,10 @@ class UniverseManager {
     loadNextBatch();
   }
 
-  // 3. Starlight Ribbon Spline (Flowing celestial river connecting memories)
+  // Starlight Ribbon Spline (Flowing celestial river connecting memories)
   initRibbonSpline() {
     this.updateRibbonSpline();
 
-    // Flowing starlight particles along the ribbon
     const particleCount = 380;
     const geom = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
@@ -1016,6 +1551,50 @@ class UniverseManager {
     }, 1900);
   }
 
+  // Filter memories by chapter (All, Early Days, Food, Chaos, Sweet)
+  filterChapter(chapterKey) {
+    this.currentChapter = chapterKey;
+    playSparkleSound();
+
+    let matchingCount = 0;
+    const centerPoint = new THREE.Vector3();
+
+    this.cards.forEach((c) => {
+      const matches = (chapterKey === "all" || c.memory.chapter === chapterKey);
+      c.visibleByChapter = matches;
+
+      if (matches) {
+        matchingCount++;
+        centerPoint.add(c.group.position);
+        gsap.to(c.group.scale, { x: 1.05, y: 1.05, z: 1.05, duration: 0.6 });
+        gsap.to(c.photoMat, { opacity: 1.0, duration: 0.6 });
+        c.edgeMat.opacity = 0.55;
+      } else {
+        gsap.to(c.group.scale, { x: 0.82, y: 0.82, z: 0.82, duration: 0.6 });
+        gsap.to(c.photoMat, { opacity: 0.18, duration: 0.6 });
+        c.edgeMat.opacity = 0.12;
+      }
+    });
+
+    if (matchingCount > 0) {
+      centerPoint.divideScalar(matchingCount);
+      // Smoothly pan camera to chapter center
+      gsap.to(this.controls.target, {
+        x: centerPoint.x,
+        y: centerPoint.y,
+        z: centerPoint.z,
+        duration: 1.6,
+        ease: "power2.out"
+      });
+    }
+
+    const pill = document.getElementById("memory-counter-pill");
+    if (pill) {
+      const info = CHAPTER_INFO[chapterKey] || { label: "Memories", count: matchingCount };
+      pill.innerHTML = `<span>Showing ${matchingCount} ${info.label}</span>`;
+    }
+  }
+
   startIntroFlyIn() {
     gsap.to(this.camera.position, {
       x: 0,
@@ -1027,6 +1606,47 @@ class UniverseManager {
         this.controls.target.set(0, 0, 0);
         this.controls.update();
       }
+    });
+  }
+
+  spawn3DClickBurst(pos) {
+    const sparkCount = 28;
+    const geom = new THREE.BufferGeometry();
+    const positions = new Float32Array(sparkCount * 3);
+    const velocities = [];
+
+    for (let i = 0; i < sparkCount; i++) {
+      positions[i * 3] = pos.x;
+      positions[i * 3 + 1] = pos.y;
+      positions[i * 3 + 2] = pos.z;
+
+      const angle = Math.random() * Math.PI * 2;
+      const phi = Math.acos(2 * Math.random() - 1);
+      const speed = Math.random() * 0.45 + 0.15;
+      velocities.push(new THREE.Vector3(
+        speed * Math.sin(phi) * Math.cos(angle),
+        speed * Math.sin(phi) * Math.sin(angle),
+        speed * Math.cos(phi)
+      ));
+    }
+
+    geom.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+    const mat = new THREE.PointsMaterial({
+      color: 0xf7e7be,
+      size: 4.0,
+      transparent: true,
+      opacity: 1,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false
+    });
+
+    const sparkMesh = new THREE.Points(geom, mat);
+    this.scene.add(sparkMesh);
+
+    this.sparks3D.push({
+      mesh: sparkMesh,
+      velocities: velocities,
+      life: 1.0
     });
   }
 
@@ -1045,7 +1665,7 @@ class UniverseManager {
       this.parallaxMouse.x = (e.clientX / window.innerWidth) * 2 - 1;
       this.parallaxMouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
 
-      // Ignore hover if pointer is on UI HUD
+      // Ignore hover if pointer is on UI HUD / overlays
       if (e.target !== this.canvas) {
         this.mouse.x = -9999;
         this.mouse.y = -9999;
@@ -1097,6 +1717,17 @@ class UniverseManager {
       }
     });
 
+    // Chapter Filter Chips
+    const chapterChips = document.querySelectorAll("#chapter-filter-bar .chapter-chip");
+    chapterChips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        chapterChips.forEach(c => c.classList.remove("active"));
+        chip.classList.add("active");
+        const chapterKey = chip.getAttribute("data-chapter");
+        this.filterChapter(chapterKey);
+      });
+    });
+
     // Layout Morph Buttons (Helix / Heart / Sphere)
     const modeBtns = document.querySelectorAll("#layout-modes-bar .mode-btn");
     modeBtns.forEach((btn) => {
@@ -1110,21 +1741,34 @@ class UniverseManager {
 
     // Guided Tour Button
     const tourBtn = document.getElementById("tour-toggle-btn");
-    tourBtn.addEventListener("click", () => this.toggleGuidedTour());
+    if (tourBtn) {
+      tourBtn.addEventListener("click", () => this.toggleGuidedTour());
+    }
 
     // Reset Camera Button
     const resetBtn = document.getElementById("reset-cam-btn");
-    resetBtn.addEventListener("click", () => this.resetCamera());
+    if (resetBtn) {
+      resetBtn.addEventListener("click", () => this.resetCamera());
+    }
 
     // Lightbox Controls
-    document.getElementById("lightbox-close-btn").addEventListener("click", () => this.closeMemory());
-    document.getElementById("lightbox-prev-btn").addEventListener("click", () => this.navigateMemory(-1));
-    document.getElementById("lightbox-next-btn").addEventListener("click", () => this.navigateMemory(1));
-    document.getElementById("memory-lightbox").addEventListener("click", (e) => {
-      if (e.target.id === "memory-lightbox") {
-        this.closeMemory();
-      }
-    });
+    const closeBtn = document.getElementById("lightbox-close-btn");
+    if (closeBtn) closeBtn.addEventListener("click", () => this.closeMemory());
+
+    const prevBtn = document.getElementById("lightbox-prev-btn");
+    if (prevBtn) prevBtn.addEventListener("click", () => this.navigateMemory(-1));
+
+    const nextBtn = document.getElementById("lightbox-next-btn");
+    if (nextBtn) nextBtn.addEventListener("click", () => this.navigateMemory(1));
+
+    const lightbox = document.getElementById("memory-lightbox");
+    if (lightbox) {
+      lightbox.addEventListener("click", (e) => {
+        if (e.target.id === "memory-lightbox") {
+          this.closeMemory();
+        }
+      });
+    }
 
     window.addEventListener("keydown", (e) => {
       if (!this.isModalOpen) return;
@@ -1140,6 +1784,10 @@ class UniverseManager {
     this.activeCardIndex = index;
     this.isModalOpen = true;
     const card = this.cards[index];
+    const memory = card.memory;
+
+    // Spawn 3D particle fountain
+    this.spawn3DClickBurst(card.group.position);
 
     // Smoothly fly camera to face card with depth
     const groupPos = card.group.position;
@@ -1171,13 +1819,13 @@ class UniverseManager {
     const captionElem = document.getElementById("lightbox-caption");
     const indexElem = document.getElementById("lightbox-index-indicator");
 
-    imgElem.src = encodeURI(card.photoSrc);
-    badgeElem.textContent = `Memory #${index + 1} of ${this.cards.length}`;
-    titleElem.textContent = `August 18 • Story #${index + 1}`;
-    captionElem.textContent = card.photoMesh.userData.caption;
-    indexElem.textContent = `${index + 1} / ${this.cards.length}`;
+    if (imgElem) imgElem.src = encodeURI(card.photoSrc);
+    if (badgeElem) badgeElem.textContent = `Memory #${index + 1} of ${this.cards.length}`;
+    if (titleElem) titleElem.textContent = memory.title;
+    if (captionElem) captionElem.textContent = memory.caption;
+    if (indexElem) indexElem.textContent = `${index + 1} / ${this.cards.length}`;
 
-    lightbox.classList.add("is-open");
+    if (lightbox) lightbox.classList.add("is-open");
     playSparkleSound();
   }
 
@@ -1188,7 +1836,8 @@ class UniverseManager {
 
   closeMemory() {
     this.isModalOpen = false;
-    document.getElementById("memory-lightbox").classList.remove("is-open");
+    const lightbox = document.getElementById("memory-lightbox");
+    if (lightbox) lightbox.classList.remove("is-open");
   }
 
   toggleGuidedTour() {
@@ -1202,8 +1851,10 @@ class UniverseManager {
   startGuidedTour() {
     this.isTouring = true;
     const tourBtn = document.getElementById("tour-toggle-btn");
-    tourBtn.classList.add("tour-active");
-    tourBtn.querySelector("span").textContent = "Pause Tour";
+    if (tourBtn) {
+      tourBtn.classList.add("tour-active");
+      tourBtn.querySelector("span").textContent = "Pause Tour";
+    }
     this.tourStep(this.activeCardIndex || 0);
   }
 
@@ -1211,8 +1862,10 @@ class UniverseManager {
     this.isTouring = false;
     clearTimeout(this.tourTimeout);
     const tourBtn = document.getElementById("tour-toggle-btn");
-    tourBtn.classList.remove("tour-active");
-    tourBtn.querySelector("span").textContent = "Guided Tour";
+    if (tourBtn) {
+      tourBtn.classList.remove("tour-active");
+      tourBtn.querySelector("span").textContent = "Guided Tour";
+    }
   }
 
   tourStep(index) {
@@ -1224,7 +1877,9 @@ class UniverseManager {
     const targetCamPos = groupPos.clone().add(new THREE.Vector3(0, 2, 16));
 
     const counterPill = document.getElementById("memory-counter-pill");
-    counterPill.innerHTML = `<span>#${index + 1}: ${card.photoMesh.userData.caption.slice(0, 30)}...</span>`;
+    if (counterPill) {
+      counterPill.innerHTML = `<span>#${index + 1}: ${card.memory.title}</span>`;
+    }
 
     gsap.to(this.controls.target, {
       x: groupPos.x,
@@ -1253,7 +1908,15 @@ class UniverseManager {
 
         this.tourTimeout = setTimeout(() => {
           if (this.isTouring) {
-            const nextIdx = (index + 1) % this.cards.length;
+            // Find next matching card if filtered
+            let nextIdx = (index + 1) % this.cards.length;
+            if (this.currentChapter !== "all") {
+              let attempts = 0;
+              while (!this.cards[nextIdx].visibleByChapter && attempts < this.cards.length) {
+                nextIdx = (nextIdx + 1) % this.cards.length;
+                attempts++;
+              }
+            }
             this.tourStep(nextIdx);
           }
         }, 3600);
@@ -1282,7 +1945,10 @@ class UniverseManager {
       onUpdate: () => this.controls.update()
     });
 
-    document.getElementById("memory-counter-pill").innerHTML = `<span>100 Memories in the Stars</span>`;
+    const pill = document.getElementById("memory-counter-pill");
+    if (pill) {
+      pill.innerHTML = `<span>100 Memories in the Stars</span>`;
+    }
   }
 
   animate() {
@@ -1293,6 +1959,12 @@ class UniverseManager {
     // Slowly rotate background starfield
     if (this.starPoints) {
       this.starPoints.rotation.y = time * 0.015;
+    }
+
+    // Slowly drift foreground cosmic dust
+    if (this.dustPoints) {
+      this.dustPoints.rotation.y = time * 0.022;
+      this.dustPoints.rotation.x = Math.sin(time * 0.1) * 0.05;
     }
 
     // Rotate orbital dust ring
@@ -1306,6 +1978,31 @@ class UniverseManager {
         const dc = this.diamondCrystals[i];
         dc.rotation.x += 0.01;
         dc.rotation.y += 0.015;
+      }
+    }
+
+    // Animate 3D Click Sparks
+    for (let s = this.sparks3D.length - 1; s >= 0; s--) {
+      const sp = this.sparks3D[s];
+      const posAttr = sp.mesh.geometry.attributes.position;
+      const count = sp.velocities.length;
+      for (let i = 0; i < count; i++) {
+        posAttr.setXYZ(
+          i,
+          posAttr.getX(i) + sp.velocities[i].x,
+          posAttr.getY(i) + sp.velocities[i].y,
+          posAttr.getZ(i) + sp.velocities[i].z
+        );
+      }
+      posAttr.needsUpdate = true;
+      sp.life -= 0.025;
+      sp.mesh.material.opacity = Math.max(0, sp.life);
+
+      if (sp.life <= 0) {
+        this.scene.remove(sp.mesh);
+        sp.mesh.geometry.dispose();
+        sp.mesh.material.dispose();
+        this.sparks3D.splice(s, 1);
       }
     }
 
@@ -1377,9 +2074,10 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 // ============================================================================
-// TOP NAVIGATION TABS (UNIVERSE / ARCADE / LETTER)
+// TOP NAVIGATION TABS (UNIVERSE / LITTLE THINGS / ARCADE / LETTER)
 // ============================================================================
 const navTabs = document.querySelectorAll(".nav-tab-btn");
+const viewLittleThings = document.getElementById("view-little-things");
 const viewArcade = document.getElementById("view-arcade");
 const viewLetter = document.getElementById("view-letter");
 
@@ -1389,18 +2087,34 @@ navTabs.forEach((btn) => {
     btn.classList.add("active");
 
     const target = btn.getAttribute("data-tab");
-    viewArcade.classList.remove("is-active");
-    viewLetter.classList.remove("is-active");
+    if (viewLittleThings) viewLittleThings.classList.remove("is-active");
+    if (viewArcade) viewArcade.classList.remove("is-active");
+    if (viewLetter) viewLetter.classList.remove("is-active");
 
-    if (target === "arcade") {
-      viewArcade.classList.add("is-active");
+    if (target === "little-things") {
+      if (viewLittleThings) viewLittleThings.classList.add("is-active");
+      if (universeManager) universeManager.controls.enabled = false;
+    } else if (target === "arcade") {
+      if (viewArcade) viewArcade.classList.add("is-active");
       if (universeManager) universeManager.controls.enabled = false;
     } else if (target === "letter") {
-      viewLetter.classList.add("is-active");
+      if (viewLetter) viewLetter.classList.add("is-active");
       if (universeManager) universeManager.controls.enabled = false;
     } else {
       if (universeManager) universeManager.controls.enabled = true;
     }
+  });
+});
+
+// Little Things Card Click Interaction
+const thingCards = document.querySelectorAll(".thing-card");
+thingCards.forEach((card) => {
+  card.addEventListener("click", () => {
+    playSparkleSound();
+    gsap.fromTo(card, 
+      { scale: 0.98 }, 
+      { scale: 1.03, duration: 0.25, yoyo: true, repeat: 1, ease: "power2.out" }
+    );
   });
 });
 
@@ -1436,7 +2150,9 @@ class HeartCatchGame {
     this.resize();
     window.addEventListener("resize", () => this.resize());
 
-    this.startBtn.addEventListener("click", () => this.startGame());
+    if (this.startBtn) {
+      this.startBtn.addEventListener("click", () => this.startGame());
+    }
 
     const handleTap = (clientX, clientY) => {
       if (!this.isPlaying) return;
@@ -1449,7 +2165,7 @@ class HeartCatchGame {
         const dist = Math.hypot(h.x - x, h.y - y);
         if (dist <= h.size * 1.6) {
           this.score++;
-          this.scoreElem.textContent = `${this.score} / ${this.targetScore}`;
+          if (this.scoreElem) this.scoreElem.textContent = `${this.score} / ${this.targetScore}`;
           this.spawnSparkles(h.x, h.y, h.color);
           this.hearts.splice(i, 1);
           playSparkleSound();
@@ -1477,18 +2193,18 @@ class HeartCatchGame {
     this.resize();
     this.score = 0;
     this.timeLeft = 15;
-    this.scoreElem.textContent = `0 / ${this.targetScore}`;
-    this.timeElem.textContent = `15s`;
+    if (this.scoreElem) this.scoreElem.textContent = `0 / ${this.targetScore}`;
+    if (this.timeElem) this.timeElem.textContent = `15s`;
     this.hearts = [];
     this.sparkles = [];
     this.isPlaying = true;
-    this.overlay.classList.add("hidden");
-    this.noteElem.style.display = "none";
+    if (this.overlay) this.overlay.classList.add("hidden");
+    if (this.noteElem) this.noteElem.style.display = "none";
 
     clearInterval(this.timerInterval);
     this.timerInterval = setInterval(() => {
       this.timeLeft--;
-      this.timeElem.textContent = `${this.timeLeft}s`;
+      if (this.timeElem) this.timeElem.textContent = `${this.timeLeft}s`;
       if (this.timeLeft <= 0) {
         this.endGame(false);
       }
@@ -1499,7 +2215,6 @@ class HeartCatchGame {
 
   spawnHeart() {
     if (this.hearts.length >= 12) return;
-    // Luxury gold, amber, and celestial starlight palette
     const colors = ["#e5c583", "#f7e7be", "#f4b266", "#8aaad6"];
     this.hearts.push({
       x: Math.random() * (this.width - 50) + 25,
@@ -1578,7 +2293,7 @@ class HeartCatchGame {
       this.ctx.globalAlpha = Math.max(0, sp.alpha);
       this.ctx.fillStyle = sp.color;
       this.ctx.beginPath();
-      ctx.arc(sp.x, sp.y, sp.size, 0, Math.PI * 2);
+      this.ctx.arc(sp.x, sp.y, sp.size, 0, Math.PI * 2);
       this.ctx.fill();
       this.ctx.restore();
 
@@ -1607,20 +2322,22 @@ class HeartCatchGame {
     clearInterval(this.timerInterval);
     if (this.animId) cancelAnimationFrame(this.animId);
 
-    this.overlay.classList.remove("hidden");
+    if (this.overlay) this.overlay.classList.remove("hidden");
     if (won) {
       playSuccessChime();
-      this.titleElem.textContent = "You Caught All The Starlight Hearts! ✦";
-      this.descElem.textContent = "You unlocked my secret love message:";
-      this.noteElem.innerHTML = `
-        "Truth is, my heart was already entirely yours from August 18, 2026 at 1:48 PM. You never have to chase it — it beats only for you, unconditionally and forever. ♥"
-      `;
-      this.noteElem.style.display = "block";
-      this.startBtn.textContent = "Play Again ✦";
+      if (this.titleElem) this.titleElem.textContent = "You Caught All The Hearts! ✦";
+      if (this.descElem) this.descElem.textContent = "Here's what I wanted to tell you:";
+      if (this.noteElem) {
+        this.noteElem.innerHTML = `
+          "Truth is, you didn't even have to catch those hearts — mine has been completely yours through all our laughs, food runs, late nights, and everyday moments. Thank you for being my favorite person. ♥"
+        `;
+        this.noteElem.style.display = "block";
+      }
+      if (this.startBtn) this.startBtn.textContent = "Play Again ✦";
     } else {
-      this.titleElem.textContent = "Time's Up! ✨";
-      this.descElem.textContent = `You caught ${this.score} / ${this.targetScore} hearts. Try once more to unlock the secret note!`;
-      this.startBtn.textContent = "Try Again ✦";
+      if (this.titleElem) this.titleElem.textContent = "Time's Up! ✨";
+      if (this.descElem) this.descElem.textContent = `You caught ${this.score} / ${this.targetScore} hearts. Try once more to unlock the note!`;
+      if (this.startBtn) this.startBtn.textContent = "Try Again ✦";
     }
   }
 }
@@ -1628,12 +2345,12 @@ class HeartCatchGame {
 new HeartCatchGame();
 
 // ============================================================================
-// ROMANTIC QUIZ INTERACTION
+// REAL COUPLE QUIZ INTERACTION
 // ============================================================================
 const QUIZ_RESPONSES = [
-  "Aww, my heart just melted! You know me so well ♥",
-  "Every single second since August 18, 2026 at 1:48 PM has been pure magic!",
-  "I promise with my entire heart to love you better every single day."
+  "Haha, so true! It's our signature couple chaos ♥",
+  "Any moment where you're smiling is my favorite time, honestly.",
+  "I mean that with all my heart — I promise to always keep growing for us."
 ];
 
 function handleQuizAnswer(qNum, optIdx) {
@@ -1664,13 +2381,15 @@ let toastTimeout = null;
 function showQuizToast(msg) {
   const toast = document.getElementById("quiz-toast");
   const msgElem = document.getElementById("quiz-toast-msg");
-  msgElem.textContent = msg;
+  if (msgElem) msgElem.textContent = msg;
 
-  toast.classList.add("show");
-  clearTimeout(toastTimeout);
-  toastTimeout = setTimeout(() => {
-    toast.classList.remove("show");
-  }, 3200);
+  if (toast) {
+    toast.classList.add("show");
+    clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => {
+      toast.classList.remove("show");
+    }, 3200);
+  }
 }
 
 // ============================================================================
@@ -1681,7 +2400,7 @@ function openRomanticLetter() {
   const letter = document.getElementById("unfolded-letter");
   const hint = document.getElementById("envelope-hint");
 
-  if (!envelope.classList.contains("opened")) {
+  if (envelope && !envelope.classList.contains("opened")) {
     envelope.classList.add("opened");
     playSuccessChime();
 
@@ -1697,8 +2416,10 @@ function openRomanticLetter() {
     if (hint) hint.style.display = "none";
 
     setTimeout(() => {
-      letter.style.display = "block";
-      letter.scrollIntoView({ behavior: "smooth", block: "center" });
+      if (letter) {
+        letter.style.display = "block";
+        letter.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
     }, 600);
   }
 }
