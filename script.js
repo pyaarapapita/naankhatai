@@ -1007,8 +1007,20 @@ class UniverseManager {
     this.parallaxMouse = new THREE.Vector2(0, 0);
     this.cameraParallaxOffset = new THREE.Vector2(0, 0);
     this.hoveredCard = null;
+    this.currentHoverIndex = null;
     this.isModalOpen = false;
     this.sparks3D = [];
+
+    // Hover Inspection Card Elements
+    this.hoverBox = document.getElementById("memory-hover-card");
+    this.hoverThumb = document.getElementById("hover-thumb-img");
+    this.hoverChapter = document.getElementById("hover-box-chapter");
+    this.hoverNum = document.getElementById("hover-box-num");
+    this.hoverTitle = document.getElementById("hover-box-title");
+    this.hoverCaption = document.getElementById("hover-box-caption");
+    this.hoverClickTarget = document.getElementById("hover-box-click-target");
+    this.topConsole = document.getElementById("top-console");
+    this.navAutoHideTimer = null;
 
     this.initScene();
     this.initLights();
@@ -1017,6 +1029,19 @@ class UniverseManager {
     this.initRibbonSpline();
     this.initEvents();
     this.animate();
+  }
+
+  updateHoverBoxContent(index) {
+    const item = this.cards[index];
+    if (!item) return;
+    const memory = item.memory;
+    const chInfo = CHAPTER_INFO[memory.chapter] || { label: "Our Story" };
+
+    if (this.hoverThumb) this.hoverThumb.src = encodeURI(item.photoSrc);
+    if (this.hoverChapter) this.hoverChapter.textContent = chInfo.label;
+    if (this.hoverNum) this.hoverNum.textContent = `#${index + 1}`;
+    if (this.hoverTitle) this.hoverTitle.textContent = memory.title;
+    if (this.hoverCaption) this.hoverCaption.textContent = memory.caption;
   }
 
   initScene() {
@@ -1242,32 +1267,68 @@ class UniverseManager {
     return texture;
   }
 
-  createPlaceholderTexture(index) {
+  createPlaceholderTexture(index, memory) {
     const c = document.createElement("canvas");
     c.width = 440;
     c.height = 600;
     const ctx = c.getContext("2d");
 
+    // Luxury cosmic velvet gradient
     const bgGrad = ctx.createLinearGradient(0, 0, 440, 600);
-    bgGrad.addColorStop(0, "#1c1628");
-    bgGrad.addColorStop(0.5, "#0e0b16");
-    bgGrad.addColorStop(1, "#1e1426");
+    bgGrad.addColorStop(0, "#191326");
+    bgGrad.addColorStop(0.5, "#0b0914");
+    bgGrad.addColorStop(1, "#1d1428");
     ctx.fillStyle = bgGrad;
     ctx.fillRect(0, 0, 440, 600);
 
-    ctx.strokeStyle = "rgba(229, 197, 131, 0.4)";
-    ctx.lineWidth = 2;
-    ctx.strokeRect(20, 20, 400, 560);
+    // Double golden borders
+    ctx.strokeStyle = "rgba(229, 197, 131, 0.65)";
+    ctx.lineWidth = 3.5;
+    ctx.strokeRect(18, 18, 404, 564);
 
-    ctx.font = "38px serif";
+    ctx.strokeStyle = "rgba(229, 197, 131, 0.25)";
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(26, 26, 388, 548);
+
+    // Corner flourishes
+    const drawCorner = (x, y, dx, dy) => {
+      ctx.beginPath();
+      ctx.moveTo(x, y + dy * 16);
+      ctx.lineTo(x, y);
+      ctx.lineTo(x + dx * 16, y);
+      ctx.strokeStyle = "#e5c583";
+      ctx.lineWidth = 2.5;
+      ctx.stroke();
+    };
+    drawCorner(22, 22, 1, 1);
+    drawCorner(418, 22, -1, 1);
+    drawCorner(22, 578, 1, -1);
+    drawCorner(418, 578, -1, -1);
+
+    // Center emblem
+    ctx.font = "44px serif";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.fillStyle = "#e5c583";
-    ctx.fillText("✦", 220, 270);
+    ctx.fillText("✦", 220, 220);
 
-    ctx.font = "600 20px 'Cormorant Garamond', serif";
-    ctx.fillStyle = "#f7e7be";
-    ctx.fillText(`#${index + 1}`, 220, 330);
+    // Chapter badge
+    const chInfo = CHAPTER_INFO[memory?.chapter] || { label: "Our Story" };
+    ctx.font = "600 15px 'Plus Jakarta Sans', sans-serif";
+    ctx.fillStyle = "rgba(229, 197, 131, 0.9)";
+    ctx.fillText(chInfo.label.toUpperCase(), 220, 275);
+
+    // Memory title
+    ctx.font = "600 24px 'Playfair Display', serif";
+    ctx.fillStyle = "#ffffff";
+    const rawTitle = memory?.title || `Memory #${index + 1}`;
+    const displayTitle = rawTitle.length > 24 ? rawTitle.substring(0, 22) + "..." : rawTitle;
+    ctx.fillText(displayTitle, 220, 320);
+
+    // Subtitle
+    ctx.font = "14px 'Plus Jakarta Sans', sans-serif";
+    ctx.fillStyle = "rgba(242, 237, 228, 0.55)";
+    ctx.fillText(`Memory #${index + 1}`, 220, 360);
 
     const texture = new THREE.CanvasTexture(c);
     texture.colorSpace = THREE.SRGBColorSpace;
@@ -1364,7 +1425,7 @@ class UniverseManager {
       cardGroup.add(edgeLines);
 
       // Front Photo Inset (Offset slightly forward on Z)
-      const placeholderTex = this.createPlaceholderTexture(i);
+      const placeholderTex = this.createPlaceholderTexture(i, memory);
       const photoMat = new THREE.MeshBasicMaterial({
         map: placeholderTex,
         side: THREE.FrontSide
@@ -1395,6 +1456,9 @@ class UniverseManager {
       backMesh.rotation.y = Math.PI;
       cardGroup.add(backMesh);
 
+      const baseRot = { x: cardGroup.rotation.x, y: cardGroup.rotation.y, z: cardGroup.rotation.z };
+      cardGroup.userData.baseRot = baseRot;
+
       this.cards.push({
         group: cardGroup,
         photoMesh: photoMesh,
@@ -1405,6 +1469,7 @@ class UniverseManager {
         memory: memory,
         index: i,
         basePos: coords.pos.clone(),
+        baseRot: baseRot,
         textureLoaded: false,
         visibleByChapter: true
       });
@@ -1412,10 +1477,10 @@ class UniverseManager {
       this.scene.add(cardGroup);
     }
 
-    this.loadTexturesInBatches(4);
+    this.loadTexturesInBatches(8);
   }
 
-  loadTexturesInBatches(batchSize = 4) {
+  loadTexturesInBatches(batchSize = 8) {
     let currentIdx = 0;
     const total = this.cards.length;
 
@@ -1425,25 +1490,22 @@ class UniverseManager {
 
       for (let i = currentIdx; i < end; i++) {
         const item = this.cards[i];
-        const safeSrc = encodeURI(item.photoSrc);
-        this.textureLoader.load(
-          safeSrc,
-          (tex) => {
-            tex.colorSpace = THREE.SRGBColorSpace;
-            tex.minFilter = THREE.LinearFilter;
-            item.photoMat.map = tex;
-            item.photoMat.needsUpdate = true;
-            item.textureLoaded = true;
-          },
-          undefined,
-          (err) => {
-            console.warn(`Fallback image: ${item.photoSrc}`, err);
-          }
-        );
+        const img = new Image();
+        img.onload = () => {
+          const tex = new THREE.Texture(img);
+          tex.colorSpace = THREE.SRGBColorSpace;
+          tex.minFilter = THREE.LinearFilter;
+          tex.generateMipmaps = false;
+          tex.needsUpdate = true;
+          item.photoMat.map = tex;
+          item.photoMat.needsUpdate = true;
+          item.textureLoaded = true;
+        };
+        img.src = item.photoSrc;
       }
 
       currentIdx = end;
-      setTimeout(loadNextBatch, 120);
+      setTimeout(loadNextBatch, 50);
     };
 
     loadNextBatch();
@@ -1657,6 +1719,29 @@ class UniverseManager {
       this.renderer.setSize(window.innerWidth, window.innerHeight);
     });
 
+    // Auto-hide nav bar on card focus / 3D exploration, reveal when mouse reaches top
+    window.addEventListener("pointermove", (e) => {
+      if (this.isModalOpen) return;
+
+      if (e.clientY < 75) {
+        if (this.topConsole) this.topConsole.classList.remove("nav-autohide");
+        clearTimeout(this.navAutoHideTimer);
+      } else if (this.currentHoverIndex !== null) {
+        if (this.topConsole) this.topConsole.classList.add("nav-autohide");
+      }
+    });
+
+    window.addEventListener("mousemove", () => {
+      if (this.currentHoverIndex === null) {
+        clearTimeout(this.navAutoHideTimer);
+        this.navAutoHideTimer = setTimeout(() => {
+          if (this.topConsole && this.currentHoverIndex === null && !this.isModalOpen) {
+            this.topConsole.classList.remove("nav-autohide");
+          }
+        }, 2500);
+      }
+    });
+
     // Mouse Parallax & Hover Detection
     window.addEventListener("pointermove", (e) => {
       if (this.isModalOpen) return;
@@ -1669,13 +1754,6 @@ class UniverseManager {
       if (e.target !== this.canvas) {
         this.mouse.x = -9999;
         this.mouse.y = -9999;
-        if (this.hoveredCard) {
-          gsap.to(this.hoveredCard.userData.group.scale, { x: 1, y: 1, z: 1, duration: 0.3 });
-          this.hoveredCard.userData.edgeMat.color.setHex(0xe5c583);
-          this.hoveredCard.userData.edgeMat.opacity = 0.55;
-          this.hoveredCard = null;
-          document.body.style.cursor = "default";
-        }
         return;
       }
 
@@ -1697,9 +1775,9 @@ class UniverseManager {
         if (dist > 5) return;
       }
 
-      // If already hovering on a card, open it immediately
-      if (this.hoveredCard) {
-        this.openMemory(this.hoveredCard.userData.index);
+      // If currently hovering on a card, open it immediately
+      if (this.currentHoverIndex !== null) {
+        this.openMemory(this.currentHoverIndex);
         return;
       }
 
@@ -1716,6 +1794,15 @@ class UniverseManager {
         this.openMemory(intersects[0].object.userData.index);
       }
     });
+
+    // Hover Card click opens memory lightbox
+    if (this.hoverClickTarget) {
+      this.hoverClickTarget.addEventListener("click", () => {
+        if (this.currentHoverIndex !== null) {
+          this.openMemory(this.currentHoverIndex);
+        }
+      });
+    }
 
     // Chapter Filter Chips
     const chapterChips = document.querySelectorAll("#chapter-filter-bar .chapter-chip");
@@ -1775,6 +1862,9 @@ class UniverseManager {
     const card = this.cards[index];
     const memory = card.memory;
 
+    if (this.hoverBox) this.hoverBox.classList.remove("is-visible");
+    if (this.topConsole) this.topConsole.classList.add("nav-autohide");
+
     // Spawn 3D particle fountain
     this.spawn3DClickBurst(card.group.position);
 
@@ -1819,14 +1909,30 @@ class UniverseManager {
   }
 
   navigateMemory(delta) {
-    let nextIdx = (this.activeCardIndex + delta + this.cards.length) % this.cards.length;
-    this.openMemory(nextIdx);
+    const imgElem = document.getElementById("lightbox-img");
+    const contentPane = document.querySelector(".lightbox-content-pane");
+
+    gsap.to([imgElem, contentPane], {
+      opacity: 0,
+      x: delta > 0 ? -22 : 22,
+      duration: 0.18,
+      ease: "power2.in",
+      onComplete: () => {
+        let nextIdx = (this.activeCardIndex + delta + this.cards.length) % this.cards.length;
+        this.openMemory(nextIdx);
+        gsap.fromTo([imgElem, contentPane],
+          { opacity: 0, x: delta > 0 ? 22 : -22 },
+          { opacity: 1, x: 0, duration: 0.28, ease: "power2.out" }
+        );
+      }
+    });
   }
 
   closeMemory() {
     this.isModalOpen = false;
     const lightbox = document.getElementById("memory-lightbox");
     if (lightbox) lightbox.classList.remove("is-open");
+    if (this.topConsole) this.topConsole.classList.remove("nav-autohide");
   }
 
   toggleGuidedTour() {
@@ -2009,13 +2115,18 @@ class UniverseManager {
       posAttr.needsUpdate = true;
     }
 
-    // Organic gentle floating of cards
+    // Living organic floating & subtle sway so cards never look still
     for (let i = 0; i < this.cards.length; i++) {
       const item = this.cards[i];
-      item.group.position.y = item.basePos.y + Math.sin(time * 1.5 + i * 0.5) * 0.25;
+      const baseRot = item.baseRot || { x: 0, y: 0, z: 0 };
+      if (this.currentHoverIndex !== i) {
+        item.group.position.y = item.basePos.y + Math.sin(time * 1.4 + i * 0.45) * 0.65;
+        item.group.rotation.y = baseRot.y + Math.sin(time * 0.85 + i * 0.6) * 0.05;
+        item.group.rotation.x = baseRot.x + Math.cos(time * 0.75 + i * 0.5) * 0.035;
+      }
     }
 
-    // Interactive 3D Camera Parallax (Glides smoothly with mouse)
+    // Interactive 3D Camera Parallax & Card Raycast Hover Check
     if (!this.isModalOpen && this.controls.enabled) {
       this.cameraParallaxOffset.x += (this.parallaxMouse.x * 5 - this.cameraParallaxOffset.x) * 0.04;
       this.cameraParallaxOffset.y += (this.parallaxMouse.y * 3.5 - this.cameraParallaxOffset.y) * 0.04;
@@ -2023,31 +2134,126 @@ class UniverseManager {
       this.camera.position.x += this.cameraParallaxOffset.x * 0.03;
       this.camera.position.y += this.cameraParallaxOffset.y * 0.03;
 
-      // Raycast hover check
       this.raycaster.setFromCamera(this.mouse, this.camera);
       const meshes = this.cards.map(c => c.photoMesh);
       const intersects = this.raycaster.intersectObjects(meshes);
 
       if (intersects.length > 0 && intersects[0].distance < 100) {
         const hit = intersects[0].object;
-        if (this.hoveredCard !== hit) {
-          if (this.hoveredCard) {
-            gsap.to(this.hoveredCard.userData.group.scale, { x: 1, y: 1, z: 1, duration: 0.3 });
-            this.hoveredCard.userData.edgeMat.color.setHex(0xe5c583);
-            this.hoveredCard.userData.edgeMat.opacity = 0.55;
+        const hitIndex = hit.userData.index;
+
+        if (this.currentHoverIndex !== hitIndex) {
+          // --- PREVIOUS CARD AUTOMATICALLY DISAPPEARS FROM FOCUSED STATE ---
+          if (this.currentHoverIndex !== null) {
+            const prevCard = this.cards[this.currentHoverIndex];
+            if (prevCard) {
+              gsap.to(prevCard.group.position, {
+                x: prevCard.basePos.x,
+                y: prevCard.basePos.y,
+                z: prevCard.basePos.z,
+                duration: 0.45,
+                ease: "power2.out"
+              });
+              gsap.to(prevCard.group.scale, {
+                x: prevCard.visibleByChapter ? 1.05 : 0.82,
+                y: prevCard.visibleByChapter ? 1.05 : 0.82,
+                z: prevCard.visibleByChapter ? 1.05 : 0.82,
+                duration: 0.4,
+                ease: "power2.out"
+              });
+              prevCard.edgeMat.color.setHex(0xe5c583);
+              prevCard.edgeMat.opacity = prevCard.visibleByChapter ? 0.55 : 0.12;
+            }
           }
-          this.hoveredCard = hit;
-          gsap.to(hit.userData.group.scale, { x: 1.12, y: 1.12, z: 1.12, duration: 0.3 });
-          hit.userData.edgeMat.color.setHex(0xffffff);
-          hit.userData.edgeMat.opacity = 1.0;
+
+          // --- NEW CARD LIFTS FORWARD WITH RADIANT GLOW ---
+          const newCard = this.cards[hitIndex];
+          const dirToCam = new THREE.Vector3().subVectors(this.camera.position, newCard.group.position).normalize();
+          const liftedPos = newCard.basePos.clone().add(dirToCam.multiplyScalar(4.5));
+
+          gsap.to(newCard.group.position, {
+            x: liftedPos.x,
+            y: liftedPos.y,
+            z: liftedPos.z,
+            duration: 0.45,
+            ease: "back.out(1.4)"
+          });
+          gsap.to(newCard.group.scale, {
+            x: 1.25,
+            y: 1.25,
+            z: 1.25,
+            duration: 0.45,
+            ease: "back.out(1.4)"
+          });
+          newCard.edgeMat.color.setHex(0xffffff);
+          newCard.edgeMat.opacity = 1.0;
+
+          // Non-hovered cards softly dim for optical focus
+          this.cards.forEach((c, idx) => {
+            if (idx !== hitIndex) {
+              gsap.to(c.photoMat, { opacity: c.visibleByChapter ? 0.35 : 0.1, duration: 0.3 });
+            } else {
+              gsap.to(c.photoMat, { opacity: 1.0, duration: 0.2 });
+            }
+          });
+
+          // --- HOVER BOX: PREVIOUS CONTENT SMOOTHLY DISSOLVES, NEW SLIDES IN ---
+          if (this.hoverBox) {
+            const boxInner = this.hoverBox.querySelector(".hover-box-inner");
+            if (this.hoverBox.classList.contains("is-visible")) {
+              gsap.to(boxInner, {
+                opacity: 0.2,
+                y: -4,
+                duration: 0.12,
+                onComplete: () => {
+                  this.updateHoverBoxContent(hitIndex);
+                  gsap.to(boxInner, { opacity: 1, y: 0, duration: 0.22, ease: "power2.out" });
+                }
+              });
+            } else {
+              this.updateHoverBoxContent(hitIndex);
+              this.hoverBox.classList.add("is-visible");
+            }
+          }
+
+          this.currentHoverIndex = hitIndex;
           document.body.style.cursor = "pointer";
+
+          // Auto-hide nav bar on card focus
+          if (this.topConsole) this.topConsole.classList.add("nav-autohide");
         }
-      } else if (this.hoveredCard) {
-        gsap.to(this.hoveredCard.userData.group.scale, { x: 1, y: 1, z: 1, duration: 0.3 });
-        this.hoveredCard.userData.edgeMat.color.setHex(0xe5c583);
-        this.hoveredCard.userData.edgeMat.opacity = 0.55;
-        this.hoveredCard = null;
+      } else if (this.currentHoverIndex !== null) {
+        // --- MOUSE LEFT ALL CARDS: PREVIOUS CARD DISAPPEARS BACK TO REST ---
+        const prevCard = this.cards[this.currentHoverIndex];
+        if (prevCard) {
+          gsap.to(prevCard.group.position, {
+            x: prevCard.basePos.x,
+            y: prevCard.basePos.y,
+            z: prevCard.basePos.z,
+            duration: 0.45,
+            ease: "power2.out"
+          });
+          gsap.to(prevCard.group.scale, {
+            x: prevCard.visibleByChapter ? 1.05 : 0.82,
+            y: prevCard.visibleByChapter ? 1.05 : 0.82,
+            z: prevCard.visibleByChapter ? 1.05 : 0.82,
+            duration: 0.4,
+            ease: "power2.out"
+          });
+          prevCard.edgeMat.color.setHex(0xe5c583);
+          prevCard.edgeMat.opacity = prevCard.visibleByChapter ? 0.55 : 0.12;
+        }
+
+        // Restore all cards' opacity
+        this.cards.forEach((c) => {
+          gsap.to(c.photoMat, { opacity: c.visibleByChapter ? 1.0 : 0.18, duration: 0.35 });
+        });
+
+        if (this.hoverBox) this.hoverBox.classList.remove("is-visible");
+        this.currentHoverIndex = null;
         document.body.style.cursor = "default";
+
+        if (this.topConsole) this.topConsole.classList.remove("nav-autohide");
       }
     }
 
@@ -2079,6 +2285,11 @@ navTabs.forEach((btn) => {
     if (viewLittleThings) viewLittleThings.classList.remove("is-active");
     if (viewArcade) viewArcade.classList.remove("is-active");
     if (viewLetter) viewLetter.classList.remove("is-active");
+
+    if (universeManager) {
+      if (universeManager.topConsole) universeManager.topConsole.classList.remove("nav-autohide");
+      if (universeManager.hoverBox) universeManager.hoverBox.classList.remove("is-visible");
+    }
 
     if (target === "little-things") {
       if (viewLittleThings) viewLittleThings.classList.add("is-active");
