@@ -335,49 +335,6 @@ html, body {
   font-size: 0.85rem;
 }
 
-/* Center: 3D Layout Morph Toggles (Helix / Heart / Sphere) */
-.console-layout-modes {
-  pointer-events: auto;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px;
-  background: var(--bg-card);
-  border: 1px solid var(--gold-rim);
-  border-radius: 40px;
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-}
-
-.mode-btn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 7px 15px;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: 30px;
-  color: var(--text-muted);
-  font-family: var(--font-sans);
-  font-size: 0.82rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: var(--transition-smooth);
-}
-
-.mode-btn:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.mode-btn.active {
-  color: #0b0914;
-  background: var(--gold-gradient);
-  border-color: rgba(255, 255, 255, 0.3);
-  font-weight: 600;
-  box-shadow: 0 0 18px rgba(229, 197, 131, 0.45);
-}
 
 /* Right: Navigation Tabs */
 .console-nav-tabs {
@@ -1556,13 +1513,6 @@ html, body {
     font-size: 0.98rem;
     min-width: 18px;
   }
-  .console-layout-modes {
-    padding: 3px;
-  }
-  .mode-btn {
-    padding: 5px 10px;
-    font-size: 0.75rem;
-  }
   .console-nav-tabs {
     padding: 3px;
   }
@@ -1604,9 +1554,6 @@ html, body {
   }
   .entry-title {
     font-size: 2.1rem;
-  }
-  .console-layout-modes {
-    display: none;
   }
   .vol-slider {
     display: none;

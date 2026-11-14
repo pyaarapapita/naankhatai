@@ -1728,17 +1728,6 @@ class UniverseManager {
       });
     });
 
-    // Layout Morph Buttons (Helix / Heart / Sphere)
-    const modeBtns = document.querySelectorAll("#layout-modes-bar .mode-btn");
-    modeBtns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        modeBtns.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        const mode = btn.getAttribute("data-mode");
-        this.setLayoutMode(mode);
-      });
-    });
-
     // Guided Tour Button
     const tourBtn = document.getElementById("tour-toggle-btn");
     if (tourBtn) {
