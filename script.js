@@ -1046,7 +1046,7 @@ class UniverseManager {
 
   initScene() {
     this.scene = new THREE.Scene();
-    this.scene.fog = new THREE.FogExp2(0x06050a, 0.0024);
+    this.scene.fog = new THREE.FogExp2(0x06050a, 0.0012);
 
     this.camera = new THREE.PerspectiveCamera(
       54,
@@ -1054,7 +1054,7 @@ class UniverseManager {
       0.1,
       2500
     );
-    this.camera.position.set(0, 130, 260);
+    this.camera.position.set(0, 18, 75);
 
     this.renderer = new THREE.WebGLRenderer({
       canvas: this.canvas,
@@ -1148,11 +1148,11 @@ class UniverseManager {
     sCtx.arc(16, 16, 16, 0, Math.PI * 2);
     sCtx.fill();
 
-    const starTexture = new THREE.CanvasTexture(starCanvas);
+    this.starTexture = new THREE.CanvasTexture(starCanvas);
     const starMat = new THREE.PointsMaterial({
       size: 3.0,
       vertexColors: true,
-      map: starTexture,
+      map: this.starTexture,
       transparent: true,
       opacity: 0.9,
       blending: THREE.AdditiveBlending,
@@ -1175,7 +1175,7 @@ class UniverseManager {
     const dustMat = new THREE.PointsMaterial({
       color: 0xf7e7be,
       size: 4.5,
-      map: starTexture,
+      map: this.starTexture,
       transparent: true,
       opacity: 0.75,
       blending: THREE.AdditiveBlending,
@@ -1184,16 +1184,28 @@ class UniverseManager {
     this.dustPoints = new THREE.Points(dustGeom, dustMat);
     this.scene.add(this.dustPoints);
 
-    // 2. Orbital Saturnian Stardust Rings
-    const ringGeom = new THREE.RingGeometry(85, 130, 64);
-    const ringMat = new THREE.MeshBasicMaterial({
+    // 2. Orbital Saturnian Stardust Rings (Glowing celestial dust halo)
+    const ringCount = 380;
+    const ringGeom = new THREE.BufferGeometry();
+    const ringPositions = new Float32Array(ringCount * 3);
+    for (let r = 0; r < ringCount; r++) {
+      const angle = (r / ringCount) * Math.PI * 2;
+      const rad = 105 + (Math.random() - 0.5) * 10;
+      ringPositions[r * 3] = Math.cos(angle) * rad;
+      ringPositions[r * 3 + 1] = (Math.random() - 0.5) * 4;
+      ringPositions[r * 3 + 2] = Math.sin(angle) * rad;
+    }
+    ringGeom.setAttribute("position", new THREE.BufferAttribute(ringPositions, 3));
+    const ringMat = new THREE.PointsMaterial({
       color: 0xe5c583,
-      side: THREE.DoubleSide,
+      size: 2.2,
+      map: this.starTexture,
       transparent: true,
-      opacity: 0.12,
-      wireframe: true
+      opacity: 0.45,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false
     });
-    this.orbitalRing = new THREE.Mesh(ringGeom, ringMat);
+    this.orbitalRing = new THREE.Points(ringGeom, ringMat);
     this.orbitalRing.rotation.x = Math.PI * 0.38;
     this.orbitalRing.rotation.y = Math.PI * 0.15;
     this.scene.add(this.orbitalRing);
@@ -1263,7 +1275,8 @@ class UniverseManager {
     ctx.fillText("Our Story", 220, 365);
 
     const texture = new THREE.CanvasTexture(c);
-    texture.colorSpace = THREE.SRGBColorSpace;
+    if (THREE.sRGBEncoding) texture.encoding = THREE.sRGBEncoding;
+    if (THREE.SRGBColorSpace) texture.colorSpace = THREE.SRGBColorSpace;
     return texture;
   }
 
@@ -1331,7 +1344,8 @@ class UniverseManager {
     ctx.fillText(`Memory #${index + 1}`, 220, 360);
 
     const texture = new THREE.CanvasTexture(c);
-    texture.colorSpace = THREE.SRGBColorSpace;
+    if (THREE.sRGBEncoding) texture.encoding = THREE.sRGBEncoding;
+    if (THREE.SRGBColorSpace) texture.colorSpace = THREE.SRGBColorSpace;
     return texture;
   }
 
@@ -1493,7 +1507,8 @@ class UniverseManager {
         const img = new Image();
         img.onload = () => {
           const tex = new THREE.Texture(img);
-          tex.colorSpace = THREE.SRGBColorSpace;
+          if (THREE.sRGBEncoding) tex.encoding = THREE.sRGBEncoding;
+          if (THREE.SRGBColorSpace) tex.colorSpace = THREE.SRGBColorSpace;
           tex.minFilter = THREE.LinearFilter;
           tex.generateMipmaps = false;
           tex.needsUpdate = true;
@@ -1522,10 +1537,12 @@ class UniverseManager {
 
     const pMat = new THREE.PointsMaterial({
       color: 0xf7e7be,
-      size: 3.2,
+      size: 2.6,
+      map: this.starTexture,
       transparent: true,
-      opacity: 0.9,
-      blending: THREE.AdditiveBlending
+      opacity: 0.85,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false
     });
 
     this.ribbonParticles = new THREE.Points(geom, pMat);
@@ -1538,22 +1555,25 @@ class UniverseManager {
 
   updateRibbonSpline() {
     const points = this.cards.map(c => c.group.position.clone());
-    this.splineCurve = new THREE.CatmullRomCurve3D(points);
+    const CurveClass = THREE.CatmullRomCurve3 || THREE.CatmullRomCurve3D;
+    this.splineCurve = new CurveClass(points);
 
-    if (this.splineTubeMesh) {
-      this.scene.remove(this.splineTubeMesh);
-      this.splineTubeMesh.geometry.dispose();
+    if (this.splineLineMesh) {
+      this.scene.remove(this.splineLineMesh);
+      this.splineLineMesh.geometry.dispose();
+      this.splineLineMesh.material.dispose();
     }
 
-    const tubeGeom = new THREE.TubeGeometry(this.splineCurve, 200, 0.22, 6, false);
-    const tubeMat = new THREE.MeshBasicMaterial({
+    const curvePoints = this.splineCurve.getPoints(450);
+    const lineGeom = new THREE.BufferGeometry().setFromPoints(curvePoints);
+    const lineMat = new THREE.LineBasicMaterial({
       color: 0xe5c583,
       transparent: true,
-      opacity: 0.28,
-      wireframe: false
+      opacity: 0.38,
+      blending: THREE.AdditiveBlending
     });
-    this.splineTubeMesh = new THREE.Mesh(tubeGeom, tubeMat);
-    this.scene.add(this.splineTubeMesh);
+    this.splineLineMesh = new THREE.Line(lineGeom, lineMat);
+    this.scene.add(this.splineLineMesh);
   }
 
   // Morph all 100 cards into the chosen 3D layout (Helix, Heart, Sphere)
@@ -1658,11 +1678,12 @@ class UniverseManager {
   }
 
   startIntroFlyIn() {
+    this.camera.position.set(0, 48, 140);
     gsap.to(this.camera.position, {
       x: 0,
       y: 18,
       z: 75,
-      duration: 3.0,
+      duration: 2.8,
       ease: "power2.out",
       onUpdate: () => {
         this.controls.target.set(0, 0, 0);
@@ -1696,6 +1717,7 @@ class UniverseManager {
     const mat = new THREE.PointsMaterial({
       color: 0xf7e7be,
       size: 4.0,
+      map: this.starTexture,
       transparent: true,
       opacity: 1,
       blending: THREE.AdditiveBlending,
@@ -2263,10 +2285,26 @@ class UniverseManager {
 }
 
 let universeManager = null;
-window.addEventListener("DOMContentLoaded", () => {
-  initEntryCanvas();
-  universeManager = new UniverseManager();
-});
+function bootUniverse() {
+  if (universeManager) return;
+  try {
+    initEntryCanvas();
+    if (typeof THREE !== "undefined") {
+      universeManager = new UniverseManager();
+      window.universeManager = universeManager;
+    } else {
+      setTimeout(bootUniverse, 100);
+    }
+  } catch (err) {
+    console.error("UniverseManager boot failed:", err);
+  }
+}
+
+if (document.readyState === "loading") {
+  window.addEventListener("DOMContentLoaded", bootUniverse);
+} else {
+  bootUniverse();
+}
 
 // ============================================================================
 // TOP NAVIGATION TABS (UNIVERSE / LITTLE THINGS / ARCADE / LETTER)
