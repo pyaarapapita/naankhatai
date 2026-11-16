@@ -1037,7 +1037,10 @@ class UniverseManager {
     const memory = item.memory;
     const chInfo = CHAPTER_INFO[memory.chapter] || { label: "Our Story" };
 
-    if (this.hoverThumb) this.hoverThumb.src = encodeURI(item.photoSrc);
+    const photoSource = (window.PHOTO_EMBEDS && window.PHOTO_EMBEDS[index]) 
+      ? window.PHOTO_EMBEDS[index] 
+      : encodeURI(item.photoSrc);
+    if (this.hoverThumb) this.hoverThumb.src = photoSource;
     if (this.hoverChapter) this.hoverChapter.textContent = chInfo.label;
     if (this.hoverNum) this.hoverNum.textContent = `#${index + 1}`;
     if (this.hoverTitle) this.hoverTitle.textContent = memory.title;
@@ -1286,12 +1289,19 @@ class UniverseManager {
     c.height = 600;
     const ctx = c.getContext("2d");
 
-    // Luxury cosmic velvet gradient
+    // Luxury cosmic velvet gradient with golden depth
     const bgGrad = ctx.createLinearGradient(0, 0, 440, 600);
-    bgGrad.addColorStop(0, "#191326");
-    bgGrad.addColorStop(0.5, "#0b0914");
-    bgGrad.addColorStop(1, "#1d1428");
+    bgGrad.addColorStop(0, "#2c213f");
+    bgGrad.addColorStop(0.45, "#181226");
+    bgGrad.addColorStop(1, "#0f0b18");
     ctx.fillStyle = bgGrad;
+    ctx.fillRect(0, 0, 440, 600);
+
+    // Warm radiant celestial glow
+    const radialGlow = ctx.createRadialGradient(220, 260, 10, 220, 260, 180);
+    radialGlow.addColorStop(0, "rgba(229, 197, 131, 0.32)");
+    radialGlow.addColorStop(1, "rgba(229, 197, 131, 0)");
+    ctx.fillStyle = radialGlow;
     ctx.fillRect(0, 0, 440, 600);
 
     // Double golden borders
@@ -1349,42 +1359,17 @@ class UniverseManager {
     return texture;
   }
 
-  // Calculate 3D target coordinates for layout modes
-  getCoordinatesForMode(mode, i, total) {
-    if (mode === "heart") {
-      // Parametric 3D Heart Nebula
-      const t = (i / total) * Math.PI * 2;
-      const x = 16 * Math.pow(Math.sin(t), 3) * 2.85;
-      const y = (13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t)) * 2.85;
-      const z = (Math.sin(i * 3) * 14) + (Math.cos(t) * 10);
-      return {
-        pos: new THREE.Vector3(x, y, z),
-        rot: new THREE.Vector3(0, Math.sin(t) * 0.4, 0)
-      };
-    } else if (mode === "sphere") {
-      // Fibonacci Celestial Globe Sphere
-      const phi = Math.acos(-1 + (2 * i) / total);
-      const theta = Math.sqrt(total * Math.PI) * phi;
-      const radius = 62;
-      const x = radius * Math.cos(theta) * Math.sin(phi);
-      const y = radius * Math.sin(theta) * Math.sin(phi);
-      const z = radius * Math.cos(phi);
-      return {
-        pos: new THREE.Vector3(x, y, z),
-        rot: new THREE.Vector3(0, 0, 0)
-      };
-    } else {
-      // Default: Ascending Spiral Helix
-      const angle = i * 0.44;
-      const radius = 28 + Math.sin(i * 0.22) * 5 + i * 0.36;
-      const y = (i - total / 2) * 1.5;
-      const x = Math.cos(angle) * radius;
-      const z = Math.sin(angle) * radius;
-      return {
-        pos: new THREE.Vector3(x, y, z),
-        rot: new THREE.Vector3(0, 0, 0)
-      };
-    }
+  // Calculate 3D coordinates for ascending spiral helix
+  getCoordinates(i, total) {
+    const angle = i * 0.44;
+    const radius = 28 + Math.sin(i * 0.22) * 5 + i * 0.36;
+    const y = (i - total / 2) * 1.5;
+    const x = Math.cos(angle) * radius;
+    const z = Math.sin(angle) * radius;
+    return {
+      pos: new THREE.Vector3(x, y, z),
+      rot: new THREE.Vector3(0, 0, 0)
+    };
   }
 
   initCards() {
@@ -1400,8 +1385,6 @@ class UniverseManager {
 
     // Front photo plane inset
     const photoGeom = new THREE.PlaneGeometry(6.0, 8.4);
-    // Back card plane
-    const backGeom = new THREE.PlaneGeometry(6.0, 8.4);
 
     for (let i = 0; i < total; i++) {
       const memory = MEMORY_DATA[i] || {
@@ -1410,7 +1393,7 @@ class UniverseManager {
         chapter: "all"
       };
 
-      const coords = this.getCoordinatesForMode("spiral", i, total);
+      const coords = this.getCoordinates(i, total);
 
       const cardGroup = new THREE.Group();
       cardGroup.position.copy(coords.pos);
@@ -1459,15 +1442,11 @@ class UniverseManager {
       };
       cardGroup.add(photoMesh);
 
-      // Back Face Emblem (Visible when orbiting behind card)
-      const backTex = this.createCardBackTexture(i);
-      const backMat = new THREE.MeshBasicMaterial({
-        map: backTex,
-        side: THREE.FrontSide
-      });
-      const backMesh = new THREE.Mesh(backGeom, backMat);
+      // Back Face Inset (Shares photoMat so photo is visible from every angle!)
+      const backMesh = new THREE.Mesh(photoGeom, photoMat);
       backMesh.position.z = -0.21;
       backMesh.rotation.y = Math.PI;
+      backMesh.userData = photoMesh.userData;
       cardGroup.add(backMesh);
 
       const baseRot = { x: cardGroup.rotation.x, y: cardGroup.rotation.y, z: cardGroup.rotation.z };
@@ -1476,6 +1455,7 @@ class UniverseManager {
       this.cards.push({
         group: cardGroup,
         photoMesh: photoMesh,
+        backMesh: backMesh,
         frameMat: frameMat,
         edgeMat: edgeMat,
         photoMat: photoMat,
@@ -1491,10 +1471,10 @@ class UniverseManager {
       this.scene.add(cardGroup);
     }
 
-    this.loadTexturesInBatches(8);
+    this.loadTexturesInBatches(10);
   }
 
-  loadTexturesInBatches(batchSize = 8) {
+  loadTexturesInBatches(batchSize = 10) {
     let currentIdx = 0;
     const total = this.cards.length;
 
@@ -1504,7 +1484,12 @@ class UniverseManager {
 
       for (let i = currentIdx; i < end; i++) {
         const item = this.cards[i];
+        const src = (window.PHOTO_EMBEDS && window.PHOTO_EMBEDS[i])
+          ? window.PHOTO_EMBEDS[i]
+          : item.photoSrc;
+
         const img = new Image();
+        img.crossOrigin = "anonymous";
         img.onload = () => {
           const tex = new THREE.Texture(img);
           if (THREE.sRGBEncoding) tex.encoding = THREE.sRGBEncoding;
@@ -1516,11 +1501,18 @@ class UniverseManager {
           item.photoMat.needsUpdate = true;
           item.textureLoaded = true;
         };
-        img.src = item.photoSrc;
+        img.onerror = () => {
+          // If relative path fails, try encoded URL
+          if (!src.startsWith("data:") && !item.retried) {
+            item.retried = true;
+            img.src = encodeURI(item.photoSrc);
+          }
+        };
+        img.src = src;
       }
 
       currentIdx = end;
-      setTimeout(loadNextBatch, 50);
+      setTimeout(loadNextBatch, 25);
     };
 
     loadNextBatch();
@@ -1574,63 +1566,6 @@ class UniverseManager {
     });
     this.splineLineMesh = new THREE.Line(lineGeom, lineMat);
     this.scene.add(this.splineLineMesh);
-  }
-
-  // Morph all 100 cards into the chosen 3D layout (Helix, Heart, Sphere)
-  setLayoutMode(mode) {
-    if (this.currentMode === mode) return;
-    this.currentMode = mode;
-    playSparkleSound();
-
-    const total = this.cards.length;
-
-    this.cards.forEach((card, i) => {
-      const target = this.getCoordinatesForMode(mode, i, total);
-      card.basePos.copy(target.pos);
-
-      // Animate position
-      gsap.to(card.group.position, {
-        x: target.pos.x,
-        y: target.pos.y,
-        z: target.pos.z,
-        duration: 1.8,
-        ease: "power2.inOut",
-        delay: (i % 10) * 0.03
-      });
-
-      // Animate orientation
-      if (mode === "sphere") {
-        gsap.to(card.group.rotation, {
-          x: 0,
-          y: Math.atan2(target.pos.x, target.pos.z),
-          z: 0,
-          duration: 1.8,
-          ease: "power2.inOut"
-        });
-      } else if (mode === "heart") {
-        gsap.to(card.group.rotation, {
-          x: 0,
-          y: 0,
-          z: 0,
-          duration: 1.8,
-          ease: "power2.inOut"
-        });
-      } else {
-        // Spiral
-        gsap.to(card.group.rotation, {
-          x: 0,
-          y: Math.atan2(target.pos.x, target.pos.z),
-          z: Math.sin(i * 0.7) * 0.08,
-          duration: 1.8,
-          ease: "power2.inOut"
-        });
-      }
-    });
-
-    // Rebuild ribbon spline after morph completes
-    setTimeout(() => {
-      this.updateRibbonSpline();
-    }, 1900);
   }
 
   // Filter memories by chapter (All, Early Days, Food, Chaos, Sweet)
@@ -1804,7 +1739,7 @@ class UniverseManager {
         -(e.clientY / window.innerHeight) * 2 + 1
       );
       this.raycaster.setFromCamera(clickCoords, this.camera);
-      const meshes = this.cards.map(c => c.photoMesh);
+      const meshes = this.cards.flatMap(c => [c.photoMesh, c.backMesh]);
       const intersects = this.raycaster.intersectObjects(meshes);
 
       if (intersects.length > 0 && intersects[0].distance < 140) {
@@ -1918,7 +1853,10 @@ class UniverseManager {
     const captionElem = document.getElementById("lightbox-caption");
     const indexElem = document.getElementById("lightbox-index-indicator");
 
-    if (imgElem) imgElem.src = encodeURI(card.photoSrc);
+    const photoSource = (window.PHOTO_EMBEDS && window.PHOTO_EMBEDS[index])
+      ? window.PHOTO_EMBEDS[index]
+      : encodeURI(card.photoSrc);
+    if (imgElem) imgElem.src = photoSource;
     if (badgeElem) badgeElem.textContent = `Memory #${index + 1} of ${this.cards.length}`;
     if (titleElem) titleElem.textContent = memory.title;
     if (captionElem) captionElem.textContent = memory.caption;
@@ -2155,7 +2093,7 @@ class UniverseManager {
       this.camera.position.y += this.cameraParallaxOffset.y * 0.03;
 
       this.raycaster.setFromCamera(this.mouse, this.camera);
-      const meshes = this.cards.map(c => c.photoMesh);
+      const meshes = this.cards.flatMap(c => [c.photoMesh, c.backMesh]);
       const intersects = this.raycaster.intersectObjects(meshes);
 
       if (intersects.length > 0 && intersects[0].distance < 100) {
@@ -2680,6 +2618,209 @@ function sendVirtualHug() {
     });
   }
   showQuizToast("A tight, warm hug and a gentle forehead kiss sent straight to you ♥");
+}
+
+// ============================================================================
+// INTERACTIVE ADDITIONS: SEARCH, SHUFFLE & WISHING STAR
+// ============================================================================
+
+// 1. Starlight Memory Search & Surprise Fly-To
+function initMemorySearch() {
+  const searchBtn = document.getElementById("search-memories-btn");
+  const searchBar = document.getElementById("memory-search-bar");
+  const searchInput = document.getElementById("memory-search-input");
+  const searchDropdown = document.getElementById("search-results-dropdown");
+  const surpriseBtn = document.getElementById("surprise-memory-btn");
+
+  if (searchBtn && searchBar && searchInput) {
+    searchBtn.addEventListener("click", () => {
+      searchBar.classList.toggle("hidden");
+      if (!searchBar.classList.contains("hidden")) {
+        searchInput.focus();
+      } else {
+        searchInput.value = "";
+        if (searchDropdown) searchDropdown.innerHTML = "";
+      }
+    });
+
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.trim().toLowerCase();
+      if (!searchDropdown) return;
+      if (!query) {
+        searchDropdown.innerHTML = "";
+        return;
+      }
+
+      const matches = [];
+      for (let i = 0; i < MEMORY_DATA.length; i++) {
+        const mem = MEMORY_DATA[i];
+        const numStr = String(i + 1);
+        if (
+          mem.title.toLowerCase().includes(query) ||
+          mem.caption.toLowerCase().includes(query) ||
+          numStr === query ||
+          `#${numStr}` === query
+        ) {
+          matches.push({ index: i, memory: mem });
+          if (matches.length >= 6) break;
+        }
+      }
+
+      if (matches.length === 0) {
+        searchDropdown.innerHTML = `<div style="padding: 10px; font-size: 0.82rem; color: var(--text-muted); text-align: center;">No matching memories found</div>`;
+        return;
+      }
+
+      searchDropdown.innerHTML = matches.map(m => {
+        const ch = CHAPTER_INFO[m.memory.chapter] || { label: "Our Story" };
+        const thumb = (window.PHOTO_EMBEDS && window.PHOTO_EMBEDS[m.index]) ? window.PHOTO_EMBEDS[m.index] : CONFIG.PHOTOS[m.index];
+        return `
+          <div class="search-result-item" data-index="${m.index}">
+            <img class="search-result-thumb" src="${thumb}" alt="Thumb" />
+            <div class="search-result-meta">
+              <span class="search-result-title">#${m.index + 1} • ${m.memory.title}</span>
+              <span class="search-result-chapter">${ch.label}</span>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      const items = searchDropdown.querySelectorAll(".search-result-item");
+      items.forEach(item => {
+        item.addEventListener("click", () => {
+          const idx = parseInt(item.getAttribute("data-index"), 10);
+          if (universeManager) {
+            universeManager.openMemory(idx);
+          }
+          searchBar.classList.add("hidden");
+          searchInput.value = "";
+          searchDropdown.innerHTML = "";
+        });
+      });
+    });
+
+    // Close on click outside search bar
+    document.addEventListener("pointerdown", (e) => {
+      if (searchBar && !searchBar.classList.contains("hidden")) {
+        if (!searchBar.contains(e.target) && e.target !== searchBtn && !searchBtn.contains(e.target)) {
+          searchBar.classList.add("hidden");
+        }
+      }
+    });
+  }
+
+  if (surpriseBtn) {
+    surpriseBtn.addEventListener("click", () => {
+      if (!universeManager || !universeManager.cards.length) return;
+      playSparkleSound();
+      const randIdx = Math.floor(Math.random() * universeManager.cards.length);
+      universeManager.openMemory(randIdx);
+    });
+  }
+}
+
+// 2. Little Things Random Spotlight
+function initLittleThingsRandomizer() {
+  const randomBtn = document.getElementById("pick-random-thing-btn");
+  if (!randomBtn) return;
+
+  randomBtn.addEventListener("click", () => {
+    const cards = document.querySelectorAll(".thing-card");
+    if (!cards.length) return;
+
+    playSuccessChime();
+    if (window.confetti) {
+      confetti({
+        particleCount: 55,
+        spread: 65,
+        origin: { y: 0.5 },
+        colors: ["#e5c583", "#f7e7be", "#ffffff", "#f4b266"]
+      });
+    }
+
+    const randIdx = Math.floor(Math.random() * cards.length);
+    cards.forEach(c => c.classList.remove("spotlight"));
+    const chosen = cards[randIdx];
+    chosen.classList.add("spotlight");
+    chosen.scrollIntoView({ behavior: "smooth", block: "center" });
+
+    gsap.fromTo(chosen, 
+      { scale: 0.95 }, 
+      { scale: 1.04, duration: 0.35, yoyo: true, repeat: 1, ease: "power2.out" }
+    );
+  });
+}
+
+// 3. Starlight Wishing Star & Daily Notes
+const WISH_NOTES = [
+  "You are my favorite notification in the entire world.",
+  "I promise to always keep finding reasons to make you laugh until your stomach hurts.",
+  "Even the quietest ordinary days feel like a celebration when I'm with you.",
+  "Your smile is my absolute weakness, and I wouldn't have it any other way.",
+  "Thank you for being patient with me, for loving me, and for being my home.",
+  "I love who I become when I am with you — happier, calmer, and genuinely at peace.",
+  "No distance, bad day, or silly argument could ever change how much you mean to me.",
+  "I promise to always be the person who brings you warm tea and your favorite snacks when you're tired.",
+  "You make everyday life feel gentle and magical.",
+  "I still get that little happy flutter every single time I see you walk towards me.",
+  "Thank you for choosing me every single day. I will never take it for granted.",
+  "With you, even sitting in silence doing nothing feels like the best evening ever.",
+  "I promise to always listen, to keep learning, and to never stop putting effort into us.",
+  "You are the best decision I ever made.",
+  "Every memory we have together is a treasure I hold close to my heart.",
+  "I love your silly laughs, your sleepy voice, and the way you care so deeply about the people you love.",
+  "Whatever the future holds, I just want it with you in it.",
+  "Forever in your corner, through all the chaos, triumphs, and little quiet moments."
+];
+
+let lastWishIdx = -1;
+function initWishingStar() {
+  const trigger = document.getElementById("wishing-star-trigger");
+  const noteText = document.getElementById("wishing-note-text");
+  if (!trigger || !noteText) return;
+
+  trigger.addEventListener("click", () => {
+    playSuccessChime();
+
+    gsap.fromTo(trigger,
+      { scale: 0.85, rotate: -20 },
+      { scale: 1.15, rotate: 20, duration: 0.3, yoyo: true, repeat: 1, ease: "back.out(2)" }
+    );
+
+    if (window.confetti) {
+      confetti({
+        particleCount: 65,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ["#e5c583", "#f7e7be", "#ffffff", "#8aaad6"]
+      });
+    }
+
+    let nextIdx = Math.floor(Math.random() * WISH_NOTES.length);
+    while (nextIdx === lastWishIdx && WISH_NOTES.length > 1) {
+      nextIdx = Math.floor(Math.random() * WISH_NOTES.length);
+    }
+    lastWishIdx = nextIdx;
+
+    noteText.textContent = `"${WISH_NOTES[nextIdx]}"`;
+    gsap.fromTo(noteText,
+      { opacity: 0, y: 6 },
+      { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }
+    );
+  });
+}
+
+// Initialize Interactive Features on Load
+function initInteractiveFeatures() {
+  initMemorySearch();
+  initLittleThingsRandomizer();
+  initWishingStar();
+}
+
+if (document.readyState === "loading") {
+  window.addEventListener("DOMContentLoaded", initInteractiveFeatures);
+} else {
+  initInteractiveFeatures();
 }
 
 // Global window bindings for inline HTML handlers

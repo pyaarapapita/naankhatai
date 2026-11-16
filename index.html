@@ -163,12 +163,31 @@
       <button class="chapter-chip" data-chapter="sweet">🤍 Sweet & Quiet</button>
     </div>
 
+    <!-- Starlight Memory Search Bar -->
+    <div id="memory-search-bar" class="memory-search-bar hidden">
+      <input type="text" id="memory-search-input" placeholder="Search memories (e.g. coffee, laugh, rain)..." autocomplete="off" />
+      <div id="search-results-dropdown" class="search-results-dropdown"></div>
+    </div>
+
     <div class="controls-actions-row">
       <button class="univ-btn" id="tour-toggle-btn">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <polygon points="5 3 19 12 5 21 5 3"></polygon>
         </svg>
         <span>Guided Tour</span>
+      </button>
+      <button class="univ-btn" id="search-memories-btn" title="Search Moments">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <span>Find Moment</span>
+      </button>
+      <button class="univ-btn" id="surprise-memory-btn" title="Surprise Moment">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+        </svg>
+        <span>Surprise ✦</span>
       </button>
       <button class="univ-btn" id="reset-cam-btn" title="Reset View">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -242,6 +261,13 @@
         <div class="section-tag">All The Small Wonders</div>
         <h2 class="section-title">Little Things I Love About You</h2>
         <p class="section-desc">It was never just one big moment. It's all the tiny, everyday things about you that make my world brighter.</p>
+      </div>
+
+      <div class="things-actions-bar">
+        <button class="things-random-btn" id="pick-random-thing-btn">
+          <span>✨ Highlight a Random Thing Today</span>
+        </button>
+        <span class="things-counter-tag">12 Cherished Everyday Habits</span>
       </div>
 
       <div class="things-grid">
@@ -472,6 +498,24 @@
         </div>
       </div>
 
+      <!-- Interactive Wishing Star & Secret Sweet Notes -->
+      <div class="wishing-star-card" id="wishing-star-card">
+        <div class="wishing-star-header">
+          <span class="wishing-star-tag">✦ Daily Sweet Note Dispenser ✦</span>
+          <h3 class="wishing-star-title">Our Starlight Wish Star</h3>
+          <p class="wishing-star-desc">Tap the radiant star to draw an honest compliment, little promise, or inside joke.</p>
+        </div>
+        <div class="wishing-star-interactive">
+          <button class="wishing-star-btn" id="wishing-star-trigger" title="Tap to make a wish">
+            <span>⭐</span>
+          </button>
+          <div class="wishing-note-output" id="wishing-note-output">
+            <p class="wishing-note-text" id="wishing-note-text">"Tap the star above to draw your message for today ✦"</p>
+            <span class="wishing-note-author">— Always yours ♥</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -621,7 +665,8 @@
     </audio>
   </div>
 
-  <!-- Main Application Logic -->
+  <!-- Main Application Logic & Embedded Textures -->
+  <script src="photo_data.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
