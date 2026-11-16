@@ -860,6 +860,8 @@ class MusicController {
   init() {
     if (!this.audio) return;
     this.audio.volume = 0;
+    this.updateVolUI(0.8);
+    this.updateSeekUI(0);
 
     if (this.playBtn) {
       this.playBtn.addEventListener("click", () => this.togglePlay());
@@ -881,6 +883,7 @@ class MusicController {
       this.seekSlider.addEventListener("input", () => {
         this.isSeeking = true;
         const pct = this.seekSlider.value / 100;
+        this.updateSeekUI(pct);
         if (this.currentTimeElem) {
           this.currentTimeElem.textContent = this.formatTime(pct * (this.audio.duration || 0));
         }
@@ -889,26 +892,25 @@ class MusicController {
       this.seekSlider.addEventListener("change", () => {
         const pct = this.seekSlider.value / 100;
         this.audio.currentTime = pct * (this.audio.duration || 0);
+        this.updateSeekUI(pct);
         this.isSeeking = false;
       });
     }
 
     if (this.volSlider) {
       this.volSlider.addEventListener("input", () => {
-        this.audio.volume = parseFloat(this.volSlider.value);
-        if (this.audio.volume > 0) this.lastVolume = this.audio.volume;
+        const val = parseFloat(this.volSlider.value);
+        this.setVolume(val);
       });
     }
 
     if (this.volBtn) {
       this.volBtn.addEventListener("click", () => {
-        if (this.audio.volume > 0) {
+        if (this.audio.volume > 0.01) {
           this.lastVolume = this.audio.volume;
-          this.audio.volume = 0;
-          if (this.volSlider) this.volSlider.value = 0;
+          this.setVolume(0);
         } else {
-          this.audio.volume = this.lastVolume || 0.8;
-          if (this.volSlider) this.volSlider.value = this.audio.volume;
+          this.setVolume(this.lastVolume || 0.8);
         }
       });
     }
@@ -926,6 +928,49 @@ class MusicController {
     });
   }
 
+  setVolume(vol) {
+    if (!this.audio) return;
+    const clamped = Math.max(0, Math.min(1, vol));
+    this.audio.volume = clamped;
+    if (clamped > 0.01) this.lastVolume = clamped;
+    this.updateVolUI(clamped);
+  }
+
+  updateVolUI(vol) {
+    if (this.volSlider) {
+      this.volSlider.value = vol;
+      const pct = (vol * 100).toFixed(1);
+      this.volSlider.style.background = `linear-gradient(to right, #e5c583 0%, #e5c583 ${pct}%, rgba(255, 255, 255, 0.18) ${pct}%, rgba(255, 255, 255, 0.18) 100%)`;
+    }
+    const volIcon = document.getElementById("vol-icon");
+    if (volIcon) {
+      if (vol <= 0.01) {
+        volIcon.innerHTML = `
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <line x1="23" y1="9" x2="17" y2="15"></line>
+          <line x1="17" y1="9" x2="23" y2="15"></line>
+        `;
+      } else if (vol < 0.5) {
+        volIcon.innerHTML = `
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        `;
+      } else {
+        volIcon.innerHTML = `
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        `;
+      }
+    }
+  }
+
+  updateSeekUI(progressPct) {
+    if (this.seekSlider) {
+      const p = (Math.max(0, Math.min(1, progressPct)) * 100).toFixed(1);
+      this.seekSlider.style.background = `linear-gradient(to right, #e5c583 0%, #e5c583 ${p}%, rgba(255, 255, 255, 0.18) ${p}%, rgba(255, 255, 255, 0.18) 100%)`;
+    }
+  }
+
   togglePlay() {
     getAudioContext();
     if (!this.audio) return;
@@ -939,6 +984,7 @@ class MusicController {
   fadeIn(targetVol = 0.8, durationMs = 2200) {
     if (!this.audio) return;
     this.audio.volume = 0;
+    this.updateVolUI(0);
     this.audio.play().then(() => {
       if (this.vinylDisc) this.vinylDisc.classList.add("is-playing");
       if (this.playIcon) this.playIcon.style.display = "none";
@@ -948,8 +994,9 @@ class MusicController {
       const step = (now) => {
         const elapsed = now - startTime;
         const progress = Math.min(elapsed / durationMs, 1);
-        this.audio.volume = progress * targetVol;
-        if (this.volSlider) this.volSlider.value = this.audio.volume;
+        const currentVol = progress * targetVol;
+        this.audio.volume = currentVol;
+        this.updateVolUI(currentVol);
         if (progress < 1 && !this.audio.paused) {
           requestAnimationFrame(step);
         }
@@ -970,7 +1017,10 @@ class MusicController {
     if (this.totalTimeElem && !isNaN(dur) && dur > 1) {
       this.totalTimeElem.textContent = this.formatTime(dur);
     }
-    if (this.seekSlider) this.seekSlider.value = progressPct * 100;
+    if (this.seekSlider && !this.isSeeking) {
+      this.seekSlider.value = progressPct * 100;
+      this.updateSeekUI(progressPct);
+    }
 
     const circumference = 157;
     const offset = circumference - progressPct * circumference;
@@ -988,6 +1038,26 @@ class MusicController {
 }
 
 const musicController = new MusicController();
+
+// Global Desktop Keyboard Shortcut (Spacebar Play/Pause)
+window.addEventListener("keydown", (e) => {
+  const targetTag = e.target ? e.target.tagName.toLowerCase() : "";
+  if (targetTag === "input" || targetTag === "textarea" || e.target?.isContentEditable) {
+    return;
+  }
+  if (e.code === "Space" || e.key === " " || e.keyCode === 32) {
+    e.preventDefault();
+    if (musicController) {
+      musicController.togglePlay();
+      if (musicController.playBtn) {
+        musicController.playBtn.style.transform = "scale(0.9)";
+        setTimeout(() => {
+          if (musicController.playBtn) musicController.playBtn.style.transform = "";
+        }, 140);
+      }
+    }
+  }
+});
 
 // ============================================================================
 // 3. TRUE 3D INTERACTIVE MEMORY UNIVERSE (THREE.JS + GSAP)
