@@ -388,105 +388,8 @@ html, body {
 }
 
 /* ==========================================================================
-   INTERACTIVE ADDITIONS: SEARCH, SHUFFLE & WISHING STAR
+   INTERACTIVE ADDITIONS: SHUFFLE & WISHING STAR
    ========================================================================== */
-.memory-search-bar {
-  position: relative;
-  width: 100%;
-  max-width: 440px;
-  background: rgba(18, 14, 28, 0.94);
-  border: 1px solid var(--gold-pure);
-  border-radius: 24px;
-  padding: 6px 14px;
-  backdrop-filter: blur(25px);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7);
-  display: flex;
-  align-items: center;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.memory-search-bar.hidden {
-  display: none !important;
-}
-
-.memory-search-bar input {
-  width: 100%;
-  background: transparent;
-  border: none;
-  outline: none;
-  color: #fff;
-  font-family: var(--font-sans);
-  font-size: 0.88rem;
-  padding: 4px 8px;
-}
-
-.memory-search-bar input::placeholder {
-  color: var(--text-muted);
-}
-
-.search-results-dropdown {
-  position: absolute;
-  bottom: calc(100% + 8px);
-  left: 0;
-  width: 100%;
-  max-height: 240px;
-  overflow-y: auto;
-  background: rgba(14, 11, 22, 0.96);
-  border: 1px solid var(--gold-rim);
-  border-radius: 16px;
-  backdrop-filter: blur(25px);
-  box-shadow: 0 -12px 35px rgba(0, 0, 0, 0.8);
-  display: flex;
-  flex-direction: column;
-  padding: 6px;
-  z-index: 101;
-}
-
-.search-results-dropdown:empty {
-  display: none;
-}
-
-.search-result-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.search-result-item:hover {
-  background: rgba(229, 197, 131, 0.16);
-}
-
-.search-result-thumb {
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
-  object-fit: cover;
-  border: 1px solid var(--gold-rim);
-}
-
-.search-result-meta {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.search-result-title {
-  color: #fff;
-  font-size: 0.82rem;
-  font-weight: 500;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.search-result-chapter {
-  color: var(--gold-light);
-  font-size: 0.72rem;
-}
 
 /* Little Things Actions Bar */
 .things-actions-bar {
@@ -633,113 +536,7 @@ html, body {
   font-size: 1.1rem;
   color: var(--text-muted);
 }
-   ========================================================================== */
-#universe-controls {
-  position: fixed;
-  bottom: 24px;
-  left: 24px;
-  z-index: 100;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
 
-#universe-controls.view-hidden {
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(18px);
-}
-
-.controls-actions-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-/* Memory Chapter Filter Row (NEW) */
-.chapter-filter-chips {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(14, 12, 22, 0.8);
-  border: 1px solid var(--gold-rim);
-  border-radius: 30px;
-  padding: 4px 6px;
-  backdrop-filter: blur(16px);
-  max-width: 580px;
-  overflow-x: auto;
-}
-
-.chapter-chip {
-  padding: 5px 12px;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: 20px;
-  color: var(--text-muted);
-  font-size: 0.76rem;
-  font-family: var(--font-sans);
-  font-weight: 500;
-  cursor: pointer;
-  transition: var(--transition-smooth);
-  white-space: nowrap;
-}
-
-.chapter-chip:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.chapter-chip.active {
-  background: rgba(229, 197, 131, 0.15);
-  border-color: var(--gold-pure);
-  color: var(--gold-light);
-  font-weight: 600;
-}
-
-.univ-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
-  background: var(--bg-card);
-  border: 1px solid var(--gold-rim);
-  border-radius: 30px;
-  color: var(--text-main);
-  font-family: var(--font-sans);
-  font-size: 0.86rem;
-  font-weight: 500;
-  cursor: pointer;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-  transition: var(--transition-smooth);
-}
-
-.univ-btn:hover {
-  background: rgba(28, 22, 38, 0.9);
-  border-color: var(--gold-pure);
-  transform: translateY(-2px);
-}
-
-.univ-btn.tour-active {
-  background: var(--gold-gradient);
-  color: #0b0914;
-  font-weight: 600;
-  border-color: #fff;
-  animation: pulseGoldButton 2s infinite ease-in-out;
-}
-
-.memory-count-pill {
-  padding: 10px 18px;
-  background: rgba(14, 12, 22, 0.75);
-  border: 1px solid rgba(229, 197, 131, 0.18);
-  border-radius: 30px;
-  font-family: var(--font-roman);
-  font-size: 0.85rem;
-  color: var(--gold-light);
-  backdrop-filter: blur(16px);
-}
 
 /* ==========================================================================
    2. CLASSY FLOATING MUSIC PLAYER (GOLD & OBSIDIAN VINYL)
@@ -1911,13 +1708,7 @@ html, body {
     max-width: 140px;
     min-width: 110px;
   }
-  #universe-controls {
-    bottom: 92px;
-    left: 14px;
-  }
-  .chapter-filter-chips {
-    max-width: 320px;
-  }
+
   .lightbox-card {
     flex-direction: column;
     max-height: 85vh;
