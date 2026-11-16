@@ -1739,6 +1739,7 @@ class UniverseManager {
       this.camera.aspect = window.innerWidth / window.innerHeight;
       this.camera.updateProjectionMatrix();
       this.renderer.setSize(window.innerWidth, window.innerHeight);
+      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     });
 
     // Auto-hide nav bar on card focus / 3D exploration, reveal when mouse reaches top
@@ -1794,16 +1795,10 @@ class UniverseManager {
       // Ignore if user was dragging/orbiting the scene
       if (this.pointerDownPos) {
         const dist = Math.hypot(e.clientX - this.pointerDownPos.x, e.clientY - this.pointerDownPos.y);
-        if (dist > 5) return;
+        if (dist > 6) return;
       }
 
-      // If currently hovering on a card, open it immediately
-      if (this.currentHoverIndex !== null) {
-        this.openMemory(this.currentHoverIndex);
-        return;
-      }
-
-      // Fallback raycast
+      // Raycast accurately at pointer-up coordinates (only open if directly clicking a card)
       const clickCoords = new THREE.Vector2(
         (e.clientX / window.innerWidth) * 2 - 1,
         -(e.clientY / window.innerHeight) * 2 + 1
@@ -1812,8 +1807,11 @@ class UniverseManager {
       const meshes = this.cards.map(c => c.photoMesh);
       const intersects = this.raycaster.intersectObjects(meshes);
 
-      if (intersects.length > 0 && intersects[0].distance < 100) {
-        this.openMemory(intersects[0].object.userData.index);
+      if (intersects.length > 0 && intersects[0].distance < 140) {
+        const hitIdx = intersects[0].object.userData.index;
+        if (typeof hitIdx === "number") {
+          this.openMemory(hitIdx);
+        }
       }
     });
 
@@ -2313,11 +2311,13 @@ const navTabs = document.querySelectorAll(".nav-tab-btn");
 const viewLittleThings = document.getElementById("view-little-things");
 const viewArcade = document.getElementById("view-arcade");
 const viewLetter = document.getElementById("view-letter");
+const universeControls = document.getElementById("universe-controls");
 
 navTabs.forEach((btn) => {
   btn.addEventListener("click", () => {
     navTabs.forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
+    playSparkleSound();
 
     const target = btn.getAttribute("data-tab");
     if (viewLittleThings) viewLittleThings.classList.remove("is-active");
@@ -2331,14 +2331,21 @@ navTabs.forEach((btn) => {
 
     if (target === "little-things") {
       if (viewLittleThings) viewLittleThings.classList.add("is-active");
+      if (universeControls) universeControls.classList.add("view-hidden");
       if (universeManager) universeManager.controls.enabled = false;
     } else if (target === "arcade") {
       if (viewArcade) viewArcade.classList.add("is-active");
+      if (universeControls) universeControls.classList.add("view-hidden");
       if (universeManager) universeManager.controls.enabled = false;
+      if (window.heartCatchGame) {
+        setTimeout(() => window.heartCatchGame.resize(), 50);
+      }
     } else if (target === "letter") {
       if (viewLetter) viewLetter.classList.add("is-active");
+      if (universeControls) universeControls.classList.add("view-hidden");
       if (universeManager) universeManager.controls.enabled = false;
     } else {
+      if (universeControls) universeControls.classList.remove("view-hidden");
       if (universeManager) universeManager.controls.enabled = true;
     }
   });
@@ -2580,7 +2587,7 @@ class HeartCatchGame {
   }
 }
 
-new HeartCatchGame();
+window.heartCatchGame = new HeartCatchGame();
 
 // ============================================================================
 // REAL COUPLE QUIZ INTERACTION
@@ -2674,3 +2681,8 @@ function sendVirtualHug() {
   }
   showQuizToast("A tight, warm hug and a gentle forehead kiss sent straight to you ♥");
 }
+
+// Global window bindings for inline HTML handlers
+window.openRomanticLetter = openRomanticLetter;
+window.handleQuizAnswer = handleQuizAnswer;
+window.sendVirtualHug = sendVirtualHug;
