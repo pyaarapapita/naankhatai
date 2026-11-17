@@ -1789,12 +1789,43 @@ class UniverseManager {
       this.mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
     });
 
-    // Pointer Click exclusively on 3D canvas
+    // Pointer Click exclusively on 3D canvas with Instant Tactile Feedback (Apple HIG Rule 1)
     this.canvas.addEventListener("pointerdown", (e) => {
       this.pointerDownPos = { x: e.clientX, y: e.clientY };
+
+      if (!this.isModalOpen && this.currentHoverIndex !== null) {
+        const activeCard = this.cards[this.currentHoverIndex];
+        if (activeCard) {
+          gsap.to(activeCard.group.scale, {
+            x: 1.14,
+            y: 1.14,
+            z: 1.14,
+            duration: 0.08,
+            ease: "power2.out"
+          });
+        }
+      }
     });
 
+    const resetCardPressScale = () => {
+      if (this.currentHoverIndex !== null) {
+        const activeCard = this.cards[this.currentHoverIndex];
+        if (activeCard) {
+          gsap.to(activeCard.group.scale, {
+            x: 1.25,
+            y: 1.25,
+            z: 1.25,
+            duration: 0.25,
+            ease: "back.out(1.5)"
+          });
+        }
+      }
+    };
+
+    this.canvas.addEventListener("pointercancel", resetCardPressScale);
+
     this.canvas.addEventListener("pointerup", (e) => {
+      resetCardPressScale();
       if (this.isModalOpen || !this.controls.enabled) return;
 
       // Ignore if user was dragging/orbiting the scene
@@ -2077,26 +2108,27 @@ class UniverseManager {
   animate() {
     requestAnimationFrame(() => this.animate());
 
-    const time = performance.now() * 0.001;
+    const prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const time = prefersReducedMotion ? 0 : performance.now() * 0.001;
 
     // Slowly rotate background starfield
-    if (this.starPoints) {
+    if (this.starPoints && !prefersReducedMotion) {
       this.starPoints.rotation.y = time * 0.015;
     }
 
     // Slowly drift foreground cosmic dust
-    if (this.dustPoints) {
+    if (this.dustPoints && !prefersReducedMotion) {
       this.dustPoints.rotation.y = time * 0.022;
       this.dustPoints.rotation.x = Math.sin(time * 0.1) * 0.05;
     }
 
     // Rotate orbital dust ring
-    if (this.orbitalRing) {
+    if (this.orbitalRing && !prefersReducedMotion) {
       this.orbitalRing.rotation.z = time * 0.02;
     }
 
     // Rotate diamond crystals
-    if (this.diamondCrystals) {
+    if (this.diamondCrystals && !prefersReducedMotion) {
       for (let i = 0; i < this.diamondCrystals.length; i++) {
         const dc = this.diamondCrystals[i];
         dc.rotation.x += 0.01;
@@ -2148,19 +2180,27 @@ class UniverseManager {
       const item = this.cards[i];
       const baseRot = item.baseRot || { x: 0, y: 0, z: 0 };
       if (this.currentHoverIndex !== i) {
-        item.group.position.y = item.basePos.y + Math.sin(time * 1.4 + i * 0.45) * 0.65;
-        item.group.rotation.y = baseRot.y + Math.sin(time * 0.85 + i * 0.6) * 0.05;
-        item.group.rotation.x = baseRot.x + Math.cos(time * 0.75 + i * 0.5) * 0.035;
+        if (!prefersReducedMotion) {
+          item.group.position.y = item.basePos.y + Math.sin(time * 1.4 + i * 0.45) * 0.65;
+          item.group.rotation.y = baseRot.y + Math.sin(time * 0.85 + i * 0.6) * 0.05;
+          item.group.rotation.x = baseRot.x + Math.cos(time * 0.75 + i * 0.5) * 0.035;
+        } else {
+          item.group.position.y = item.basePos.y;
+          item.group.rotation.y = baseRot.y;
+          item.group.rotation.x = baseRot.x;
+        }
       }
     }
 
     // Interactive 3D Camera Parallax & Card Raycast Hover Check
     if (!this.isModalOpen && this.controls.enabled) {
-      this.cameraParallaxOffset.x += (this.parallaxMouse.x * 5 - this.cameraParallaxOffset.x) * 0.04;
-      this.cameraParallaxOffset.y += (this.parallaxMouse.y * 3.5 - this.cameraParallaxOffset.y) * 0.04;
+      if (!prefersReducedMotion) {
+        this.cameraParallaxOffset.x += (this.parallaxMouse.x * 5 - this.cameraParallaxOffset.x) * 0.04;
+        this.cameraParallaxOffset.y += (this.parallaxMouse.y * 3.5 - this.cameraParallaxOffset.y) * 0.04;
 
-      this.camera.position.x += this.cameraParallaxOffset.x * 0.03;
-      this.camera.position.y += this.cameraParallaxOffset.y * 0.03;
+        this.camera.position.x += this.cameraParallaxOffset.x * 0.03;
+        this.camera.position.y += this.cameraParallaxOffset.y * 0.03;
+      }
 
       this.raycaster.setFromCamera(this.mouse, this.camera);
       const meshes = this.cards.flatMap(c => [c.photoMesh, c.backMesh]);
