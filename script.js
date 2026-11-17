@@ -174,7 +174,7 @@ const MEMORY_DATA = [
   },
   {
     "title": "First day butterflies that never quite left",
-    "caption": "You walked in with so much warmth that the whole room felt different.",
+    "caption": "The very first day our paths crossed and we started talking — everything suddenly felt brighter.",
     "chapter": "early"
   },
   {
@@ -213,8 +213,8 @@ const MEMORY_DATA = [
     "chapter": "early"
   },
   {
-    "title": "The very first walk where time stood still",
-    "caption": "A quiet evening walk where neither of us wanted to say goodbye.",
+    "title": "The very first late-night call",
+    "caption": "A quiet 2 AM conversation where hours felt like seconds, and neither of us wanted to hang up.",
     "chapter": "early"
   },
   {
@@ -233,8 +233,8 @@ const MEMORY_DATA = [
     "chapter": "early"
   },
   {
-    "title": "Late night street food craving",
-    "caption": "Standing by a food stall at midnight laughing about nothing in particular.",
+    "title": "Late-night food debates on call",
+    "caption": "Debating for an hour what snack to order on delivery while laughing together on call.",
     "chapter": "food"
   },
   {
@@ -253,13 +253,13 @@ const MEMORY_DATA = [
     "chapter": "food"
   },
   {
-    "title": "Our favorite cozy cafe corner",
-    "caption": "Tucked away in the corner of our favorite cafe, completely lost in our own bubble.",
+    "title": "Virtual coffee dates across the miles",
+    "caption": "Both of us with our mugs in hand over video call, completely lost in our own little world.",
     "chapter": "food"
   },
   {
-    "title": "Coffee dates that turn into dinner",
-    "caption": "What was supposed to be a quick coffee turned into five hours of storytelling.",
+    "title": "Calls that were supposed to be 10 minutes",
+    "caption": "What was supposed to be a quick goodnight call turned into four hours of non-stop talking.",
     "chapter": "food"
   },
   {
@@ -303,8 +303,8 @@ const MEMORY_DATA = [
     "chapter": "food"
   },
   {
-    "title": "Sweet tooth emergencies at 1 AM",
-    "caption": "Cruising through quiet streets hunting for anything sweet that was still open.",
+    "title": "Midnight snack sync at 1 AM",
+    "caption": "Raiding our kitchens at 1 AM together on call looking for something sweet to munch on.",
     "chapter": "food"
   },
   {
@@ -313,18 +313,18 @@ const MEMORY_DATA = [
     "chapter": "food"
   },
   {
-    "title": "Breakfast dates when we are barely awake",
-    "caption": "Sleepy eyes, messy hair, and warm coffee across the breakfast table.",
+    "title": "Morning calls when we are barely awake",
+    "caption": "Sleepy morning voices, messy hair on camera, and warm smiles before the day begins.",
     "chapter": "food"
   },
   {
-    "title": "The battle over who pays the bill",
-    "caption": "The silent wrestling match under the table trying to grab the bill first.",
+    "title": "The battle over who hangs up first",
+    "caption": "You hang up — No, you hang up — the sweetest, longest debate every single night.",
     "chapter": "food"
   },
   {
-    "title": "Mid-drive snack pitstop",
-    "caption": "Stopping by the roadside just to grab snacks we definitely didn't need.",
+    "title": "Sending each other sweet delivery treats",
+    "caption": "Randomly sending snacks and treats across the distance just to see you smile.",
     "chapter": "food"
   },
   {
@@ -348,13 +348,13 @@ const MEMORY_DATA = [
     "chapter": "food"
   },
   {
-    "title": "Sharing drinks and stealing sips",
-    "caption": "You taking a 'tiny sip' and half the glass being gone — classic you.",
+    "title": "Sharing food photos and recipes",
+    "caption": "Sending snaps of what we made and rating each other culinary creations across miles.",
     "chapter": "food"
   },
   {
-    "title": "Food always tastes ten times better when I'm with you",
-    "caption": "Honestly, even plain bread would taste gourmet if I get to eat it beside you.",
+    "title": "Everything is better when we share it",
+    "caption": "No matter how simple the meal, talking to you while eating makes it ten times better.",
     "chapter": "food"
   },
   {
@@ -363,8 +363,8 @@ const MEMORY_DATA = [
     "chapter": "chaos"
   },
   {
-    "title": "Singing completely off-key in the car",
-    "caption": "Blasting our favorite track with the windows rolled down, screaming every lyric.",
+    "title": "Singing completely off-key on voice call",
+    "caption": "Blasting our favorite track through our headphones and screaming every lyric out loud.",
     "chapter": "chaos"
   },
   {
@@ -373,8 +373,8 @@ const MEMORY_DATA = [
     "chapter": "chaos"
   },
   {
-    "title": "Getting drenched in sudden rain",
-    "caption": "Running for shelter under a tiny awning, soaked to the bone and laughing.",
+    "title": "Watching the rain from miles apart",
+    "caption": "Both of us sitting by our windows watching the rain, connected on call with cozy music.",
     "chapter": "chaos"
   },
   {
@@ -383,13 +383,13 @@ const MEMORY_DATA = [
     "chapter": "chaos"
   },
   {
-    "title": "An unplanned drive with zero destination",
-    "caption": "No GPS, no timeline, just good music and the open road with you.",
+    "title": "Getting lost in conversation with zero timeline",
+    "caption": "No agenda, no rush, just our favorite playlist and hours of talking about everything.",
     "chapter": "chaos"
   },
   {
-    "title": "When you lost your keys for the tenth time",
-    "caption": "Searching every bag and pocket for ten minutes only to find them in your hand.",
+    "title": "When you misplace your things on video call",
+    "caption": "Searching around your room for ten minutes while I watch and laugh on screen.",
     "chapter": "chaos"
   },
   {
@@ -403,8 +403,8 @@ const MEMORY_DATA = [
     "chapter": "chaos"
   },
   {
-    "title": "Walking through crowded streets hand in hand",
-    "caption": "Weaving through the bustling crowd, making sure your hand never slipped from mine.",
+    "title": "Counting down the days until we finally meet",
+    "caption": "Imagining the moment we finally meet in person and I get to hold your hand for real.",
     "chapter": "chaos"
   },
   {
@@ -413,8 +413,8 @@ const MEMORY_DATA = [
     "chapter": "chaos"
   },
   {
-    "title": "When you got scared of something tiny",
-    "caption": "You jumping a mile high over a tiny moth — I will never let you live that down.",
+    "title": "The dramatic reactions on video call",
+    "caption": "You jumping when a tiny bug flew past your screen — I will never let you live that down.",
     "chapter": "chaos"
   },
   {
@@ -448,8 +448,8 @@ const MEMORY_DATA = [
     "chapter": "chaos"
   },
   {
-    "title": "Late night conversations in the car outside your place",
-    "caption": "Sitting in the parked car for an extra hour because neither of us wanted to say goodnight.",
+    "title": "Staying on call for an extra hour just to say goodnight",
+    "caption": "Whispering into the phone for another hour because neither of us wanted to end the call.",
     "chapter": "chaos"
   },
   {
@@ -458,8 +458,8 @@ const MEMORY_DATA = [
     "chapter": "chaos"
   },
   {
-    "title": "Tripping over nothing and acting like it was planned",
-    "caption": "The clumsy moments that prove we are perfectly imperfect together.",
+    "title": "Silly clumsy moments on camera",
+    "caption": "Those adorable, unfiltered clumsy moments on call that make you uniquely you.",
     "chapter": "chaos"
   },
   {
@@ -483,13 +483,13 @@ const MEMORY_DATA = [
     "chapter": "chaos"
   },
   {
-    "title": "Comfortable silence after a long day",
-    "caption": "We didn't need to speak a single word — just sitting together was enough.",
+    "title": "Comfortable silence on call after a long day",
+    "caption": "Both of us studying or relaxing on call with cameras on — no words needed, just you.",
     "chapter": "sweet"
   },
   {
-    "title": "Your hand gently holding my sleeve",
-    "caption": "That subtle, unconscious way you reach out for my hand when we walk.",
+    "title": "The dream of our very first hug",
+    "caption": "The thought of finally wrapping my arms around you when we meet for the first time.",
     "chapter": "sweet"
   },
   {
@@ -508,13 +508,13 @@ const MEMORY_DATA = [
     "chapter": "sweet"
   },
   {
-    "title": "That look of pure warmth across the table",
-    "caption": "I looked up and caught you looking at me with that gentle, unmistakable warmth.",
+    "title": "That look of pure warmth on screen",
+    "caption": "Catching you smiling at your phone with that gentle, unmistakable warmth that melts me.",
     "chapter": "sweet"
   },
   {
-    "title": "The softest forehead kiss",
-    "caption": "A quiet forehead kiss to remind you that you are always safe with me.",
+    "title": "A promise of the sweetest forehead kiss",
+    "caption": "The first thing I will do when I finally see you in person is give you the gentlest forehead kiss.",
     "chapter": "sweet"
   },
   {
@@ -528,13 +528,13 @@ const MEMORY_DATA = [
     "chapter": "sweet"
   },
   {
-    "title": "The way you care for stray animals",
-    "caption": "Watching your heart melt for every stray dog or kitten we pass on the road.",
+    "title": "Sending photos of every cute dog and cat",
+    "caption": "Your pure excitement whenever you share photos of animals and your heart melts.",
     "chapter": "sweet"
   },
   {
-    "title": "Holding your cold hands in my warm pockets",
-    "caption": "Your hands were like ice, but holding them warmed up my entire world.",
+    "title": "Sending you warmth across the cold miles",
+    "caption": "Wishing I could be there to warm up your cold hands, sending all my love until then.",
     "chapter": "sweet"
   },
   {
@@ -563,8 +563,8 @@ const MEMORY_DATA = [
     "chapter": "sweet"
   },
   {
-    "title": "When you rested your head on my shoulder",
-    "caption": "You rested your head on my shoulder on the way back, and I wished the ride was infinite.",
+    "title": "Falling asleep on call together",
+    "caption": "Hearing your calm breathing on call as you drift off to sleep, feeling closer than ever.",
     "chapter": "sweet"
   },
   {
@@ -598,8 +598,8 @@ const MEMORY_DATA = [
     "chapter": "sweet"
   },
   {
-    "title": "Every ordinary Tuesday that feels special with you",
-    "caption": "You have this superpower of turning an ordinary weekday into something memorable.",
+    "title": "Every ordinary day that feels special with you",
+    "caption": "You have this superpower of turning an ordinary weekday into something memorable and bright.",
     "chapter": "sweet"
   },
   {
@@ -638,9 +638,9 @@ const MEMORY_DATA = [
 const CHAPTER_INFO = {
   all: { label: "All Memories", count: 100 },
   early: { label: "Early Days", count: 20 },
-  food: { label: "Food & Late Nights", count: 25 },
-  chaos: { label: "Chaos & Trips", count: 25 },
-  sweet: { label: "Sweet & Quiet", count: 30 }
+  food: { label: "Late Nights & Calls", count: 25 },
+  chaos: { label: "Chaos & Laughter", count: 25 },
+  sweet: { label: "Sweet Moments", count: 30 }
 };
 
 // ============================================================================
@@ -792,8 +792,8 @@ if (enterBtn) {
       if (entryAnimId) cancelAnimationFrame(entryAnimId);
     }, 1400);
 
-    // Smooth audio fade in
-    musicController.fadeIn(0.8, 2200);
+    // Immediate crisp audio playback on Enter (never starts muted)
+    musicController.playImmediately(0.85);
 
     // Cinematic 3D camera fly-in
     if (universeManager) {
@@ -851,7 +851,7 @@ class MusicController {
     this.totalTimeElem = document.getElementById("player-total-time");
     this.volSlider = document.getElementById("vol-slider");
     this.volBtn = document.getElementById("vol-toggle-btn");
-    this.lastVolume = 0.8;
+    this.lastVolume = 0.85;
     this.isSeeking = false;
 
     this.init();
@@ -859,8 +859,9 @@ class MusicController {
 
   init() {
     if (!this.audio) return;
-    this.audio.volume = 0;
-    this.updateVolUI(0.8);
+    this.audio.volume = 0.85;
+    this.audio.muted = false;
+    this.updateVolUI(0.85);
     this.updateSeekUI(0);
 
     if (this.playBtn) {
@@ -981,30 +982,34 @@ class MusicController {
     }
   }
 
-  fadeIn(targetVol = 0.8, durationMs = 2200) {
+  playImmediately(vol = 0.85) {
     if (!this.audio) return;
-    this.audio.volume = 0;
-    this.updateVolUI(0);
-    this.audio.play().then(() => {
-      if (this.vinylDisc) this.vinylDisc.classList.add("is-playing");
-      if (this.playIcon) this.playIcon.style.display = "none";
-      if (this.pauseIcon) this.pauseIcon.style.display = "block";
+    this.audio.muted = false;
+    this.audio.volume = vol;
+    this.updateVolUI(vol);
+    const p = this.audio.play();
+    if (p !== undefined) {
+      p.then(() => {
+        if (this.vinylDisc) this.vinylDisc.classList.add("is-playing");
+        if (this.playIcon) this.playIcon.style.display = "none";
+        if (this.pauseIcon) this.pauseIcon.style.display = "block";
+      }).catch(err => {
+        console.warn("Autoplay waiting for touch interaction: ", err);
+        const onFirstInteract = () => {
+          this.audio.muted = false;
+          this.audio.volume = vol;
+          this.audio.play();
+          document.removeEventListener("pointerdown", onFirstInteract);
+          document.removeEventListener("keydown", onFirstInteract);
+        };
+        document.addEventListener("pointerdown", onFirstInteract, { once: true });
+        document.addEventListener("keydown", onFirstInteract, { once: true });
+      });
+    }
+  }
 
-      const startTime = performance.now();
-      const step = (now) => {
-        const elapsed = now - startTime;
-        const progress = Math.min(elapsed / durationMs, 1);
-        const currentVol = progress * targetVol;
-        this.audio.volume = currentVol;
-        this.updateVolUI(currentVol);
-        if (progress < 1 && !this.audio.paused) {
-          requestAnimationFrame(step);
-        }
-      };
-      requestAnimationFrame(step);
-    }).catch(err => {
-      console.warn("Autoplay audio waiting for interaction: ", err);
-    });
+  fadeIn(targetVol = 0.85, durationMs = 1200) {
+    this.playImmediately(targetVol);
   }
 
   updateProgress() {
@@ -2622,7 +2627,7 @@ class HeartCatchGame {
       if (this.descElem) this.descElem.textContent = "Here's what I wanted to tell you:";
       if (this.noteElem) {
         this.noteElem.innerHTML = `
-          "Truth is, you didn't even have to catch those hearts — mine has been completely yours through all our laughs, food runs, late nights, and everyday moments. Thank you for being my favorite person. ♥"
+          "Truth is, you didn't even have to catch those hearts — mine has been completely yours from our very first late-night talk. In these past 3 months, you've become my favorite part of every day, and I can't wait for the day we finally get to meet in person. ♥"
         `;
         this.noteElem.style.display = "block";
       }
@@ -2727,7 +2732,7 @@ function sendVirtualHug() {
       colors: ["#e5c583", "#f7e7be", "#f4b266", "#78213b", "#ffffff"]
     });
   }
-  showQuizToast("A tight, warm hug and a gentle forehead kiss sent straight to you ♥");
+  showQuizToast("A warm virtual hug and all my love sent straight across the miles to you ♥");
 }
 
 // ============================================================================
@@ -2870,11 +2875,11 @@ const WISH_NOTES = [
   "Thank you for being patient with me, for loving me, and for being my home.",
   "I love who I become when I am with you — happier, calmer, and genuinely at peace.",
   "No distance, bad day, or silly argument could ever change how much you mean to me.",
-  "I promise to always be the person who brings you warm tea and your favorite snacks when you're tired.",
+  "I promise to always be the person who sends your favorite treats and listens whenever you're tired.",
   "You make everyday life feel gentle and magical.",
-  "I still get that little happy flutter every single time I see you walk towards me.",
+  "I still get that little happy flutter every single time your name pops up on my screen.",
   "Thank you for choosing me every single day. I will never take it for granted.",
-  "With you, even sitting in silence doing nothing feels like the best evening ever.",
+  "With you, even quiet calls where we're just resting feel like the sweetest moments ever.",
   "I promise to always listen, to keep learning, and to never stop putting effort into us.",
   "You are the best decision I ever made.",
   "Every memory we have together is a treasure I hold close to my heart.",

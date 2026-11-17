@@ -658,9 +658,10 @@ html, body {
 .player-details {
   display: flex;
   flex-direction: column;
-  margin-right: 18px;
-  min-width: 140px;
-  max-width: 200px;
+  margin-right: 14px;
+  min-width: 150px;
+  max-width: 280px;
+  flex: 1;
 }
 
 .player-title-row {
@@ -725,10 +726,14 @@ html, body {
   appearance: none;
   width: 100%;
   height: 5px;
+  box-sizing: content-box;
+  padding: 8px 0;
+  background-clip: content-box;
   border-radius: 4px;
   background: linear-gradient(to right, var(--gold-pure) 0%, var(--gold-pure) 0%, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.18) 100%);
   outline: none;
   cursor: pointer;
+  touch-action: manipulation;
   transition: background 0.1s linear;
 }
 
@@ -834,10 +839,14 @@ html, body {
   appearance: none;
   width: 68px;
   height: 5px;
+  box-sizing: content-box;
+  padding: 8px 0;
+  background-clip: content-box;
   border-radius: 4px;
   background: linear-gradient(to right, var(--gold-pure) 0%, var(--gold-pure) 80%, rgba(255, 255, 255, 0.18) 80%, rgba(255, 255, 255, 0.18) 100%);
   outline: none;
   cursor: pointer;
+  touch-action: manipulation;
   transition: background 0.1s linear, transform 0.2s ease;
 }
 
@@ -1371,12 +1380,15 @@ html, body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgba(10, 8, 16, 0.9);
+  background: rgba(10, 8, 16, 0.92);
   backdrop-filter: blur(16px);
-  padding: 24px;
+  -webkit-backdrop-filter: blur(16px);
+  padding: 24px 20px;
   text-align: center;
   z-index: 10;
   transition: opacity 0.3s ease;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .game-overlay-msg.hidden {
@@ -1395,6 +1407,8 @@ html, body {
   font-size: 0.98rem;
   cursor: pointer;
   box-shadow: 0 8px 25px rgba(229, 197, 131, 0.4);
+  touch-action: manipulation;
+  min-height: 44px;
 }
 
 .game-start-btn:hover {
@@ -1402,16 +1416,20 @@ html, body {
 }
 
 .game-secret-note {
-  max-width: 480px;
+  max-width: 520px;
+  width: 100%;
+  box-sizing: border-box;
   background: rgba(229, 197, 131, 0.08);
   border: 1px solid var(--gold-pure);
   border-radius: 16px;
-  padding: 22px;
+  padding: 20px 22px;
   margin-top: 16px;
   font-family: var(--font-script);
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   color: var(--gold-light);
   line-height: 1.5;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  word-break: break-word;
 }
 
 /* Romantic Quiz */
@@ -1807,7 +1825,7 @@ html, body {
   }
 
   #music-player-container {
-    bottom: 12px;
+    bottom: max(12px, env(safe-area-inset-bottom, 12px));
     right: 12px;
     left: 12px;
     justify-content: space-between;
@@ -1824,6 +1842,21 @@ html, body {
 
   .vol-slider {
     width: 50px;
+  }
+
+  .game-card {
+    padding: 22px 16px;
+    border-radius: 22px;
+  }
+
+  .game-arena-wrapper {
+    min-height: 400px;
+  }
+
+  .game-secret-note {
+    font-size: 1.2rem;
+    padding: 16px;
+    line-height: 1.45;
   }
 
   .lightbox-card {
@@ -1888,8 +1921,8 @@ html, body {
   #music-player-container {
     left: 8px;
     right: 8px;
-    bottom: 8px;
-    padding: 6px 10px;
+    bottom: max(8px, env(safe-area-inset-bottom, 8px));
+    padding: 6px 12px;
     gap: 8px;
     border-radius: 36px;
   }
@@ -1907,11 +1940,13 @@ html, body {
 
   .player-details {
     padding: 0 4px;
+    flex: 1;
+    min-width: 0;
   }
 
   .player-song-title {
-    font-size: 0.76rem;
-    max-width: 130px;
+    font-size: 0.8rem;
+    max-width: 140px;
   }
 
   .player-artist {
@@ -1928,13 +1963,14 @@ html, body {
   }
 
   .play-pause-btn {
-    width: 34px;
-    height: 34px;
-    min-width: 34px;
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
   }
 
   .vol-slider {
-    display: none;
+    width: 44px;
+    height: 5px;
   }
 
   .vol-btn {
@@ -2027,43 +2063,136 @@ html, body {
     margin-top: 10px;
   }
 
+  .game-card {
+    padding: 16px 12px;
+    border-radius: 18px;
+  }
+
+  .game-arena-wrapper {
+    min-height: 420px;
+  }
+
+  .game-overlay-msg {
+    padding: 16px 12px;
+  }
+
+  .game-overlay-msg h3 {
+    font-size: 1.4rem !important;
+  }
+
+  .game-overlay-msg p {
+    font-size: 0.85rem !important;
+    line-height: 1.5;
+  }
+
+  .game-secret-note {
+    font-size: 1.1rem;
+    padding: 14px 12px;
+    margin-top: 10px;
+    line-height: 1.45;
+  }
+
+  .game-start-btn {
+    padding: 10px 24px;
+    font-size: 0.88rem;
+    margin-top: 12px;
+  }
+
+  .quiz-card {
+    padding: 20px 14px;
+    border-radius: 18px;
+  }
+
+  .quiz-question {
+    font-size: 1.12rem;
+  }
+
+  .quiz-options-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
   .envelope-container {
-    width: 290px;
-    height: 190px;
+    width: 270px;
+    height: 175px;
   }
 
   .envelope-flap-top {
-    border-left-width: 145px;
-    border-right-width: 145px;
-    border-top-width: 105px;
+    border-left-width: 135px;
+    border-right-width: 135px;
+    border-top-width: 95px;
   }
 
   .envelope-pocket::before {
-    border-left-width: 145px;
-    border-bottom-width: 95px;
-    border-right-width: 145px;
-    border-top-width: 95px;
+    border-left-width: 135px;
+    border-bottom-width: 88px;
+    border-right-width: 135px;
+    border-top-width: 88px;
   }
 
   .envelope-pocket::after {
-    border-right-width: 145px;
-    border-bottom-width: 95px;
-    border-left-width: 145px;
-    border-top-width: 95px;
+    border-right-width: 135px;
+    border-bottom-width: 88px;
+    border-left-width: 135px;
+    border-top-width: 88px;
   }
 
   #unfolded-letter {
-    padding: 24px 16px;
-    width: calc(100% - 16px);
+    box-sizing: border-box;
+    padding: 22px 14px;
+    width: 100%;
+    margin-top: 16px;
+    border-radius: 14px;
+  }
+
+  .letter-watermark {
+    font-size: 6rem;
+  }
+
+  .letter-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+  }
+
+  .letter-date-stamp {
+    font-size: 0.76rem;
   }
 
   .letter-salutation {
-    font-size: 1.35rem;
+    font-size: 1.3rem;
+    margin-bottom: 12px;
   }
 
   .letter-body {
     font-size: 0.88rem;
-    line-height: 1.6;
+    line-height: 1.62;
+  }
+
+  .letter-body p {
+    margin-bottom: 12px;
+  }
+
+  .letter-body .promise-text {
+    font-size: 1.1rem;
+    padding: 10px 12px;
+    margin: 14px 0;
+    line-height: 1.4;
+  }
+
+  .letter-signature {
+    font-size: 1.45rem;
+    margin-top: 16px;
+  }
+
+  .virtual-hug-btn {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px 16px;
+    font-size: 0.85rem;
+    margin: 20px auto 0;
   }
 }
 
